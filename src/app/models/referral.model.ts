@@ -14,7 +14,9 @@ export interface Referral {
   moveIn?: string;
   due_date?: string;
   order_date?: string;
+  status: string;
   package?: string;
   date_entered?: string;
-  referralBy: Referee;
+  referralBy: string;
+  comment: string;
 }

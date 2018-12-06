@@ -1,65 +1,69 @@
 <div class="container">
   <h2 class="center">Add New Referral</h2>
   <div class="card grey lighten-5 animated fadeInDown">
-    <form id="formValidate" action="/add-referral" method="POST">
+    <form no id="form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
       <div class="row">
         <div class="input-field col s6">
-          <input type="text" id="name" required name="name" class="validate">
+          <input type="text" id="name" [(ngModel)]="referral.name" #ref.name="ngModel" required name="name" class="" />
           <label for="name">Name</label>
         </div>
         <div class="input-field col s6">
-          <input type="text" id="last_name" required name="last_name" class="validate">
+          <input type="text" id="last_name" [(ngModel)]="referral.last_name" #ref.last_name="ngModel" required name="last_name"
+            class="" />
           <label for="last_name">Last Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12 l4">
-          <input type="text" id="address" name="address" required class="validate capitalized">
+          <input type="text" id="address" [(ngModel)]="referral.address.address" #ref.address.address="ngModel" name="address"
+            required class=" capitalized" />
           <label for="address">Address</label>
         </div>
         <div class="input-field col s12 l4">
-          <input type="text" id="apt" name="apt" class="validate">
+          <input type="text" id="apt" [(ngModel)]="referral.address.apt" #ref.apt="ngModel" name="apt" class="" />
           <label for="apt">Apt</label>
         </div>
         <div class="input-field col s12 l4">
-          <input type="number" id="zipcode" name="zipcode" maxlength="5" minlength="5" pattern="[0-9]" required class="validate">
+          <input type="number" id="zipcode" [(ngModel)]="referral.address.zipcode" #ref.zipcode="ngModel" name="zipcode"
+            maxlength="5" minlength="5" pattern="[0-9]" required class="" />
           <label for="zipcode">Zip code</label>
         </div>
-
       </div>
       <div class="row">
         <div class="input-field col s12 l4">
-          <input type="text" id="city" name="city" required class="validate">
+          <input type="text" id="city" [(ngModel)]="referral.address.city" #ref.city="ngModel" name="city" required
+            class="" />
           <label for="city">City</label>
         </div>
         <div class="input-field col s12 l4">
-          <input type="tel" id="phone" onblur="formatPhone(this);" maxlength="10" required name="phone" class="validate">
+          <input type="tel" id="phone" [(ngModel)]="referral.phone" #ref.phone="ngModel" onblur="formatPhone(this);"
+            maxlength="10" required name="phone" class="" />
           <label for="phone">Phone</label>
         </div>
         <div class="input-field col s12 l4">
-          <input type="email" id="email" email name="email" class="validate">
+          <input type="email" id="email" [(ngModel)]="referral.email" #ref.email="ngModel" email name="email" class="" />
           <label for="city">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12 l4">
-          <input type="date" name="moveIn" id="moveIn" required>
+          <input type="date" [(ngModel)]="referral.moveIn" #ref.moveIn="ngModel" name="moveIn" id="moveIn" required />
           <label for="moveIn">Move In</label>
         </div>
         <div class="input-field col s12 l4">
-          <select name="referralBy" id="referralBy">
-            <option value="" disabled selected>Choose a referee</option>
-
-            <option class="capitalized" value="<%= referee._id %>">
-              <%= referee.name %>
-              <%= referee.last_name %>
-            </option>
-
-          </select>
-          <label for="referralBy">Referral By</label>
+          <mat-form-field>
+            <mat-select class="capitalized" [(ngModel)]="referral.referralBy" #ref.referralBy="ngModel" placeholder="Referral By"
+              name="referralBy">
+              <mat-option selected value=""> Select a referee</mat-option>
+              <mat-option class="capitalized" *ngFor="let referee of referees.referees" [value]="referee._id">
+                {{referee.name}} {{referee.last_name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- <label for="referralBy">Referral By</label> -->
         </div>
         <div class="input-field col s12 l4">
-          <select name="status" id="status" required>
+          <select name="status" id="status" [(ngModel)]="referral.status" #ref.atatus="ngModel" required>
             <option value="new">New</option>
             <option value="closed">Closed</option>
             <option value="in progress">In Progress</option>
@@ -70,17 +74,20 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+            <textarea id="comment" name="comment" [(ngModel)]="referral.comment" #ref.comment="ngModel" class="materialize-textarea"></textarea>
             <label for="comment">Notes or Comments</label>
           </div>
         </div>
       </div>
       <div>
-        <button id="btn-submit" class="btn black waves-effect waves-light" type="submit">Submit</button>
+        <button id="btn-submit" class="btn black waves-effect waves-light" type="submit">
+          Submit
+        </button>
       </div>
-      <br>
-
+      <br />
     </form>
   </div>
+  {{ referral | json }}
+  {{ myForm.valid }}
 
 </div>
