@@ -4,12 +4,12 @@ export interface Referral {
   _id?: string;
   name: string;
   last_name: string;
-
-  address: string;
-  apt?: string;
-  city: string;
-  zipcode: string;
-
+  address: {
+    address: string;
+    apt?: string;
+    city: string;
+    zipcode: string;
+  };
   phone: string;
   email?: string;
   moveIn?: string;

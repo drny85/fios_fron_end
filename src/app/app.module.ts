@@ -6,12 +6,20 @@ import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NavbarComponent } from "./components/navbar/navbar.component";
-import { MatToolbarModule, MatSelectModule } from "@angular/material";
+import {
+  MatToolbarModule,
+  MatSelectModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatNativeDateModule
+} from "@angular/material";
 import { FormsModule } from "@angular/forms";
 import { HomeComponent } from "./components/home/home.component";
 import { AddReferralComponent } from "./components/referrals/add-referral/add-referral.component";
 import { FooterComponent } from "./components/footer/footer.component";
-import { AllreferralsComponent } from './components/referrals/allreferrals/allreferrals.component';
+import { AllreferralsComponent } from "./components/referrals/allreferrals/allreferrals.component";
+import { DetailComponent } from './components/referrals/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +28,8 @@ import { AllreferralsComponent } from './components/referrals/allreferrals/allre
     HomeComponent,
     AddReferralComponent,
     FooterComponent,
-    AllreferralsComponent
+    AllreferralsComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +38,10 @@ import { AllreferralsComponent } from './components/referrals/allreferrals/allre
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     FormsModule
   ],
   providers: [],

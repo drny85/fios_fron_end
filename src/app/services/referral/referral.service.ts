@@ -13,4 +13,8 @@ export class ReferralService {
   getReferrals() {
     return this.http.get<Referral[]>(this.baseUrl + "referrals");
   }
+
+  getReferral(id: string) {
+    return this.http.get<Referral>(this.baseUrl + `detail/${id}`);
+  }
 }

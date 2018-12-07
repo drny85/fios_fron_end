@@ -41,16 +41,15 @@
             <td>
               {{ referral.moveIn }}
             </td>
-            <td class="center 
-                  <%= referral.status === 'new' ? 'blue lighten-1': '' %>
-                  <%= referral.status === 'pending' ? 'amber lighten-3': '' %>
-                  <%= referral.status === 'closed' ? 'green': '' %>
-                  <%= referral.status === 'not sold' ? 'red': '' %>
-                  <%= referral.status === 'in progress' ? 'grey': '' %>
-                  ">
+            <td [ngClass]="{'teal darken-1': referral.status === 'closed', 
+            'lime lighten-2': referral.status === 'pending', 
+            'deep-orange': referral.status === 'not sold',
+            'blue darken-1': referral.status === 'new',
+            'teal lighten-3': referral.status === 'in progress'}">
 
+              {{ referral.status }}
             </td>
-            <td class="center"><a class="btn black" href="/detail/<%= referral._id %>">Details</a></td>
+            <td class="center"><a class="btn black" routerLink="/detail/{{referral._id}}">Details</a></td>
           </tr>
 
         </tbody>

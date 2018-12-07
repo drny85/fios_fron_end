@@ -81,15 +81,16 @@
           </mat-form-field>
         </div>
         <div class="input-field col s12 l4">
-          <select name="status" id="status" class="validate" [(ngModel)]="referral.status" #ref_atatus="ngModel"
-            required>
-            <option value="new">New</option>
-            <option value="closed">Closed</option>
-            <option value="in progress">In Progress</option>
-            <option value="pending">Pending</option>
-            <option value="not sold">Not Sold</option>
-          </select>
-          <label for="status">Status</label>
+          <mat-form-field>
+            <mat-select name="status" placeholder="Status" id="status" class="validate" [(ngModel)]="referral.status"
+              #ref_atatus="ngModel" required>
+              <mat-option value="new">New</mat-option>
+              <mat-option value="closed">Closed</mat-option>
+              <mat-option value="in progress">In Progress</mat-option>
+              <mat-option value="pending">Pending</mat-option>
+              <mat-option value="not sold">Not Sold</mat-option>
+            </mat-select>
+          </mat-form-field>
 
         </div>
         <div class="row">

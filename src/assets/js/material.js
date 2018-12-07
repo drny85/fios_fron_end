@@ -26,7 +26,7 @@ function formatPhone(obj) {
 
 $(document).ready(function () {
   //populate the selct options
-  $('select').formSelect();
+  // $('select').formSelect();
 
   $('.modal').modal();
 

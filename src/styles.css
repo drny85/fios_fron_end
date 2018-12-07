@@ -219,3 +219,12 @@ li .active {
 .tabs .tab a.active {
   color: aliceblue;
 }
+
+.mat-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-form>* {
+  width: 100%;
+}
