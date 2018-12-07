@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { RefereeServiceService } from "../../../services/referee-service.service";
+import { RefereeServiceService } from "../../../services/referee/referee-service.service";
 import { Referee } from "src/app/models/referee.model";
 import { Referral } from "../../../models/referral.model";
 import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-add-referral",
@@ -31,7 +32,10 @@ export class AddReferralComponent implements OnInit {
     comment: ""
   };
 
-  constructor(private refereeServ: RefereeServiceService) {}
+  constructor(
+    private refereeServ: RefereeServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.refereeServ.getReferees().subscribe(referees => {
@@ -46,6 +50,7 @@ export class AddReferralComponent implements OnInit {
       .subscribe(ref => console.log("Ref:", ref));
 
     e.reset();
+    this.router.navigate(["/referrals"]);
   }
 
   formatPhone(obj) {
@@ -63,5 +68,18 @@ export class AddReferralComponent implements OnInit {
       x += (char[i] || "") + numbers[i];
     }
     this.referral.phone = x;
+  }
+
+  populateCity(e: NgForm) {
+    let v = e.value;
+    if (v.length >= 3) {
+      if (v === "104") {
+        this.referral.address.city = "Bronx";
+      } else if (v === "107") {
+        this.referral.address.city = "Yonkers";
+      } else if (v === "100") {
+        this.referral.address.city = "Manhattan";
+      }
+    }
   }
 }

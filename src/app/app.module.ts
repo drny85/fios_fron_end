@@ -11,6 +11,7 @@ import { FormsModule } from "@angular/forms";
 import { HomeComponent } from "./components/home/home.component";
 import { AddReferralComponent } from "./components/referrals/add-referral/add-referral.component";
 import { FooterComponent } from "./components/footer/footer.component";
+import { AllreferralsComponent } from './components/referrals/allreferrals/allreferrals.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FooterComponent } from "./components/footer/footer.component";
     NavbarComponent,
     HomeComponent,
     AddReferralComponent,
-    FooterComponent
+    FooterComponent,
+    AllreferralsComponent
   ],
   imports: [
     BrowserModule,
