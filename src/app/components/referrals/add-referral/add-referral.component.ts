@@ -47,4 +47,21 @@ export class AddReferralComponent implements OnInit {
 
     e.reset();
   }
+
+  formatPhone(obj) {
+    let numbers = obj.value;
+    let x = obj.value;
+
+    numbers.replace(/\D/g, "");
+    let char = {
+      0: "(",
+      3: ") ",
+      6: "-"
+    };
+    x = "";
+    for (let i = 0; i < numbers.length; i++) {
+      x += (char[i] || "") + numbers[i];
+    }
+    this.referral.phone = x;
+  }
 }
