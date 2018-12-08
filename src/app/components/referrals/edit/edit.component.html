@@ -1,0 +1,143 @@
+<div class="">
+  <h2 class="center">Update Referral</h2>
+  <div class="card grey lighten-5 animated fadeInDown">
+    <form id="form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" id="name" [(ngModel)]="referral.name" #ref_name="ngModel" required name="name" class="validate" />
+          <label class="active" for="name">Name</label>
+          <p class="red-text" *ngIf="
+                ref_name.touched && ref_name.invalid && ref_name.errors?.required
+              ">
+            Name required
+          </p>
+        </div>
+        <div class="input-field col s6">
+          <input type="text" id="last_name" [(ngModel)]="referral.last_name" #ref_last_name="ngModel" required name="last_name"
+            class="validate" />
+          <label class="active" for="last_name">Last Name</label>
+          <p class="red-text" *ngIf="
+                ref_last_name.touched &&
+                ref_last_name.invalid &&
+                ref_last_name.errors?.required
+              ">
+            Last name is required
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12 l4">
+          <input type="text" id="address" [(ngModel)]="referral.address.address" #ref_address.address="ngModel" name="address"
+            required class="validate" />
+          <label class="active" for="address">Address</label>
+        </div>
+
+        <div class="input-field col s12 l4">
+          <input type="text" id="apt" [(ngModel)]="referral.address.apt" #ref_apt="ngModel" name="apt" />
+          <label class="active" for="apt">Apt</label>
+        </div>
+
+        <div class="input-field col s12 l4">
+          <input type="text" id="zipcode" [(ngModel)]="referral.address.zipcode" #ref_zipcode="ngModel" (keyup)="populateCity(ref_zipcode)"
+            name="zipcode" maxlength="5" minlength="5" required class="validate" />
+          <label class="active" for="zipcode">Zip code</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12 l4">
+          <input type="text" id="city" [(ngModel)]="referral.address.city" #ref_city="ngModel" name="city" required
+            class="validate" />
+          <label class="active" for="city">City</label>
+        </div>
+
+        <div class="input-field col s12 l4">
+          <input type="tel" id="phone" [(ngModel)]="referral.phone" #ref_phone="ngModel" (blur)="formatPhone(ref_phone)"
+            minlength="10" required name="phone" class="validate" />
+          <label class="active" for="phone">Phone</label>
+        </div>
+
+        <div class="input-field col s12 l4">
+          <input type="email" id="email" [(ngModel)]="referral.email" #ref_email="ngModel" email name="email" class="validate" />
+          <label class="active" for="city">Email</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12 l4">
+          <input type="date" [(ngModel)]="referral.moveIn" #ref_moveIn="ngModel" class="validate" name="moveIn" id="moveIn"
+            required />
+          <label class="active" for="moveIn">Move In</label>
+        </div>
+        <div class="input-field mat-form col s12 l4">
+          <mat-form-field>
+            <mat-select class="capitalized" class="validate" [(ngModel)]="referral.referralBy" #ref_referralBy="ngModel"
+              placeholder="{{referral.referralBy.name}} {{referral.referralBy.last_name}}" name="referralBy">
+              <mat-option class="capitalized" *ngFor="let referee of referees?.referees" [value]="referee._id">
+                {{ referee.name }} {{ referee.last_name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="input-field mat-form col s12 l4">
+          <mat-form-field>
+            <mat-select name="status" placeholder="Status" id="status" (change)="statusChanged(ref_status)" class="validate"
+              [(ngModel)]="referral.status" #ref_status="ngModel" required>
+              <mat-option value="new">New</mat-option>
+              <mat-option value="closed">Closed</mat-option>
+              <mat-option value="in progress">In Progress</mat-option>
+              <mat-option value="pending">Pending</mat-option>
+              <mat-option value="not sold">Not Sold</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+        <div *ngIf="referral.status === 'closed'" class="row">
+          <div class="input-field col s6 l3">
+            <input type="text" id="mon" [(ngModel)]="referral.mon" class="validate" minlength="13" maxlength="13"
+              required #ref_mon="ngModel" name="mon" class="validate upper" />
+            <label class="active" for="mon">MON</label>
+          </div>
+          <div class="input-field col s6 l3">
+            <input type="date" [(ngModel)]="referral.due_date" class="validate" required #ref_due_date="ngModel" name="due_date"
+              id="due_date" />
+            <label for="due_date">Due Date</label>
+          </div>
+          <div class="input-field col s6 l3">
+            <input type="date" required [(ngModel)]="referral.order_date" class="validate" #ref_order_date="ngModel"
+              name="order_date" id="order_date" />
+            <label class="active" for="order_date">Order Date</label>
+          </div>
+          <div class="input-field col s6 l3">
+            <select name="package" id="package" [(ngModel)]="referral.package" #ref_package="ngModel">
+              <option [value]="referral.package" selected>{{ referral.package}} <i>(current value)</i></option>
+              <option value="TP Ultimate">TP Ultimate</option>
+              <option value="TP Extreme">TP Extreme</option>
+              <option value="TP Preferred">TP Preferred</option>
+              <option value="TP Custom">TP Custom</option>
+              <option value="Giganit Only">Gigabit Only</option>
+              <option value="DP Custom">DP Custom</option>
+              <option value="Internet 300/300">Internet 300/300</option>
+              <option value="Internet 100/100">Internet 100/100</option>
+            </select>
+            <label class="active" for="status">Package</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class=" input-field col s12">
+            <textarea id="comment" name="comment" [(ngModel)]="referral.comment" #ref_comment="ngModel" class="materialize-textarea"></textarea>
+            <label class="active" for="comment">Notes or Comments</label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button id="btn-submit" [disabled]="!myForm.valid" class="btn black waves-effect waves-light" type="submit">
+          Update Referral
+        </button>
+      </div>
+      <br />
+    </form>
+  </div>
+</div>

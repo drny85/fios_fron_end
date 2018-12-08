@@ -20,6 +20,7 @@ import { AddReferralComponent } from "./components/referrals/add-referral/add-re
 import { FooterComponent } from "./components/footer/footer.component";
 import { AllreferralsComponent } from "./components/referrals/allreferrals/allreferrals.component";
 import { DetailComponent } from './components/referrals/detail/detail.component';
+import { EditComponent } from './components/referrals/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DetailComponent } from './components/referrals/detail/detail.component'
     AddReferralComponent,
     FooterComponent,
     AllreferralsComponent,
-    DetailComponent
+    DetailComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

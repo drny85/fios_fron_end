@@ -17,4 +17,11 @@ export class ReferralService {
   getReferral(id: string) {
     return this.http.get<Referral>(this.baseUrl + `detail/${id}`);
   }
+
+  updateReferral(referral: Referral) {
+    return this.http.post<Referral>(
+      this.baseUrl + `referral/update/${referral._id}`,
+      referral
+    );
+  }
 }

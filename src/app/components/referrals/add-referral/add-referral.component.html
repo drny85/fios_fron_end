@@ -1,4 +1,4 @@
-<div class="container">
+<div class="">
   <h2 class="center">Add New Referral</h2>
   <div class="card grey lighten-5 animated fadeInDown">
     <form no id="form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
@@ -69,7 +69,7 @@
           <input type="date" [(ngModel)]="referral.moveIn" #ref_moveIn="ngModel" name="moveIn" id="moveIn" required />
           <label for="moveIn">Move In</label>
         </div>
-        <div class="input-field col s12 l4">
+        <div class="input-field mat-form col s12 l4">
           <mat-form-field>
             <mat-select class="capitalized" [(ngModel)]="referral.referralBy" #ref_referralBy="ngModel" placeholder="Referral By"
               name="referralBy">
@@ -80,7 +80,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="input-field col s12 l4">
+        <div class="input-field mat-form col s12 l4">
           <mat-form-field>
             <mat-select name="status" placeholder="Status" id="status" class="validate" [(ngModel)]="referral.status"
               #ref_atatus="ngModel" required>

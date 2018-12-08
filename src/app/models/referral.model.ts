@@ -11,6 +11,7 @@ export interface Referral {
     zipcode: string;
   };
   phone: string;
+  mon?: string;
   email?: string;
   moveIn?: string;
   due_date?: string;
@@ -20,4 +21,5 @@ export interface Referral {
   date_entered?: string;
   referralBy: string;
   comment: string;
+  referral?: Referral;
 }
