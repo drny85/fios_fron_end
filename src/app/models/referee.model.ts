@@ -1,5 +1,6 @@
 import { Referral } from "./referral.model";
 export interface Referee {
+  _id?: string;
   name: string;
   last_name: string;
   email: string;

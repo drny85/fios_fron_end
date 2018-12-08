@@ -3,6 +3,8 @@ import { ReferralService } from "../../../services/referral/referral.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Referral } from "src/app/models/referral.model";
 
+declare let M: any;
+
 @Component({
   selector: "app-detail",
   templateUrl: "./detail.component.html",
@@ -26,6 +28,15 @@ export class DetailComponent implements OnInit {
     this.id = this.activedRoute.snapshot.params["id"];
     this.refServ.getReferral(this.id).subscribe(referral => {
       this.referral = referral.referral;
+    });
+  }
+
+  confirmDelete(id: string) {
+    if (!confirm("Are you sure you want to delete it?")) return;
+    console.log(id);
+    this.refServ.deleteReferal(id).subscribe(ref => {
+      this.router.navigate(["/referrals"]);
+      M.toast({ html: "Referral Deleted!", classes: "red" });
     });
   }
 }

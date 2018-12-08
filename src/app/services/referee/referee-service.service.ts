@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Referee } from "../models/referee.model";
+import { Referee } from "../../models/referee.model";
 import { Subject, Observable } from "rxjs";
-import { Referral } from "../models/referral.model";
+import { Referral } from "../../models/referral.model";
 
 @Injectable({
   providedIn: "root"

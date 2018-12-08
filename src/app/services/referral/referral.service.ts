@@ -24,4 +24,8 @@ export class ReferralService {
       referral
     );
   }
+
+  deleteReferal(id: string) {
+    return this.http.delete(this.baseUrl + `referral/delete/${id}`);
+  }
 }
