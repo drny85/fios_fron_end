@@ -39,13 +39,16 @@
               {{ referral.phone }}
             </td>
             <td>
-              {{ referral.moveIn }}
+              {{ referral.moveIn | date: 'mediumDate'}}
             </td>
-            <td [ngClass]="{'teal darken-1': referral.status === 'closed', 
+            <td [ngClass]="{ 
             'lime lighten-2': referral.status === 'pending', 
             'deep-orange': referral.status === 'not sold',
             'blue darken-1': referral.status === 'new',
-            'teal lighten-3': referral.status === 'in progress'}">
+            'orange lighten-4': referral.status === 'in progress',
+            'teal lighten-1': referral.status === 'closed',
+            'center': '!always'
+          }">
 
               {{ referral.status }}
             </td>
