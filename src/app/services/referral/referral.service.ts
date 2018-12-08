@@ -10,6 +10,10 @@ export class ReferralService {
 
   constructor(private http: HttpClient) {}
 
+  addReferral(referral: Referral) {
+    return this.http.post<Referral>(this.baseUrl + "add-referral", referral);
+  }
+
   getReferrals() {
     return this.http.get<Referral[]>(this.baseUrl + "referrals");
   }

@@ -61,16 +61,8 @@ export class EditComponent implements OnInit {
   getReferees() {
     this.refereeServ.getReferees().subscribe(referees => {
       this.referees = referees;
-      M.updateTextFields();
       console.log(referees);
     });
-  }
-
-  statusChanged(e) {
-    console.log(e);
-    if (e.value === "closed") {
-      M.updateTextFields();
-    }
   }
 
   onSubmit(e: NgForm) {

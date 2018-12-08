@@ -94,34 +94,35 @@
 
         </div>
         <div *ngIf="referral.status === 'closed'" class="row">
-          <div class="input-field col s6 l3">
+          <div class="input-field mat-form col s6 l3">
             <input type="text" id="mon" [(ngModel)]="referral.mon" class="validate" minlength="13" maxlength="13"
               required #ref_mon="ngModel" name="mon" class="validate upper" />
             <label class="active" for="mon">MON</label>
           </div>
-          <div class="input-field col s6 l3">
+          <div class="input-field mat-form col s6 l3">
             <input type="date" [(ngModel)]="referral.due_date" class="validate" required #ref_due_date="ngModel" name="due_date"
               id="due_date" />
             <label for="due_date">Due Date</label>
           </div>
-          <div class="input-field col s6 l3">
+          <div class="input-field mat-form col s6 l3">
             <input type="date" required [(ngModel)]="referral.order_date" class="validate" #ref_order_date="ngModel"
               name="order_date" id="order_date" />
             <label class="active" for="order_date">Order Date</label>
           </div>
-          <div class="input-field col s6 l3">
-            <select name="package" id="package" [(ngModel)]="referral.package" #ref_package="ngModel">
-              <option [value]="referral.package" selected>{{ referral.package}} <i>(current value)</i></option>
-              <option value="TP Ultimate">TP Ultimate</option>
-              <option value="TP Extreme">TP Extreme</option>
-              <option value="TP Preferred">TP Preferred</option>
-              <option value="TP Custom">TP Custom</option>
-              <option value="Giganit Only">Gigabit Only</option>
-              <option value="DP Custom">DP Custom</option>
-              <option value="Internet 300/300">Internet 300/300</option>
-              <option value="Internet 100/100">Internet 100/100</option>
-            </select>
-            <label class="active" for="status">Package</label>
+          <div class="input-field mat-form col s6 l3">
+            <mat-form-field>
+              <mat-select placeholder="Package" name="package" id="package" [(ngModel)]="referral.package" #ref_package="ngModel">
+                <mat-option [value]="referral.package" selected>{{ referral.package}} <i>(current value)</i></mat-option>
+                <mat-option value="TP Ultimate">TP Ultimate</mat-option>
+                <mat-option value="TP Extreme">TP Extreme</mat-option>
+                <mat-option value="TP Preferred">TP Preferred</mat-option>
+                <mat-option value="TP Custom">TP Custom</mat-option>
+                <mat-option value="Giganit Only">Gigabit Only</mat-option>
+                <mat-option value="DP Custom">DP Custom</mat-option>
+                <mat-option value="Internet 300/300">Internet 300/300</mat-option>
+                <mat-option value="Internet 100/100">Internet 100/100</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
         <div class="row">

@@ -18,7 +18,7 @@ export class RefereeServiceService {
     return this.http.get<Referee[]>(this.baseUrl + "referee/all-referees");
   }
 
-  addReferral(referral: Referral) {
-    return this.http.post<Referral>(this.baseUrl + "add-referral", referral);
+  getReferee(id: string) {
+    return this.http.get<Referee>(this.baseUrl + `referee/details/${id}`);
   }
 }

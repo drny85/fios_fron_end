@@ -4,6 +4,7 @@ import { Referee } from "src/app/models/referee.model";
 import { Referral } from "../../../models/referral.model";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ReferralService } from "src/app/services/referral/referral.service";
 
 @Component({
   selector: "app-add-referral",
@@ -34,7 +35,8 @@ export class AddReferralComponent implements OnInit {
 
   constructor(
     private refereeServ: RefereeServiceService,
-    private router: Router
+    private router: Router,
+    private referralServ: ReferralService
   ) {}
 
   ngOnInit() {
@@ -45,7 +47,7 @@ export class AddReferralComponent implements OnInit {
   }
 
   onSubmit(e: NgForm) {
-    this.refereeServ
+    this.referralServ
       .addReferral(this.referral)
       .subscribe(ref => console.log("Ref:", ref));
 

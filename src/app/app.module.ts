@@ -19,8 +19,10 @@ import { HomeComponent } from "./components/home/home.component";
 import { AddReferralComponent } from "./components/referrals/add-referral/add-referral.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { AllreferralsComponent } from "./components/referrals/allreferrals/allreferrals.component";
-import { DetailComponent } from './components/referrals/detail/detail.component';
-import { EditComponent } from './components/referrals/edit/edit.component';
+import { DetailComponent } from "./components/referrals/detail/detail.component";
+import { EditComponent } from "./components/referrals/edit/edit.component";
+import { AllReferresComponent } from "./components/referees/all-referres/all-referres.component";
+import { RefereeDetailsComponent } from "./components/referees/referee-details/referee-details.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { EditComponent } from './components/referrals/edit/edit.component';
     FooterComponent,
     AllreferralsComponent,
     DetailComponent,
-    EditComponent
+    EditComponent,
+    AllReferresComponent,
+    RefereeDetailsComponent
   ],
   imports: [
     BrowserModule,
