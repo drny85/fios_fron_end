@@ -1,0 +1,28 @@
+<div>
+  <h2 class="center z-depth-3">
+    Login
+  </h2>
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="email" name="email" ngModel id="email">
+        <label for="email">Email</label>
+      </div>
+      <div class="input-field col s12">
+        <input type="password" name="password" ngModel id="password">
+        <label for="password">Password</label>
+      </div>
+      <div id="errors" *ngIf="errors">
+        <p class="red-text">{{ errors.email }}</p>
+      </div>
+
+      <button class="btn black" [disabled]="!loginForm.valid" type="submit">Login</button>
+    </div>
+
+    <div>
+      <img class="responsive-img" src="../../../../assets/images/laugh.jpg">
+    </div>
+
+  </form>
+</div>

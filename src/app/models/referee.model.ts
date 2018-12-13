@@ -5,5 +5,7 @@ export interface Referee {
   last_name: string;
   email: string;
   phone: string;
-  referrals: [Referral];
+  referrals?: [Referral];
+  referee?: Referee;
+  referees?: Referee[];
 }

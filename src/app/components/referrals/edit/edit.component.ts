@@ -53,7 +53,7 @@ export class EditComponent implements OnInit {
   getReferral() {
     this.id = this.activedRoute.snapshot.params["id"];
     this.refServ.getReferral(this.id).subscribe(referral => {
-      this.referral = referral.referral;
+      this.referral = referral;
       console.log(referral);
     });
   }

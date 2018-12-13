@@ -1,4 +1,5 @@
 import { Referee } from "./referee.model";
+import { Manager } from "./manager.model";
 
 export interface Referral {
   _id?: string;
@@ -22,4 +23,6 @@ export interface Referral {
   referralBy: string;
   comment: string;
   referral?: Referral;
+  referrals?: Referral[];
+  manager?: string;
 }

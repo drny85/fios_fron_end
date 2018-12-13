@@ -1,0 +1,52 @@
+<div>
+  <h3 class="center z-depth-3">Register/Sign up</h3>
+  <div>
+    <mat-card>
+      <form #newUser="ngForm" (ngSubmit)="registerUser(newUser)">
+        <div class="row">
+          <div class="input-field col s6 l6">
+            <input id="name" name="name" type="text" required #user_name [(ngModel)]="user.name" class="validate">
+            <label for="name">Name</label>
+          </div>
+
+          <div class="input-field col s6 l6">
+            <input id="last_name" name="last_name" required #user_last_name [(ngModel)]="user.last_name" type="text"
+              class="validate">
+            <label for="last_name">Last Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 l6">
+            <input id="phone" name="phone" (blur)="formatPhone(user_phone)" #user_phone [(ngModel)]="user.phone"
+              required type="tel" class="validate">
+            <label for="phone">Phone</label>
+          </div>
+
+          <div class="input-field col s6 l6">
+            <input id="email" name="email" type="email" #user_email [(ngModel)]="user.email" email class="validate">
+            <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 l6">
+            <input id="password" type="password" minlength="6" name="password" #user_psw="ngModel" [(ngModel)]="user.password"
+              required class="validate">
+            <label for="password">Password</label>
+          </div>
+
+          <div class="input-field col s6 l6">
+            <input id="confirm_password" [disabled]="user.password.length < 6" name="confirm_password" (keyup)="checkPassword(user_psw1)"
+              #user_psw1="ngModel" [(ngModel)]="password1" minlength="6" type="password" required class="validate">
+            <label for="confirm_password">Confirm password</label>
+          </div>
+          {{ user.password }}
+          {{ password1 }}
+        </div>
+        <br>
+        <button [disabled]="!newUser.valid" class="btn black btn-lg" type="submit">Register</button>
+      </form>
+    </mat-card>
+    <div style="margin-bottom: 150px;"></div>
+
+  </div>
+</div>

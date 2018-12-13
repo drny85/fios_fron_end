@@ -11,7 +11,7 @@ declare let M: any;
   styleUrls: ["./detail.component.css"]
 })
 export class DetailComponent implements OnInit {
-  referral: Referral;
+  referral;
   id: string;
 
   constructor(
@@ -27,7 +27,8 @@ export class DetailComponent implements OnInit {
   getReferral() {
     this.id = this.activedRoute.snapshot.params["id"];
     this.refServ.getReferral(this.id).subscribe(referral => {
-      this.referral = referral.referral;
+      this.referral = referral;
+      console.log(this.referral);
     });
   }
 

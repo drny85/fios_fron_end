@@ -1,7 +1,7 @@
 <div class="">
   <h2 class="center">Add New Referral</h2>
   <div class="card grey lighten-5 animated fadeInDown">
-    <form no id="form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+    <form id="form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
       <div class="row">
         <div class="input-field col s6">
           <input type="text" id="name" [(ngModel)]="referral.name" #ref_name="ngModel" required name="name" class="" />
@@ -65,26 +65,37 @@
       </div>
 
       <div class="row">
-        <div class="input-field col s12 l4">
+        <div class="input-field mat-form col s12 l3">
+          <mat-form-field>
+            <mat-select class="capitalized" [(ngModel)]="referral.manager" #ref_manager="ngModel" placeholder="Account Manager"
+              name="manager">
+              <mat-option selected value=""> Select an AM</mat-option>
+              <mat-option class="capitalized" *ngFor="let manager of managers" [value]="manager._id">
+                {{ manager.name }} {{ manager.last_name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="input-field col s12 l3">
           <input type="date" [(ngModel)]="referral.moveIn" #ref_moveIn="ngModel" name="moveIn" id="moveIn" required />
           <label for="moveIn">Move In</label>
         </div>
-        <div class="input-field mat-form col s12 l4">
+        <div class="input-field mat-form col s12 l3">
           <mat-form-field>
             <mat-select class="capitalized" [(ngModel)]="referral.referralBy" #ref_referralBy="ngModel" placeholder="Referral By"
               name="referralBy">
               <mat-option selected value=""> Select a referee</mat-option>
-              <mat-option class="capitalized" *ngFor="let referee of referees.referees" [value]="referee._id">
+              <mat-option class="capitalized" *ngFor="let referee of referees" [value]="referee._id">
                 {{ referee.name }} {{ referee.last_name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="input-field mat-form col s12 l4">
+        <div class="input-field mat-form col s12 l3">
           <mat-form-field>
             <mat-select name="status" placeholder="Status" id="status" class="validate" [(ngModel)]="referral.status"
               #ref_atatus="ngModel" required>
-              <mat-option value="new">New</mat-option>
+              <mat-option selected value="new">New</mat-option>
               <mat-option value="closed">Closed</mat-option>
               <mat-option value="in progress">In Progress</mat-option>
               <mat-option value="pending">Pending</mat-option>
@@ -102,11 +113,13 @@
       </div>
 
       <div>
-        <button id="btn-submit" [disabled]="!myForm.valid" class="btn black waves-effect waves-light" type="submit">
+        <button style="margin-left:20px;" id="btn-submit" [disabled]="!myForm.valid" class="btn black center waves-effect waves-light"
+          type="submit">
           Submit
         </button>
       </div>
       <br />
     </form>
   </div>
+  <div style="margin-bottom:100px;"></div>
 </div>

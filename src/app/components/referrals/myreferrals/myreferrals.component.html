@@ -1,0 +1,56 @@
+<div class="animated fadeIn">
+  <div>
+    <a class="btn waves-effect black waves-light mt-8" routerLink="/add-referral">Add Referral</a>
+  </div>
+  <div class="nav-content white center-align">
+    <ul class="tabs tabs-grey black-text ">
+      <li class="tab"><a routerLink="/myreferrals/:id" [queryParams]="{status: null}" [class.active]="status === null">ALL</a></li>
+      <li class="tab"><a routerLink="/myreferrals/:id/" [queryParams]="{status: 'new'}" [class.active]="status === 'new'">New</a></li>
+      <li class="tab"><a routerLink="/myreferrals/:id" [queryParams]="{status: 'closed'}" [class.active]="status === 'closed'">Closed</a></li>
+      <li class="tab"><a routerLink="/myreferrals/:id" [queryParams]="{status: 'pending'}" [class.active]="status === 'pending'">Pending</a></li>
+      <li class="tab"><a routerLink="/myreferrals/:id" [queryParams]="{status: 'in progress'}" [class.active]="status === 'in progress'">In
+          Progress</a></li>
+      <li class="tab"><a routerLink="/myreferrals/:id" [queryParams]="{status: 'not sold'}" [class.active]="status === 'not sold'">Not
+          Sold</a></li>
+    </ul>
+  </div>
+  <br>
+  <div *ngIf="referrals.length > 0" class="card">
+    <table>
+      <thead class="grey">
+        <tr>
+          <th>Full Name</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Move In</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let referral of referrals">
+          <td class="capitalized">{{ referral.name }} {{ referral.last_name }} </td>
+          <td class="capitalized">{{referral.address.address}}, {{referral.address.city}} </td>
+          <td>{{ referral.phone }} </td>
+          <td><a class="lowercase blue-text" href="mailto:{{ referral.email}}">{{ referral.email }}</a></td>
+          <td>{{ referral.moveIn | date : 'mediumDate'}}</td>
+          <td class="">{{referral.status}} </td>
+          <td><a class="btn black" routerLink="/detail/{{referral._id}}">Details</a></td>
+
+        </tr>
+
+
+
+      </tbody>
+      <tfoot></tfoot>
+    </table>
+
+  </div>
+
+</div>
+<div style="padding: 50px;" *ngIf="referrals.length === 0" class="z-depth-1">
+  <h3 class="center">No Referrals Available</h3>
+  <div style="margin-bottom:200px;"></div>
+</div>

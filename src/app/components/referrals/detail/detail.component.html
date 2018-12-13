@@ -30,10 +30,10 @@
               {{ referral.mon }}
             </li>
             <li class="collection-item">Order Date:
-              {{ referral.order_date }}
+              {{ referral.order_date | date: 'mediumDate'}}
             </li>
             <li class="collection-item">Due Date:
-              {{ referral.due_date }}
+              {{ referral.due_date | date: 'mediumDate'}}
             </li>
             <li class="collection-item">Package:
               {{ referral.package }}
@@ -64,7 +64,7 @@
                 {{ referral.email}} </a></span>
           </li>
           <li class="collection-item">Move In:
-            {{ referral.moveIn}}
+            {{ referral.moveIn | date: 'mediumDate' }}
           </li>
           <li class="collection-item capitalized">Referred By:
             <a class="black-text" routerLink="/referee/details/{{ referral.referralBy._id }}">

@@ -8,21 +8,22 @@
         <ul class="collection">
           <li class="collection-item capitalized">
             <b>Name: </b>
-            {{ referee.referee.name }}
+            {{ referee.name }}
           </li>
           <li class="collection-item capitalized"><b>Last Name: </b>
-            {{ referee.referee.last_name }}
+            {{ referee.last_name }}
           </li>
           <li class="collection-item capitalized"><b>Phone: </b>
-            {{ referee.referee.phone }}
+            {{ referee.phone }}
           </li>
-          <li class="collection-item caoitalized"><b>Email: </b><a class="blue-text" href="mailto:{{ referee.referee.email}}">
-              {{ referee.referee.email }}</a></li>
+          <li class="collection-item caoitalized"><b>Email: </b><a class="blue-text" href="mailto:{{ referee.email}}">
+              {{ referee.email }}</a></li>
 
         </ul>
         <br>
         <div class="center">
-          <a class="btn black" routerLink="/referee/edit/{{ referee.referee._id}}">Edit Referee</a>
+          <a class="btn black mr-5" routerLink="/referee/edit/{{ referee._id}}">Edit Referee</a>
+          <button class="btn red" (click)="confirmDelete(referee._id)">Delete Referee</button>
         </div>
       </div>
       <div class="col s12 l5">
@@ -33,15 +34,15 @@
 
                 <img class="responsive-img" src="../../../../assets/images/rebecca.png">
                 <span class="card-title capitalized">
-                  {{ referee.referee.name }}
-                  {{ referee.referee.last_name }}</span>
+                  {{ referee.name }}
+                  {{ referee.last_name }}</span>
               </div>
               <div class="card-content">
                 <p>I am a very simple card. I am good at containing small bits of information.
                   I am convenient because I require little markup to use effectively.</p>
               </div>
               <div class="card-action">
-                <a href="/referral/referee/{{ referee.referee._id }}" class="btn black">View Referrals</a>
+                <a routerLink="/myreferrals/{{ referee._id }}" class="btn black">View Referrals</a>
               </div>
             </div>
           </div>

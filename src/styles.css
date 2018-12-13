@@ -228,3 +228,14 @@ li .active {
 .mat-form>* {
   width: 100%;
 }
+
+.mat-spinner {
+  position: relative;
+  margin-left: 50%;
+  margin-right: 50%;
+  color: grey !important;
+}
+
+/* .black {
+  background-color: #a30b0b !important;
+} */

@@ -1,24 +1,63 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Injectable, OnInit } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Referee } from "../../models/referee.model";
-import { Subject, Observable } from "rxjs";
-import { Referral } from "../../models/referral.model";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
 })
-export class RefereeServiceService {
-  private refSubject = new Subject<Referee[]>();
-
+export class RefereeServiceService implements OnInit {
   baseUrl: string = "http://localhost:3000/";
+
+  private token: string;
 
   constructor(private http: HttpClient) {}
 
+  ngOnInit() {
+    console.log(this.getToken());
+  }
+
+  getToken() {
+    const token = localStorage.getItem("token_id");
+    if (token) return token;
+  }
+
   getReferees() {
-    return this.http.get<Referee[]>(this.baseUrl + "referee/all-referees");
+    // let headers = new HttpHeaders();
+    // let header = headers.set("x-auth-token", this.getToken());
+    // let token = this.getToken();
+
+    return this.http.get<Referee>(this.baseUrl + "referee/all-referees").pipe(
+      map(referees => {
+        return referees.referees;
+      })
+    );
+  }
+
+  addReferee(referee: Referee) {
+    return this.http.post<Referee>(
+      this.baseUrl + "referee/add-referee",
+      referee
+    );
   }
 
   getReferee(id: string) {
-    return this.http.get<Referee>(this.baseUrl + `referee/details/${id}`);
+    return this.http.get<Referee>(this.baseUrl + `referee/details/${id}`).pipe(
+      map(referee => {
+        return referee.referee;
+      })
+    );
+  }
+
+  updateReferee(referee: Referee) {
+    return this.http.post<Referee>(
+      this.baseUrl + `referee/update/${referee._id}`,
+      referee
+    );
+  }
+
+  deleteReferee(id: string) {
+    if (!id) return;
+    return this.http.delete(this.baseUrl + `referee/delete/${id}`);
   }
 }

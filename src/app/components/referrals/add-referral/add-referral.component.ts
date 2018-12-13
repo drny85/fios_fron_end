@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { RefereeServiceService } from "../../../services/referee/referee-service.service";
 import { Referee } from "src/app/models/referee.model";
 import { Referral } from "../../../models/referral.model";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ReferralService } from "src/app/services/referral/referral.service";
+import { Manager } from "../../../models/manager.model";
+import { ManagerService } from "../../../services/manager/manager.service";
 
 @Component({
   selector: "app-add-referral",
@@ -15,6 +17,7 @@ export class AddReferralComponent implements OnInit {
   referees: Referee[] = [];
 
   referralBy: string;
+  managers: Manager[] = [];
 
   referral: Referral = {
     name: "",
@@ -30,16 +33,30 @@ export class AddReferralComponent implements OnInit {
     status: "",
     moveIn: "",
     referralBy: "",
-    comment: ""
+    comment: "",
+    manager: ''
   };
 
   constructor(
     private refereeServ: RefereeServiceService,
     private router: Router,
-    private referralServ: ReferralService
+    private referralServ: ReferralService,
+    private managersServ: ManagerService
   ) {}
 
   ngOnInit() {
+    this.getManagers();
+    this.getReferees();
+  }
+
+  getManagers() {
+    this.managersServ.getManagers().subscribe(managers => {
+      this.managers = managers;
+      console.log("Manager:", managers);
+    });
+  }
+
+  getReferees() {
     this.refereeServ.getReferees().subscribe(referees => {
       console.log(referees);
       this.referees = referees;

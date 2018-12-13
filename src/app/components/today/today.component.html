@@ -1,0 +1,22 @@
+<div class="z-depth-1">
+  <mat-spinner *ngIf="loading" mode="indeterminate" color="primary"></mat-spinner>
+  <h2 class="z-depth-3 center">
+    {{ todayDate | date: 'fullDate'}}
+  </h2>
+  <div class="grid">
+    <div class="z-depth-2 box1">
+      <h4 class="center">Orders Placed Today</h4>
+    </div>
+    <div class="z-depth-2 box2">
+      <h4 class="center">Today's Notes</h4>
+    </div>
+    <div #box3 (click)="move(box3)" class="z-depth-2 box3">
+      <h4 class="center">My Nightly Report</h4>
+    </div>
+    <div class="z-depth-2 box4">4</div>
+    <div class="z-depth-2 box5">5</div>
+    <div class="z-depth-2 box6">6</div>
+  </div>
+  <div style="margin-bottom: 150px;"></div>
+
+</div>

@@ -1,0 +1,40 @@
+<div *ngIf="referee" class="animated fadeIn">
+  <h3 class="z-depth-2 center">Edit Referee</h3>
+  <div>
+    <div class="card grey lighten-5 animated fadeInDown">
+      <form id="myForm" #myForm="ngForm" (ngSubmit)="editReferee(myForm)">
+        <div class="row">
+          <div class="input-field col s6">
+            <input type="text" id="name" [(ngModel)]="referee.name" required name="name" class="validate">
+            <label class="active" for="name">Name</label>
+          </div>
+          <div class="input-field col s6">
+            <input type="text" id="last_name" [(ngModel)]="referee.last_name" required name="last_name" class="validate">
+            <label class="active" for="last_name">Last Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6 l6 input-field">
+            <input type="tel" (blur)="formatPhone(ref_phone)" [(ngModel)]="referee.phone" #ref_phone="ngModel"
+              minlength="10" name="phone" id="phone">
+            <label class="active" for="phone">Phone</label>
+          </div>
+          <div class="col s6 l6 input-field">
+            <input type="email" name="email" required [(ngModel)]="referee.email" id="email">
+            <label class="active" for="email">Email</label>
+          </div>
+          <div>
+            <button id="btn_add-referee" [disabled]="!myForm.valid" class="btn black waves-effect waves-light" type="submit">Update
+              Referee</button>
+          </div>
+          <br>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div *ngIf="!referee" class="d-depth-2">
+    No Referee
+  </div>
+</div>
