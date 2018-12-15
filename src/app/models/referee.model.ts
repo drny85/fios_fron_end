@@ -8,4 +8,5 @@ export interface Referee {
   referrals?: [Referral];
   referee?: Referee;
   referees?: Referee[];
+  userId?: string;
 }

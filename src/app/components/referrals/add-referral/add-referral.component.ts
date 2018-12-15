@@ -89,12 +89,9 @@ export class AddReferralComponent implements OnInit {
         this.router.navigate(["/referrals"]);
       },
       error => {
-        if (!error) {
-          console.log("No error");
-        } else {
-          console.log(error.error);
-          return;
-        }
+        if (error) console.log("No error");
+        console.log(error.error.message);
+        return;
       }
     );
   }

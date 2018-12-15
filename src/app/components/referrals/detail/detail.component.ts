@@ -34,7 +34,7 @@ export class DetailComponent implements OnInit {
 
   confirmDelete(id: string) {
     if (!confirm("Are you sure you want to delete it?")) return;
-    console.log(id);
+
     this.refServ.deleteReferal(id).subscribe(ref => {
       this.router.navigate(["/referrals"]);
       M.toast({ html: "Referral Deleted!", classes: "red" });

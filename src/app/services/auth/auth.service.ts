@@ -4,7 +4,6 @@ import { User } from "../../models/user.model";
 import { Subject, Observable } from "rxjs";
 import { Router } from "@angular/router";
 import { map } from "rxjs/operators";
-import { error } from "@angular/compiler/src/util";
 
 @Injectable({
   providedIn: "root"
@@ -12,6 +11,7 @@ import { error } from "@angular/compiler/src/util";
 export class AuthService implements OnInit {
   baseUrl = "http://localhost:3000/user/";
   user: any;
+  private userId: string;
   private token: string;
   private authStatusListener = new Subject<boolean>();
   private isAuth = false;
@@ -46,7 +46,7 @@ export class AuthService implements OnInit {
     const userData = { email: email, password: password };
 
     this.http
-      .post<User>(this.baseUrl + "login/", userData)
+      .post<any>(this.baseUrl + "login/", userData)
       .pipe(
         map(user => {
           return user;
@@ -56,8 +56,11 @@ export class AuthService implements OnInit {
         user => {
           if (!user) return;
           this.user = user;
+          console.log(this.user);
           this.token = user.token;
+          this.userId = user.user._id;
           this.isAuth = true;
+          localStorage.setItem("userId", this.userId);
           this.authStatusListener.next(true);
           this.saveAuthDate(this.token);
           this.router.navigate(["/"]);
@@ -72,7 +75,7 @@ export class AuthService implements OnInit {
     this.token = null;
     this.isAuth = false;
     this.authStatusListener.next(false);
-    localStorage.removeItem("token_id");
+    localStorage.clear();
     this.router.navigate(["login"]);
   }
 

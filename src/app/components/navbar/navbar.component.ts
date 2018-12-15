@@ -31,8 +31,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   getCurrentUser() {
     this.authServ.getUser().subscribe(user => {
-      this.user = user;
-      console.log(this.user);
+      if (user) {
+        this.user = user;
+        console.log(this.user);
+      }
     });
   }
 
