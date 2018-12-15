@@ -17,27 +17,22 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private authServ: AuthService) {}
 
   ngOnInit() {
-    this.getCurrentUser();
+    //this.getCurrentUser();
+    this.loggedIn = this.authServ.getIsAuth();
     this.subscription = this.authServ.getAuthStatus().subscribe(isAuth => {
       this.loggedIn = isAuth;
     });
   }
 
   logout() {
-    localStorage.clear();
+    this.authServ.logout();
     M.toast({ html: "You are now logged out!", classes: "green" });
-    this.router.navigate(["login"]);
   }
 
   getCurrentUser() {
     this.authServ.getUser().subscribe(user => {
       this.user = user;
-      if (user) {
-        this.loggedIn = true;
-      } else {
-        this.loggedIn = false;
-      }
-      console.log(user);
+      console.log(this.user);
     });
   }
 

@@ -23,19 +23,7 @@ export class LoginComponent implements OnInit {
   login(e: NgForm) {
     if (!e.valid) return;
 
-    this.authServ.login(e.value.email, e.value.password).subscribe(user => {
-      this.user = user;
-
-      localStorage.setItem("token_id", this.user.token);
-      console.log(this.user);
-
-      this.router.navigate(["/"]);
-    }),
-      error => {
-        if (error) {
-          this.errors.email = error.error.message;
-        }
-      };
+    this.authServ.login(e.value.email, e.value.password);
   }
 
   logout() {

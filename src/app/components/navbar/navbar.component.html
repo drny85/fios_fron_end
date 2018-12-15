@@ -1,6 +1,8 @@
 <nav id="nav" class="black nav-extended" role="navigation">
   <div class="nav-wrapper container">
-    <a id="logo-container" href="/" class="brand-logo white-text">Fios</a>
+
+    <a *ngIf="!loggedIn" id="logo-container" href="/" class="brand-logo white-text">Fios</a>
+    <a *ngIf="loggedIn" id="logo-container" href="/" class="brand-logo white-text capitalized">{{ user?.user.name }}</a>
     <ul class="right hide-on-med-and-down">
       <li><a routerLinkActive="actived_page current" routerLink="/today">Home</a></li>
       <li><a routerLinkActive="actived_page current" routerLink="/referrals">All Referrals</a></li>
@@ -10,11 +12,11 @@
       <li><a routerLinkActive="actived_page current" routerLink="/add-referral">Add Referral</a></li>
       <li><a routerLinkActive="actived_page current" routerLink="/referee/all-referees">View
           Referees</a></li>
-      <li><a routerLinkActive="actived_page current" routerLink="/reports">My
-          Reports</a></li>
+      <!-- <li><a routerLinkActive="actived_page current" routerLink="/reports">My
+          Reports</a></li> -->
       <li *ngIf="!loggedIn" class=""><a routerLink="/user/login">Login</a></li>
       <li *ngIf="loggedIn" class=""><a (click)="logout()">Logout</a></li>
-      <li class=""><a routerLink="/user/register">Register</a> </li>
+      <li *ngIf="!loggedIn" class=""><a routerLink="/user/register">Register</a> </li>
     </ul>
 
     <ul id="nav-mobile" class="sidenav red lighten-4">

@@ -25,4 +25,5 @@ export interface Referral {
   referral?: Referral;
   referrals?: Referral[];
   manager?: string;
+  userId?: string;
 }

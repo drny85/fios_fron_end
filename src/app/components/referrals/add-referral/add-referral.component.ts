@@ -7,6 +7,8 @@ import { Router } from "@angular/router";
 import { ReferralService } from "src/app/services/referral/referral.service";
 import { Manager } from "../../../models/manager.model";
 import { ManagerService } from "../../../services/manager/manager.service";
+import { User } from "../../../models/user.model";
+import { AuthService } from "../../../services/auth/auth.service";
 
 @Component({
   selector: "app-add-referral",
@@ -15,6 +17,9 @@ import { ManagerService } from "../../../services/manager/manager.service";
 })
 export class AddReferralComponent implements OnInit {
   referees: Referee[] = [];
+  user: any;
+
+  selected = "new";
 
   referralBy: string;
   managers: Manager[] = [];
@@ -34,19 +39,29 @@ export class AddReferralComponent implements OnInit {
     moveIn: "",
     referralBy: "",
     comment: "",
-    manager: ''
+    manager: "",
+    userId: ""
   };
 
   constructor(
     private refereeServ: RefereeServiceService,
     private router: Router,
     private referralServ: ReferralService,
-    private managersServ: ManagerService
+    private managersServ: ManagerService,
+    private authServ: AuthService
   ) {}
 
   ngOnInit() {
     this.getManagers();
     this.getReferees();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.authServ.getUser().subscribe(user => {
+      this.user = user;
+      console.log("USER REF", this.user);
+    });
   }
 
   getManagers() {
@@ -64,12 +79,24 @@ export class AddReferralComponent implements OnInit {
   }
 
   onSubmit(e: NgForm) {
-    this.referralServ
-      .addReferral(this.referral)
-      .subscribe(ref => console.log("Ref:", ref));
-
-    e.reset();
-    this.router.navigate(["/referrals"]);
+    if (this.user) {
+      this.referral.userId = this.user._id;
+    }
+    this.referralServ.addReferral(this.referral).subscribe(
+      ref => {
+        console.log("Ref:", ref);
+        e.reset();
+        this.router.navigate(["/referrals"]);
+      },
+      error => {
+        if (!error) {
+          console.log("No error");
+        } else {
+          console.log(error.error);
+          return;
+        }
+      }
+    );
   }
 
   formatPhone(obj) {
