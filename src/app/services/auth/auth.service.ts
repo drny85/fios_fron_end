@@ -14,13 +14,16 @@ export class AuthService implements OnInit {
   private userId: string;
   private token: string;
   private authStatusListener = new Subject<boolean>();
+  private currrent = new Subject<any>();
   private isAuth = false;
 
   headers: HttpHeaders = new HttpHeaders();
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.user);
+  }
 
   autoAuthUser() {
     const authInfo = this.getAuthdata();
@@ -28,10 +31,23 @@ export class AuthService implements OnInit {
     this.token = authInfo.token;
     this.isAuth = true;
     this.authStatusListener.next(true);
+    this.currrent.next(this.user);
+  }
+
+  getAllUsers() {
+    return this.http.get(this.baseUrl + "all");
   }
 
   getAuthStatus() {
     return this.authStatusListener.asObservable();
+  }
+
+  getCurrent() {
+    return this.currrent.asObservable();
+  }
+
+  getUserById(id: string) {
+    return this.http.get(this.baseUrl + id);
   }
 
   getIsAuth() {
@@ -62,6 +78,7 @@ export class AuthService implements OnInit {
           this.isAuth = true;
           localStorage.setItem("userId", this.userId);
           this.authStatusListener.next(true);
+          this.currrent.next(user);
           this.saveAuthDate(this.token);
           this.router.navigate(["/"]);
         },
@@ -99,6 +116,7 @@ export class AuthService implements OnInit {
 
   private getAuthdata() {
     const token = localStorage.getItem("token_id");
+
     if (!token) {
       return;
     }

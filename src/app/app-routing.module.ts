@@ -18,6 +18,7 @@ import { AddManagerComponent } from "./components/managers/add-manager/add-manag
 import { AllManagersComponent } from "./components/managers/all-managers/all-managers.component";
 import { ManagerEditComponent } from "./components/managers/manager-edit/manager-edit.component";
 import { ManagerDetailsComponent } from "./components/managers/manager-details/manager-details.component";
+import { AllusersComponent } from "./components/users/allusers/allusers.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: "user/register", component: RegisterComponent },
   { path: "user/login", component: LoginComponent },
   { path: "user/profile", component: ProfileComponent },
+  { path: "user/all", component: AllusersComponent },
   { path: "today", component: TodayComponent },
 
   { path: "login", component: LoginComponent },

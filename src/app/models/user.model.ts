@@ -8,4 +8,5 @@ export interface User {
   roles?: {};
   token?: string;
   message?: string;
+  user?: Object;
 }

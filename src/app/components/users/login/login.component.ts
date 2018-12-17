@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { NgForm } from "@angular/forms";
 import { AuthService } from "../../../services/auth/auth.service";
 import { User } from "../../../models/user.model";
 import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
 
 declare let M: any;
 
@@ -12,7 +13,7 @@ declare let M: any;
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   errors: any = {};
   user: any;
 
@@ -31,4 +32,6 @@ export class LoginComponent implements OnInit {
     M.toast({ html: "You are now logged out!", classes: "green" });
     this.router.navigate(["login"]);
   }
+
+  ngOnDestroy() {}
 }

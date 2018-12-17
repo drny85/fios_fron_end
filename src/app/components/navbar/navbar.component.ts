@@ -14,10 +14,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   user: any;
   loggedIn: boolean = false;
   subscription: Subscription;
+  userSubs: Subscription;
   constructor(private router: Router, private authServ: AuthService) {}
 
   ngOnInit() {
-    //this.getCurrentUser();
+    this.getCurrentUser();
     this.loggedIn = this.authServ.getIsAuth();
     this.subscription = this.authServ.getAuthStatus().subscribe(isAuth => {
       this.loggedIn = isAuth;
@@ -30,17 +31,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   getCurrentUser() {
-    this.authServ.getUser().subscribe(user => {
-      if (user) {
+    const id = localStorage.getItem("userId");
+    if (id) {
+      this.authServ.getUserById(id).subscribe(user => {
         this.user = user;
-        console.log(this.user);
-      }
-    });
+        console.log("CURRENT:", this.user);
+      });
+    }
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.subscription.unsubscribe();
+    this.userSubs.unsubscribe();
   }
 }

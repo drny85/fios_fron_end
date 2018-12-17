@@ -73,7 +73,7 @@ export class AddReferralComponent implements OnInit {
 
   getReferees() {
     this.refereeServ.getReferees().subscribe(referees => {
-      console.log(referees);
+      console.log("REFEREREES:", referees);
       this.referees = referees;
     });
   }
@@ -86,12 +86,14 @@ export class AddReferralComponent implements OnInit {
       ref => {
         console.log("Ref:", ref);
         e.reset();
-        this.router.navigate(["/referrals"]);
+        this.router.navigate(["referrals"]);
       },
       error => {
-        if (error) console.log("No error");
-        console.log(error.error.message);
-        return;
+        if (error) {
+          console.log("No error");
+          console.log(error.error.message);
+          return;
+        }
       }
     );
   }

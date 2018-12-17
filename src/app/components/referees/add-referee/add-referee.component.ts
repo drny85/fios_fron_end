@@ -29,11 +29,16 @@ export class AddRefereeComponent implements OnInit {
 
   addReferee(f: NgForm) {
     if (!f.valid) return;
-    this.refereeServ.addReferee(this.referee).subscribe(ref => {
-      // vavigate back to referee details
-      this.router.navigate(["referee/all-referees"]);
-      M.toast({ html: "Referee Updated!" });
-    });
+    this.refereeServ.addReferee(this.referee).subscribe(
+      ref => {
+        // vavigate back to referee details
+        this.router.navigate(["referee/all-referees"]);
+        M.toast({ html: "Referee Updated!" });
+      },
+      error => {
+        console.log(error.error);
+      }
+    );
   }
 
   formatPhone(obj: NgForm) {

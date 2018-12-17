@@ -41,6 +41,7 @@ import { ManagerEditComponent } from "./components/managers/manager-edit/manager
 import { AllManagersComponent } from "./components/managers/all-managers/all-managers.component";
 
 import { AuthInterceptor } from "./services/intercector.service";
+import { AllusersComponent } from './components/users/allusers/allusers.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { AuthInterceptor } from "./services/intercector.service";
     AddManagerComponent,
     ManagerDetailsComponent,
     ManagerEditComponent,
-    AllManagersComponent
+    AllManagersComponent,
+    AllusersComponent
   ],
   imports: [
     BrowserModule,

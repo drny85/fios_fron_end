@@ -19,6 +19,7 @@ export class ReferralService {
   getReferrals() {
     return this.http.get<Referral>(this.baseUrl + "referrals").pipe(
       map(referrals => {
+        console.log(referrals);
         return referrals.referrals;
       })
     );

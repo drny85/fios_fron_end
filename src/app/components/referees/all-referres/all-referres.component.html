@@ -4,40 +4,40 @@
     <a class="btn black" routerLink="/referee/add-referee">Add Referee</a>
   </div>
 
-  <div *ngIf="referees" class="z-depth-3">
+  <div *ngIf="referees.length > 0" class="z-depth-3">
     <h4 class="center">All Referees</h4>
+
+    <div class="referee_table">
+      <table>
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let referee of referees">
+            <td>
+              {{ referee.name }} {{ referee.last_name }}
+
+            </td>
+            <td>
+              {{ referee.phone }}
+            </td>
+            <td class="lowercase"><a href="mailto:{{referee.email}}">
+                {{ referee.email }}</a></td>
+            <td><a class="btn grey" routerLink="/referee/details/{{referee._id}}">Details</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="referee_table">
-    <table>
-      <thead>
-        <tr>
-          <th>Full Name</th>
-          <th>Phone</th>
-          <th>Email</th>
-          <th></th>
-
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let referee of referees">
-          <td>
-            {{ referee.name }} {{ referee.last_name }}
-
-          </td>
-          <td>
-            {{ referee.phone }}
-          </td>
-          <td class="lowercase"><a href="mailto:{{referee.email}}">
-              {{ referee.email }}</a></td>
-          <td><a class="btn grey" routerLink="/referee/details/{{referee._id}}">Details</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div *ngIf="!referees" class="z-depth-5">
+  <div *ngIf="referees.length === 0" class="z-depth-5">
     <h2 class="center">No Data</h2>
   </div>
+
   <div style="margin-bottom: 100px;" class=""></div>
-</div>
