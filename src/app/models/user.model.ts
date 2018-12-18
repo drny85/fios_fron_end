@@ -5,7 +5,7 @@ export interface User {
   phone: string;
   email: string;
   password: string;
-  roles?: {};
+  roles?: { isAdmin: boolean; active: boolean; coach: boolean };
   token?: string;
   message?: string;
   user?: Object;

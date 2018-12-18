@@ -1,3 +1,28 @@
-<p>
-  allusers works!
-</p>
+<div>
+  <a class="btn black" routerLink="/user/register">Add a New User</a>
+</div>
+<div class="z-depth-2">
+
+  <h3 class="center">
+    Manage Users</h3>
+</div>
+<div>
+  <div class="row">
+    <div *ngFor="let user of users" class="col s12 m3">
+      <div class="card small">
+        <div class="card-image">
+          <img class="responsive-img" src="https://loremflickr.com/220/140/brazil,rio" />
+          <span class="card-title capitalized">{{ user.name}} {{ user.last_name}}</span>
+        </div>
+        <div class="card-content">
+          <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a class="btn black" routerLink="/user/detail/{{user._id}}">View User</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

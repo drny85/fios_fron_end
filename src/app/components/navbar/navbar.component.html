@@ -2,10 +2,10 @@
   <div class="nav-wrapper container">
 
     <a *ngIf="!loggedIn" id="logo-container" href="/" class="brand-logo white-text">Fios</a>
-    <a *ngIf="loggedIn" id="logo-container" href="/" class="brand-logo white-text capitalized">{{ user?.name }}</a>
+    <a *ngIf="loggedIn" id="logo-container" routerLink="/" class="brand-logo white-text capitalized">{{ user?.name }}</a>
     <ul class="right hide-on-med-and-down">
       <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/today">Home</a></li>
-      <li *ngIf="loggedIn && user?.roles.isAdmin"><a routerLinkActive="actived_page current" routerLink="/add-referral">Manage
+      <li *ngIf="loggedIn && user?.roles.isAdmin"><a routerLinkActive="actived_page current" routerLink="/user/all">Manage
           Users</a></li>
       <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/referrals">All Referrals</a></li>
 

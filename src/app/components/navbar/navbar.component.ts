@@ -28,6 +28,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   logout() {
     this.authServ.logout();
     M.toast({ html: "You are now logged out!", classes: "green" });
+    window.location.reload();
   }
 
   getCurrentUser() {

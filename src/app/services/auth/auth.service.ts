@@ -14,7 +14,7 @@ export class AuthService implements OnInit {
   private userId: string;
   private token: string;
   private authStatusListener = new Subject<boolean>();
-  private currrent = new Subject<any>();
+  currrent = new Subject<any>();
   private isAuth = false;
 
   headers: HttpHeaders = new HttpHeaders();
@@ -47,7 +47,7 @@ export class AuthService implements OnInit {
   }
 
   getUserById(id: string) {
-    return this.http.get(this.baseUrl + id);
+    return this.http.get<User>(this.baseUrl + id);
   }
 
   getIsAuth() {
@@ -80,6 +80,7 @@ export class AuthService implements OnInit {
           this.authStatusListener.next(true);
           this.currrent.next(user);
           this.saveAuthDate(this.token);
+          window.location.reload();
           this.router.navigate(["/"]);
         },
         error => {
@@ -98,6 +99,10 @@ export class AuthService implements OnInit {
 
   register(user: User) {
     return this.http.post(this.baseUrl + "newuser", user);
+  }
+
+  updateUser(user: User) {
+    return this.http.put<User>(this.baseUrl + "update", user);
   }
 
   getToken() {
