@@ -9,4 +9,5 @@ export interface User {
   token?: string;
   message?: string;
   user?: Object;
+  coach?: string;
 }

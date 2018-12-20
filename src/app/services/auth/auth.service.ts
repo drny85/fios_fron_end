@@ -39,7 +39,7 @@ export class AuthService implements OnInit {
   }
 
   getAllUsers() {
-    return this.http.get(this.baseUrl + "all");
+    return this.http.get<User[]>(this.baseUrl + "all");
   }
 
   getAuthStatus() {
@@ -51,22 +51,22 @@ export class AuthService implements OnInit {
   }
 
   get isAdmin() {
-    if(this.user.roles.isAdmin) return true;
+    if (this.user.roles.isAdmin) return true;
   }
 
   get isActive() {
     let active;
-    this.currrent.pipe(map(user => {
-      active = user.roles.active;
-    })) 
+    this.currrent.pipe(
+      map(user => {
+        active = user.roles.active;
+      })
+    );
 
     return active;
   }
 
-
-
   get isCoach() {
-    if(this.user.roles.coach) return true;
+    if (this.user.roles.coach) return true;
   }
 
   getUserById(id: string) {
@@ -83,7 +83,7 @@ export class AuthService implements OnInit {
 
   login(email: string, password: string) {
     const userData = { email: email, password: password };
-  
+
     this.http
       .post<any>(this.baseUrl + "login/", userData)
       .pipe(
@@ -96,7 +96,7 @@ export class AuthService implements OnInit {
           if (!user) return;
           this.user = user;
           this.currrent.next(user);
-          console.log('INIT:',user)
+          console.log("INIT:", user);
           if (user.user.roles.active) {
             this.token = user.token;
             this.userId = user.user._id;

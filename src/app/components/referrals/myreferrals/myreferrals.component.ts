@@ -29,7 +29,6 @@ export class MyreferralsComponent implements OnInit {
       this.allreferrals = referrals;
       this.activedRoute.queryParamMap.subscribe(params => {
         this.status = params.get("status");
-        console.log(this.status);
         this.referrals = this.status
           ? this.allreferrals.filter(s => s.status === this.status)
           : this.allreferrals;

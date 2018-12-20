@@ -1,3 +1,60 @@
-<p>
-  profile works!
-</p>
+<div class="row">
+  <div class="col s12 m5">
+    <div class="card">
+      <div class="card-image">
+        <img class="responsive-img" src="../../../../assets/images/rebecca.png">
+        <span class="card-title capitalized">{{user?.name }} {{ user?.last_name }}</span>
+      </div>
+      <div class="card-content">
+        <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+      </div>
+      <div class="card-action">
+        <a href="#">This is a link</a>
+        <a class="btn grey lighten-1" routerLink="/user/edit/{{user?._id}}"><i class="material-icons tiny">edit</i>
+          Edit my
+          Info</a>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 l7">
+    <div class="card">
+      <div class="card-title">
+        <h3 class="center capitalized">
+          {{user?.name }} {{ user?.last_name }}
+        </h3>
+      </div>
+      <div class="card content">
+        <div class="card">
+          <ul class="collection">
+            <li class="collection-item"><i class="material-icons">email</i> Email: {{ user?.email }}</li>
+            <li class="collection-item"><i class="material-icons">phone</i> Phone: {{ user?.phone }}</li>
+            <li *ngIf="user?.vendor" class="collection-item">Company: {{user?.vendor }}</li>
+            <li *ngIf="user?.coach" class="collection-item capitalized"><i class="material-icons">supervisor_account</i>
+              Coach : {{ user?.coach.name }} {{
+              user?.coach.last_name }}</li>
+            <li *ngIf="!user?.coach" class="collection-item">Coach : <button (click)="addCoach($event)" class="btn black">Add
+                my Coach</button></li>
+            <li *ngIf="add_coach" class="collection-item">
+              <div class="input-field mat-form col s12 l3">
+                <mat-form-field>
+                  <mat-select class="capitalized" [(ngModel)]="coach" #ref_referralBy="ngModel" placeholder="Please Select your Coach"
+                    name="coach">
+                    <mat-option class="capitalized" *ngFor="let user of users" [value]="user._id">
+                      {{ user.name }} {{ user.last_name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button (click)="confirmAdded()" class="btn black">Add</button>
+                {{ coach }}
+              </div>
+            </li>
+            <li class="collection-item"><i class="material-icons tiny">person</i> Active: {{ user?.roles.active ? 'Yes'
+              : 'No' }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

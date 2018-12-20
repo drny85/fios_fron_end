@@ -16,7 +16,8 @@ export class RegisterComponent implements OnInit {
     last_name: "",
     phone: "",
     email: "",
-    password: ""
+    password: "",
+    coach: ""
   };
 
   password1: string;
@@ -32,7 +33,7 @@ export class RegisterComponent implements OnInit {
     this.authServ.register(this.user).subscribe(user => {
       if (user) {
         console.log(user);
-        this.router.navigate(["login"]);
+        this.router.navigate(["/user/login"]);
       } else {
         return;
       }
