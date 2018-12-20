@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Referral } from "src/app/models/referral.model";
 import { ReferralService } from "../../../services/referral/referral.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-allreferrals",
@@ -9,8 +10,13 @@ import { ReferralService } from "../../../services/referral/referral.service";
 })
 export class AllreferralsComponent implements OnInit {
   referrals: Referral[] = [];
+  sorted: Referral[] = [];
+  status: string;
 
-  constructor(private referralServ: ReferralService) {}
+  constructor(
+    private referralServ: ReferralService,
+    private actidedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.getReferrals();
@@ -18,8 +24,21 @@ export class AllreferralsComponent implements OnInit {
 
   getReferrals() {
     this.referralServ.getReferrals().subscribe(referrals => {
-      this.referrals = referrals;
-      console.log(referrals);
+      this.sorted = referrals;
+      this.actidedRoute.queryParamMap.subscribe(params => {
+        this.status = params.get("status");
+        if (
+          this.status === "" ||
+          this.status == null ||
+          this.status === "undefined"
+        ) {
+          this.referrals = referrals;
+        } else {
+          this.referrals = this.sorted.filter(
+            ref => ref.status === this.status
+          );
+        }
+      });
     });
   }
 }

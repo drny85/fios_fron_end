@@ -1,4 +1,16 @@
+<div class="nav-content">
+  <ul class="tabs">
+    <li class="tab"><a class="active" routerLink="/referrals" [queryParams]="{status: ''}">All</a></li>
+    <li class="tab"><a routerLink="/referrals" [queryParams]="{status: 'new'}">New</a></li>
+    <li class="tab "><a routerLink="/referrals" [queryParams]="{status: 'closed'}">Closed</a></li>
+    <li class="tab "><a routerLink="/referrals" [queryParams]="{status: 'pending'}">Pending</a></li>
+    <li class="tab"><a routerLink="/referrals" [queryParams]="{status: 'in progress'}">In Progress</a></li>
+    <li class="tab"><a routerLink="/referrals" [queryParams]="{status: 'not sold'}">Not Sold</a></li>
+
+  </ul>
+</div>
 <div *ngIf="referrals.length > 0" class="">
+
 
   <h4 style="margin: 10px;" class="center z-depth-2  lighten-3">All Referrals </h4>
   <a class="btn waves-effect black waves-light mb-5" routerLink="/add-referral">Add Referral</a>

@@ -1,7 +1,8 @@
 <nav id="nav" class="black nav-extended" role="navigation">
   <div class="nav-wrapper container">
 
-    <a *ngIf="!loggedIn" id="logo-container" href="/" class="brand-logo white-text">Fios</a>
+    <a *ngIf="!loggedIn" id="logo-container" routerLink="/" class="brand-logo white-text left">Fios</a>
+   
     <a *ngIf="loggedIn" id="logo-container" routerLink="/" class="brand-logo white-text capitalized">{{ user?.name }}</a>
     <ul class="right hide-on-med-and-down">
       <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/today">Home</a></li>
@@ -20,8 +21,10 @@
       <li *ngIf="!loggedIn" class=""><a routerLink="/user/login">Login</a></li>
       <li *ngIf="loggedIn" class=""><a (click)="logout()">Logout</a></li>
       <li *ngIf="!loggedIn" class=""><a routerLink="/user/register">Register</a> </li>
-    </ul>
+      <li *ngIf="loggedIn"> <a  routerLinkActive="actived_page current" routerLink="/user/profile" class="right">Profile</a></li>
 
+    </ul>
+   
     <ul id="nav-mobile" class="sidenav red lighten-4">
       <li class="active"><a href="/">Home</a></li>
       <li><a href="/referrals">My Referrals</a></li>
