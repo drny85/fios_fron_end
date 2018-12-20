@@ -5,6 +5,8 @@ import { Referral } from "../../../models/referral.model";
 import { Referee } from "src/app/models/referee.model";
 import { RefereeServiceService } from "../../../services/referee/referee-service.service";
 import { NgForm } from "@angular/forms";
+import { Manager } from "../../../models/manager.model";
+import { ManagerService } from "../../../services/manager/manager.service";
 
 declare let M: any;
 
@@ -15,6 +17,7 @@ declare let M: any;
 })
 export class EditComponent implements OnInit {
   id: string;
+  managers: Manager[];
   referees: Referee[];
   referral: Referral = {
     name: "",
@@ -32,6 +35,7 @@ export class EditComponent implements OnInit {
     order_date: "",
     email: "",
     status: "",
+    manager: "",
     moveIn: "",
     referralBy: "",
     comment: ""
@@ -41,12 +45,14 @@ export class EditComponent implements OnInit {
     private refServ: ReferralService,
     private activedRoute: ActivatedRoute,
     private refereeServ: RefereeServiceService,
-    private router: Router
+    private router: Router,
+    private managerServ: ManagerService
   ) {}
 
   ngOnInit() {
     this.getReferees();
     this.getReferral();
+    this.getManagers();
     // M.toast({ html: "I am a toast!" });
   }
 
@@ -55,6 +61,12 @@ export class EditComponent implements OnInit {
     this.refServ.getReferral(this.id).subscribe(referral => {
       this.referral = referral;
       console.log(referral);
+    });
+  }
+
+  getManagers() {
+    this.managerServ.getManagers().subscribe(managers => {
+      this.managers = managers;
     });
   }
 
@@ -70,7 +82,6 @@ export class EditComponent implements OnInit {
       if (ref) {
         console.log(ref);
         e.reset();
-        console.log("Status:", this.referral.status);
         this.router.navigate([`detail/${this.referral._id}`]);
         M.toast({ html: "Referral Updated!", displayLength: 2000 });
         if (ref.status === "closed") {

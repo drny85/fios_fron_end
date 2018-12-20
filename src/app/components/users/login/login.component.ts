@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   logout() {
     this.authServ.logout();
     M.toast({ html: "You are now logged out!", classes: "green" });
-    this.router.navigate(["login"]);
   }
 
   ngOnDestroy() {}

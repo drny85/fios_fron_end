@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth/auth.service";
 import { User } from "../../models/user.model";
 import { Subscription } from "rxjs";
+import { map } from 'rxjs/operators';
 
 declare let M: any;
 @Component({
@@ -18,7 +19,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private authServ: AuthService) {}
 
   ngOnInit() {
-    this.getCurrentUser();
+    this.userSubs = this.authServ.getCurrent().pipe(map(u => 
+      {
+        return u.user;
+      })).subscribe(user => {
+      this.user = user;
+    });
     this.loggedIn = this.authServ.getIsAuth();
     this.subscription = this.authServ.getAuthStatus().subscribe(isAuth => {
       this.loggedIn = isAuth;
@@ -28,17 +34,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   logout() {
     this.authServ.logout();
     M.toast({ html: "You are now logged out!", classes: "green" });
-    window.location.reload();
-  }
-
-  getCurrentUser() {
-    const id = localStorage.getItem("userId");
-    if (id) {
-      this.authServ.getUserById(id).subscribe(user => {
-        this.user = user;
-        console.log("CURRENT:", this.user);
-      });
-    }
+  
   }
 
   ngOnDestroy(): void {

@@ -65,22 +65,33 @@
       </div>
 
       <div class="row">
-        <div class="input-field col s12 l4">
+        <div class="input-field mat-form col s12 l3">
+          <mat-form-field>
+            <mat-select class="capitalized" [(ngModel)]="referral.manager" #ref_manager="ngModel" placeholder="{{referral.manager.name | uppercase}} {{referral.manager.last_name | uppercase}}"
+              name="manager">
+              <mat-option selected value=""> Select an AM</mat-option>
+              <mat-option class="capitalized" *ngFor="let manager of managers" [value]="manager._id">
+                {{ manager.name }} {{ manager.last_name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="input-field col s12 l3">
           <input type="date" [(ngModel)]="referral.moveIn" #ref_moveIn="ngModel" class="validate" name="moveIn" id="moveIn"
             required />
           <label class="active" for="moveIn">Move In</label>
         </div>
-        <div class="input-field mat-form col s12 l4">
+        <div class="input-field mat-form col s12 l3">
           <mat-form-field>
             <mat-select class="capitalized" class="validate" [(ngModel)]="referral.referralBy" #ref_referralBy="ngModel"
-              placeholder="{{referral.referralBy.name}} {{referral.referralBy.last_name}}" name="referralBy">
-              <mat-option class="capitalized" *ngFor="let referee of referees?.referees" [value]="referee._id">
+              placeholder="{{referral.referralBy.name | uppercase}} {{referral.referralBy.last_name | uppercase }}" name="referralBy">
+              <mat-option class="capitalized" *ngFor="let referee of referees" [value]="referee._id">
                 {{ referee.name }} {{ referee.last_name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="input-field mat-form col s12 l4">
+        <div class="input-field mat-form col s12 l3">
           <mat-form-field>
             <mat-select name="status" placeholder="Status" id="status" (change)="statusChanged(ref_status)" class="validate"
               [(ngModel)]="referral.status" #ref_status="ngModel" required>

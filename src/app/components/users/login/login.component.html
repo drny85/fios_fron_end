@@ -1,15 +1,15 @@
-<div>
+<div id="login_div" class="center">
   <h2 class="center z-depth-3">
     Login
   </h2>
   <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
 
     <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field col s12 l12">
         <input type="email" name="email" ngModel id="email">
         <label for="email">Email</label>
       </div>
-      <div class="input-field col s12">
+      <div class="input-field col s12 l12">
         <input type="password" name="password" ngModel id="password">
         <label for="password">Password</label>
       </div>
@@ -17,7 +17,7 @@
         <p class="red-text">{{ errors.email }}</p>
       </div>
 
-      <button class="btn black" [disabled]="!loginForm.valid" type="submit">Login</button>
+      <button class="btn black btn-lg" [disabled]="!loginForm.valid" type="submit">Login</button>
     </div>
 
     <div>
@@ -26,3 +26,4 @@
 
   </form>
 </div>
+<div style="margin-bottom: 100px;"></div>

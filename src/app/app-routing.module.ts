@@ -20,31 +20,96 @@ import { ManagerEditComponent } from "./components/managers/manager-edit/manager
 import { ManagerDetailsComponent } from "./components/managers/manager-details/manager-details.component";
 import { AllusersComponent } from "./components/users/allusers/allusers.component";
 import { UserDetailComponent } from "./components/users/user-detail/user-detail.component";
+import { AdminGuard } from "./guards/admin.guard";
+import { ActiveGuard } from "./guards/active.guard";
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
-  { path: "referrals", component: AllreferralsComponent },
-  { path: "add-referral", component: AddReferralComponent },
-  { path: "detail/:id", component: DetailComponent },
-  { path: "referral/edit/:id", component: EditComponent },
-  { path: "myreferrals/:id", component: MyreferralsComponent },
-  { path: "referee/all-referees", component: AllReferresComponent },
-  { path: "referee/add-referee", component: AddRefereeComponent },
-  { path: "referee/details/:id", component: RefereeDetailsComponent },
-  { path: "referee/edit/:id", component: RefereeEditComponent },
+  { path: "", component: HomeComponent, canActivate: [ActiveGuard] },
+  {
+    path: "referrals",
+    component: AllreferralsComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "add-referral",
+    component: AddReferralComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "detail/:id",
+    component: DetailComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "referral/edit/:id",
+    component: EditComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "myreferrals/:id",
+    component: MyreferralsComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "referee/all-referees",
+    component: AllReferresComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "referee/add-referee",
+    component: AddRefereeComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "referee/details/:id",
+    component: RefereeDetailsComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "referee/edit/:id",
+    component: RefereeEditComponent,
+    canActivate: [ActiveGuard]
+  },
   { path: "user/register", component: RegisterComponent },
   { path: "user/login", component: LoginComponent },
-  { path: "user/profile", component: ProfileComponent },
-  { path: "user/detail/:id", component: UserDetailComponent },
-  { path: "user/all", component: AllusersComponent },
-  { path: "today", component: TodayComponent },
+  {
+    path: "user/profile",
+    component: ProfileComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "user/detail/:id",
+    component: UserDetailComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "user/all",
+    component: AllusersComponent,
+    canActivate: [AdminGuard]
+  },
+  { path: "today", component: TodayComponent, canActivate: [ActiveGuard] },
 
-  { path: "login", component: LoginComponent },
-
-  { path: "manager/add-manager", component: AddManagerComponent },
-  { path: "manager/all-managers", component: AllManagersComponent },
-  { path: "manager/edit/:id", component: ManagerEditComponent },
-  { path: "manager/details", component: ManagerDetailsComponent }
+  {
+    path: "manager/add-manager",
+    component: AddManagerComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "manager/all-managers",
+    component: AllManagersComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "manager/edit/:id",
+    component: ManagerEditComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "manager/details",
+    component: ManagerDetailsComponent,
+    canActivate: [ActiveGuard]
+  },
+  {path: "**", redirectTo: 'home'}
 ];
 
 @NgModule({
