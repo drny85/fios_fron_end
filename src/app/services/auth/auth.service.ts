@@ -50,23 +50,8 @@ export class AuthService implements OnInit {
     return this.currrent.asObservable();
   }
 
-  get isAdmin() {
-    if (this.user.roles.isAdmin) return true;
-  }
-
-  get isActive() {
-    let active;
-    this.currrent.pipe(
-      map(user => {
-        active = user.roles.active;
-      })
-    );
-
-    return active;
-  }
-
-  get isCoach() {
-    if (this.user.roles.coach) return true;
+  getCoaches() {
+    return this.http.get<User[]>(this.baseUrl + "/coaches");
   }
 
   getUserById(id: string) {

@@ -11,14 +11,14 @@ import { map } from "rxjs/operators";
 export class ProfileComponent implements OnInit {
   user: User;
   coach: string = "";
-  users: User[] = [];
+  coaches: User[] = [];
   add_coach: boolean = false;
 
   constructor(private AuthService: AuthService) {}
 
   ngOnInit() {
     this.getUser();
-    this.getUsers();
+    this.getCoaches();
   }
 
   getUser() {
@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
   }
 
   addCoach(e: HTMLInputElement) {
-    this.add_coach = true;
+    this.add_coach = !this.add_coach;
     console.log(e.innerText);
     console.log(this.coach);
   }
@@ -45,10 +45,10 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  getUsers() {
-    this.AuthService.getAllUsers().subscribe(users => {
-      this.users = users.filter(user => user.roles.coach === true);
-      console.log("USERS_COACH:", this.users);
+  getCoaches() {
+    this.AuthService.getCoaches().subscribe(coaches => {
+      this.coaches = coaches.filter(c => c.roles.coach === true);
+      console.log(this.coaches);
     });
   }
 }

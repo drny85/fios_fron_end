@@ -33,22 +33,28 @@
             <li *ngIf="user?.coach" class="collection-item capitalized"><i class="material-icons">supervisor_account</i>
               Coach : {{ user?.coach.name }} {{
               user?.coach.last_name }}</li>
-            <li *ngIf="!user?.coach" class="collection-item">Coach : <button (click)="addCoach($event)" class="btn black">Add
-                my Coach</button></li>
-            <li *ngIf="add_coach" class="collection-item">
-              <div class="input-field mat-form col s12 l3">
-                <mat-form-field>
-                  <mat-select class="capitalized" [(ngModel)]="coach" #ref_referralBy="ngModel" placeholder="Please Select your Coach"
-                    name="coach">
-                    <mat-option class="capitalized" *ngFor="let user of users" [value]="user._id">
-                      {{ user.name }} {{ user.last_name }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <button (click)="confirmAdded()" class="btn black">Add</button>
-                {{ coach }}
-              </div>
+            <li *ngIf="!user?.coach" class="collection-item capitalized"><i class="material-icons">supervisor_account</i>
+              Coach : <button data-target="modal1" class="btn grey modal-trigger">Modal</button>
             </li>
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+              <div class="modal-content">
+                <h4>Addin my Coach</h4>
+                <div class="input-field col s12">
+                  <select class="" name="coach" [(ngModel)]="coach">
+                    <option *ngFor="let coach of coaches" value="{{coach.name}}">{{coach.name}} {{coach.last_name}}</option>
+                  </select>
+                  <label>Materialize Select</label>
+                  {{coaches | json }}
+                </div>
+                <div style="margin-bottom: 100px"></div>
+              </div>
+              <div class="modal-footer">
+                <button class="modal-close waves-effect grey btn-flat">Add Coach</button>
+              </div>
+            </div>
+
+
             <li class="collection-item"><i class="material-icons tiny">person</i> Active: {{ user?.roles.active ? 'Yes'
               : 'No' }}</li>
           </ul>
