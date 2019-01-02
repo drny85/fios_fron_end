@@ -105,7 +105,8 @@ export class AuthService implements OnInit {
     this.token = null;
     this.isAuth = false;
     this.authStatusListener.next(false);
-    localStorage.clear();
+    localStorage.removeItem("userId");
+    localStorage.removeItem("");
     this.router.navigate(["/user/login"]);
   }
 
