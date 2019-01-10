@@ -42,19 +42,28 @@ export class AddRefereeComponent implements OnInit {
   }
 
   formatPhone(obj: NgForm) {
-    let numbers = obj.value;
-    let x = obj.value;
-
-    numbers.replace(/\D/g, "");
-    let char = {
-      0: "(",
-      3: ") ",
-      6: "-"
-    };
-    x = "";
-    for (let i = 0; i < numbers.length; i++) {
-      x += (char[i] || "") + numbers[i];
+    let phone = obj.value;
+    if (String(phone).length === 3) {
+      this.referee.phone += "-";
     }
-    this.referee.phone = x;
+
+    if (String(phone).length === 7) {
+      this.referee.phone += "-";
+    }
   }
+  //   let numbers = obj.value;
+  //   let x = obj.value;
+
+  //   numbers.replace(/\D/g, "");
+  //   let char = {
+  //     0: "(",
+  //     3: ") ",
+  //     6: "-"
+  //   };
+  //   x = "";
+  //   for (let i = 0; i < numbers.length; i++) {
+  //     x += (char[i] || "") + numbers[i];
+  //   }
+  //   this.referee.phone = x;
+  // }
 }

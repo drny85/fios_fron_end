@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth/auth.service";
 import { User } from "../../models/user.model";
 import { Subscription } from "rxjs";
-import { map } from 'rxjs/operators';
+import { map } from "rxjs/operators";
 
 declare let M: any;
 @Component({
@@ -19,12 +19,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private authServ: AuthService) {}
 
   ngOnInit() {
-    this.userSubs = this.authServ.getCurrent().pipe(map(u => 
-      {
-        return u.user;
-      })).subscribe(user => {
-      this.user = user;
-    });
+    this.userSubs = this.authServ
+      .getCurrent()
+      .pipe(
+        map(u => {
+          return u.user;
+        })
+      )
+      .subscribe(user => {
+        this.user = user;
+        console.log(user);
+      });
     this.loggedIn = this.authServ.getIsAuth();
     this.subscription = this.authServ.getAuthStatus().subscribe(isAuth => {
       this.loggedIn = isAuth;
@@ -34,7 +39,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   logout() {
     this.authServ.logout();
     M.toast({ html: "You are now logged out!", classes: "green" });
-  
   }
 
   ngOnDestroy(): void {

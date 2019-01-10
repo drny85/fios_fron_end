@@ -15,8 +15,8 @@
         </div>
         <div class="row">
           <div class="col s6 l6 input-field">
-            <input type="tel" (blur)="formatPhone(ref_phone)" [(ngModel)]="referee.phone" #ref_phone="ngModel"
-              minlength="10" name="phone" id="phone">
+            <input type="tel" (keyup)="formatPhone(ref_phone)" [(ngModel)]="referee.phone" #ref_phone="ngModel"
+              minlength="12" maxlength="12" name="phone" id="phone">
             <label class="active" for="phone">Phone</label>
           </div>
           <div class="col s6 l6 input-field">

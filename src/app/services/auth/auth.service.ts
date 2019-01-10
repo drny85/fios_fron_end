@@ -36,6 +36,7 @@ export class AuthService implements OnInit {
     this.isAuth = true;
     this.authStatusListener.next(true);
     this.currrent.next(this.user);
+    this.getUser();
   }
 
   getAllUsers() {
@@ -63,7 +64,9 @@ export class AuthService implements OnInit {
   }
 
   getUser() {
-    return this.http.get(this.baseUrl + "me");
+    this.http.get<User>(this.baseUrl + "me").subscribe(user => {
+      this.currrent.next(user);
+    });
   }
 
   login(email: string, password: string) {

@@ -54,14 +54,6 @@ export class AddReferralComponent implements OnInit {
   ngOnInit() {
     this.getManagers();
     this.getReferees();
-    this.getCurrentUser();
-  }
-
-  getCurrentUser() {
-    this.authServ.getUser().subscribe(user => {
-      this.user = user;
-      console.log("USER REF", this.user);
-    });
   }
 
   getManagers() {
