@@ -4,8 +4,8 @@
     <a class="btn black" routerLink="/referee/add-referee">Add Referee</a>
   </div>
 
-  <div *ngIf="referees.length > 0" class="z-depth-3">
-    <h4 class="center">All Referees</h4>
+  <div *ngIf="referees?.length > 0" class="z-depth-3">
+    <h4 class="center mt-4">All Referees</h4>
 
     <div class="referee_table">
       <table>
@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <div *ngIf="referees.length === 0" class="z-depth-5">
+  <div *ngIf="referees?.length === 0" class="z-depth-5">
     <h2 class="center">No Data</h2>
   </div>
 

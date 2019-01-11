@@ -75,6 +75,11 @@
             <span class="upper">
               {{ referral.status }}</span>
           </li>
+          <li *ngIf="referral.updatedBy" class="collection-item">Updated By:
+            <span class="capitalized">
+              {{ referral.updatedBy.name}} {{ referral.updatedBy.last_name}} </span><span class="text-italic"> on {{
+              referral.updated }}</span>
+          </li>
         </ul>
 
       </div>

@@ -24,7 +24,19 @@ export class LoginComponent implements OnInit, OnDestroy {
   login(e: NgForm) {
     if (!e.valid) return;
 
-    this.authServ.login(e.value.email, e.value.password);
+    this.authServ.login(e.value.email, e.value.password).subscribe(
+      user => {
+        if (user) {
+          this.authServ.userLoginHandler(user);
+          this.router.navigate(["/"]);
+        }
+      },
+      err => {
+        console.log(err.error.message);
+        this.errors.message = err.error.message;
+        console.log(this.errors);
+      }
+    );
   }
 
   logout() {

@@ -7,6 +7,9 @@ import { RefereeServiceService } from "../../../services/referee/referee-service
 import { NgForm } from "@angular/forms";
 import { Manager } from "../../../models/manager.model";
 import { ManagerService } from "../../../services/manager/manager.service";
+import { User } from "../../../models/user.model";
+import { AuthService } from "../../../services/auth/auth.service";
+import * as moment from "moment";
 
 declare let M: any;
 
@@ -17,6 +20,7 @@ declare let M: any;
 })
 export class EditComponent implements OnInit {
   id: string;
+  user: User;
   managers: Manager[];
   referees: Referee[];
   referral: Referral = {
@@ -38,7 +42,8 @@ export class EditComponent implements OnInit {
     manager: "",
     moveIn: "",
     referralBy: "",
-    comment: ""
+    comment: "",
+    updated: ""
   };
 
   constructor(
@@ -46,6 +51,7 @@ export class EditComponent implements OnInit {
     private activedRoute: ActivatedRoute,
     private refereeServ: RefereeServiceService,
     private router: Router,
+    private authServ: AuthService,
     private managerServ: ManagerService
   ) {}
 
@@ -53,6 +59,8 @@ export class EditComponent implements OnInit {
     this.getReferees();
     this.getReferral();
     this.getManagers();
+    this.getSignedInUser();
+
     // M.toast({ html: "I am a toast!" });
   }
 
@@ -70,6 +78,15 @@ export class EditComponent implements OnInit {
     });
   }
 
+  getSignedInUser() {
+    let userId = localStorage.getItem("userId");
+    if (userId) {
+      this.authServ.getUserById(userId).subscribe(user => {
+        this.user = user;
+        console.log("Signed:", this.user);
+      });
+    }
+  }
   getReferees() {
     this.refereeServ.getReferees().subscribe(referees => {
       this.referees = referees;
@@ -78,9 +95,9 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit(e: NgForm) {
+    this.referral.updated = moment().format("MMMM Do YYYY, h:mm:ss a");
     this.refServ.updateReferral(this.referral).subscribe(ref => {
       if (ref) {
-        console.log(ref);
         e.reset();
         this.router.navigate([`detail/${this.referral._id}`]);
         M.toast({ html: "Referral Updated!", displayLength: 2000 });

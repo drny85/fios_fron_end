@@ -27,11 +27,7 @@ export class RefereeServiceService implements OnInit {
     // let header = headers.set("x-auth-token", this.getToken());
     // let token = this.getToken();
 
-    return this.http.get<Referee>(this.baseUrl + "referee/all-referees").pipe(
-      map(referees => {
-        return referees.referees;
-      })
-    );
+    return this.http.get<Referee[]>(this.baseUrl + "referee/all-referees");
   }
 
   addReferee(referee: Referee) {

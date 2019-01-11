@@ -26,7 +26,7 @@ export class AuthService implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.user);
+    console.log("Auth:", this.user);
   }
 
   autoAuthUser() {
@@ -66,40 +66,55 @@ export class AuthService implements OnInit {
   getUser() {
     this.http.get<User>(this.baseUrl + "me").subscribe(user => {
       this.currrent.next(user);
+      this.user = user;
     });
+  }
+
+  userLoginHandler(user: any) {
+    if (!user) return;
+    this.user = user;
+    this.currrent.next(user);
+    console.log("INIT:", user);
+    if (user.user.roles.active) {
+      this.token = user.token;
+      this.userId = user.user._id;
+      this.isAuth = true;
+      localStorage.setItem("userId", this.userId);
+      this.authStatusListener.next(true);
+      this.currrent.next(user);
+      this.saveAuthDate(this.token);
+    }
   }
 
   login(email: string, password: string) {
     const userData = { email: email, password: password };
 
-    this.http
-      .post<any>(this.baseUrl + "login/", userData)
-      .pipe(
-        map(user => {
-          return user;
-        })
-      )
-      .subscribe(
-        user => {
-          if (!user) return;
-          this.user = user;
-          this.currrent.next(user);
-          console.log("INIT:", user);
-          if (user.user.roles.active) {
-            this.token = user.token;
-            this.userId = user.user._id;
-            this.isAuth = true;
-            localStorage.setItem("userId", this.userId);
-            this.authStatusListener.next(true);
-            this.currrent.next(user);
-            this.saveAuthDate(this.token);
-            this.router.navigate(["/"]);
-          }
-        },
-        error => {
-          console.log(error.error.message);
-        }
-      );
+    return this.http.post<any>(this.baseUrl + "login/", userData).pipe(
+      map(user => {
+        return user;
+      })
+    );
+    // .subscribe(
+    //   user => {
+    //     if (!user) return;
+    //     this.user = user;
+    //     this.currrent.next(user);
+    //     console.log("INIT:", user);
+    //     if (user.user.roles.active) {
+    //       this.token = user.token;
+    //       this.userId = user.user._id;
+    //       this.isAuth = true;
+    //       localStorage.setItem("userId", this.userId);
+    //       this.authStatusListener.next(true);
+    //       this.currrent.next(user);
+    //       this.saveAuthDate(this.token);
+    //       this.router.navigate(["/"]);
+    //     }
+    //   },
+    //   error => {
+    //     console.log(error.error.message);
+    //   }
+    // );
   }
 
   //////////////////
@@ -109,7 +124,7 @@ export class AuthService implements OnInit {
     this.isAuth = false;
     this.authStatusListener.next(false);
     localStorage.removeItem("userId");
-    localStorage.removeItem("");
+    localStorage.removeItem("token_id");
     this.router.navigate(["/user/login"]);
   }
 

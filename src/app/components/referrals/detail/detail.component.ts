@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ReferralService } from "../../../services/referral/referral.service";
 import { Router, ActivatedRoute } from "@angular/router";
+import * as moment from "moment";
 import { Referral } from "src/app/models/referral.model";
 
 declare let M: any;
@@ -11,7 +12,7 @@ declare let M: any;
   styleUrls: ["./detail.component.css"]
 })
 export class DetailComponent implements OnInit {
-  referral;
+  referral: Referral;
   id: string;
 
   constructor(

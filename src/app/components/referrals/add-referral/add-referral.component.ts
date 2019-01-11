@@ -17,7 +17,8 @@ import { AuthService } from "../../../services/auth/auth.service";
 })
 export class AddReferralComponent implements OnInit {
   referees: Referee[] = [];
-  user: any;
+  user: User;
+  users: User[] = [];
 
   selected = "new";
 
@@ -54,6 +55,8 @@ export class AddReferralComponent implements OnInit {
   ngOnInit() {
     this.getManagers();
     this.getReferees();
+    this.getAllUsers();
+    this.getSignedInUser();
   }
 
   getManagers() {
@@ -70,8 +73,25 @@ export class AddReferralComponent implements OnInit {
     });
   }
 
+  getAllUsers() {
+    this.authServ.getAllUsers().subscribe(users => {
+      this.users = users;
+      console.log("All Users:", this.users);
+    });
+  }
+
+  getSignedInUser() {
+    let userId = localStorage.getItem("userId");
+    if (userId) {
+      this.authServ.getUserById(userId).subscribe(user => {
+        this.user = user;
+        console.log("Signed:", this.user);
+      });
+    }
+  }
+
   onSubmit(e: NgForm) {
-    if (this.user) {
+    if (this.referral.userId === "") {
       this.referral.userId = this.user._id;
     }
     this.referralServ.addReferral(this.referral).subscribe(
@@ -90,21 +110,15 @@ export class AddReferralComponent implements OnInit {
     );
   }
 
-  formatPhone(obj) {
-    let numbers = obj.value;
-    let x = obj.value;
-
-    numbers.replace(/\D/g, "");
-    let char = {
-      0: "(",
-      3: ") ",
-      6: "-"
-    };
-    x = "";
-    for (let i = 0; i < numbers.length; i++) {
-      x += (char[i] || "") + numbers[i];
+  formatPhone(obj: NgForm) {
+    let phone = obj.value;
+    if (String(phone).length === 3) {
+      this.referral.phone += "-";
     }
-    this.referral.phone = x;
+
+    if (String(phone).length === 7) {
+      this.referral.phone += "-";
+    }
   }
 
   populateCity(e: NgForm) {

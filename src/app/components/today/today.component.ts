@@ -24,6 +24,8 @@ export class TodayComponent implements OnInit {
   timeNow = this.dateObject.toLocaleTimeString();
   rightNow;
 
+  showInfo = false;
+
   referrals: Referral[] = [];
 
   loading = false;
@@ -32,6 +34,7 @@ export class TodayComponent implements OnInit {
 
   ngOnInit() {
     this.getReferrals();
+    this.getTodayOrders();
   }
 
   move(e: HTMLDivElement) {
@@ -44,7 +47,16 @@ export class TodayComponent implements OnInit {
     this.referralServ.getReferrals().subscribe(referrals => {
       this.referrals = referrals;
       this.loading = false;
-      console.log(this.referrals);
     });
+  }
+
+  getTodayOrders() {
+    let day = this.dateObject.getDay();
+    let month = this.dateObject.getMonth() + 1;
+    let year = this.dateObject.getFullYear();
+    let today = year + "-" + month + "-" + day;
+
+    let todaySales = [...this.referrals];
+    todaySales.filter(ref => ref.order_date === this.todayDate);
   }
 }
