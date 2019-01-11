@@ -17,6 +17,7 @@ import { AuthService } from "../../../services/auth/auth.service";
 })
 export class AddReferralComponent implements OnInit {
   referees: Referee[] = [];
+  referresCopy: Referee[] = [];
   user: User;
   users: User[] = [];
 
@@ -70,6 +71,7 @@ export class AddReferralComponent implements OnInit {
     this.refereeServ.getReferees().subscribe(referees => {
       console.log("REFEREREES:", referees);
       this.referees = referees;
+      this.referresCopy = referees;
     });
   }
 
@@ -132,5 +134,12 @@ export class AddReferralComponent implements OnInit {
         this.referral.address.city = "Manhattan";
       }
     }
+  }
+
+  checking() {
+    this.referees = this.referresCopy;
+    this.referees = this.referees.filter(
+      ref => ref.userId === this.referral.userId
+    );
   }
 }

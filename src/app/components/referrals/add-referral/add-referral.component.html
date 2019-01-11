@@ -63,6 +63,19 @@
           <label for="city">Email</label>
         </div>
       </div>
+      <div *ngIf="user?.roles.coach || user?.roles.isAdmin" class="row">
+        <div class="input-field mat-form col s12 l12">
+          <mat-form-field>
+            <mat-select class="capitalized" [(ngModel)]="referral.userId" #ref_userId="ngModel" (selectionChange)="checking()"
+              placeholder="Assign Referral To" name="referralBy">
+              <mat-option disabled value=""> Assign Referral To</mat-option>
+              <mat-option class="capitalized" *ngFor="let user of users" [value]="user._id">
+                {{ user.name }} {{ user.last_name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
 
       <div class="row">
         <div class="input-field mat-form col s12 l3">
@@ -104,19 +117,7 @@
           </mat-form-field>
 
         </div>
-        <div *ngIf="user?.roles.coach || user?.roles.isAdmin" class="row">
-          <div class="input-field mat-form col s12 l12">
-            <mat-form-field>
-              <mat-select class="capitalized" [(ngModel)]="referral.userId" #ref_userId="ngModel" placeholder="Assign Referral To"
-                name="referralBy">
-                <mat-option selected value=""> Assign Referral To</mat-option>
-                <mat-option class="capitalized" *ngFor="let user of users" [value]="user._id">
-                  {{ user.name }} {{ user.last_name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
+
         <div class="row">
           <div class="input-field col s12">
             <textarea id="comment" name="comment" [(ngModel)]="referral.comment" #ref_comment="ngModel" class="materialize-textarea"></textarea>
