@@ -17,8 +17,11 @@ export class RegisterComponent implements OnInit {
     phone: "",
     email: "",
     password: "",
+    password1: "",
     coach: ""
   };
+
+  errors = {};
 
   password1: string;
   pswMatched: boolean = false;
@@ -28,16 +31,31 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   registerUser(e: NgForm) {
-    if (!this.pswMatched || !e.valid) return;
+    // if (!this.pswMatched || !e.valid) return;
 
-    this.authServ.register(this.user).subscribe(user => {
-      if (user) {
-        console.log(user);
-        this.router.navigate(["/user/login"]);
-      } else {
-        return;
+    this.authServ.register(this.user).subscribe(
+      user => {
+        if (user) {
+          console.log(user);
+          this.router.navigate(["/user/login"]);
+        } else {
+          return;
+        }
+      },
+      err => {
+        let errors = err.error as Array<any>;
+        if (errors.length > 0) {
+          errors.forEach(e => {
+            if (e) {
+              this.errors[e.param] = e.msg;
+            }
+          });
+
+          console.log(this.errors);
+          this.errors = {};
+        }
       }
-    });
+    );
 
     // this.http.post("http://localhost:3000/user/newuser/", this.user).subscribe(
     //   user => {
@@ -52,20 +70,14 @@ export class RegisterComponent implements OnInit {
   }
 
   formatPhone(obj: NgForm) {
-    let numbers = obj.value;
-    let x = obj.value;
-
-    numbers.replace(/\D/g, "");
-    let char = {
-      0: "(",
-      3: ") ",
-      6: "-"
-    };
-    x = "";
-    for (let i = 0; i < numbers.length; i++) {
-      x += (char[i] || "") + numbers[i];
+    let phone = obj.value;
+    if (String(phone).length === 3) {
+      this.user.phone += "-";
     }
-    this.user.phone = x;
+
+    if (String(phone).length === 7) {
+      this.user.phone += "-";
+    }
   }
 
   checkPassword(v: NgForm) {
