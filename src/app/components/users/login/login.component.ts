@@ -16,6 +16,8 @@ declare let M: any;
 export class LoginComponent implements OnInit, OnDestroy {
   errors: any = {};
   user: any;
+  activeMsg = {};
+  activated = false;
 
   constructor(private authServ: AuthService, private router: Router) {}
 
@@ -27,14 +29,20 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authServ.login(e.value.email, e.value.password).subscribe(
       user => {
         if (user) {
+          console.log("User", user);
           this.authServ.userLoginHandler(user);
-          this.router.navigate(["/"]);
+          if (!user.user.roles.active) {
+            this.activeMsg["msg"] =
+              "You account has been created but you has not been activated";
+            this.activated = true;
+          } else {
+            this.router.navigate(["/"]);
+          }
         }
+        console.log(this.activeMsg);
       },
       err => {
-        console.log(err.error.message);
         this.errors.message = err.error.message;
-        console.log(this.errors);
       }
     );
   }

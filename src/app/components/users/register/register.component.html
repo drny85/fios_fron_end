@@ -17,7 +17,7 @@
         </div>
         <div class="row">
           <div class="input-field col s6 l6">
-            <input id="phone" name="phone" (blur)="formatPhone(user_phone)" #user_phone [(ngModel)]="user.phone"
+            <input id="phone" name="phone" (keyup)="formatPhone(user_phone)" #user_phone [(ngModel)]="user.phone"
               required type="tel" class="validate">
             <label for="phone">Phone</label>
           </div>
@@ -36,14 +36,16 @@
 
           <div class="input-field col s6 l6">
             <input id="confirm_password" [disabled]="user.password.length < 6" name="confirm_password" (keyup)="checkPassword(user_psw1)"
-              #user_psw1="ngModel" [(ngModel)]="password1" minlength="6" type="password" required class="validate">
+              #user_psw1="ngModel" [(ngModel)]="user.password1" minlength="6" type="password" required class="validate">
             <label for="confirm_password">Confirm password</label>
+            <div *ngIf="user_psw1.errors?.equalTo && user_psw1.touched" class="alert alert-invalid">
+              Passwrod does not match.
+            </div>
           </div>
-          {{ user.password }}
-          {{ password1 }}
+
         </div>
         <br>
-        <button [disabled]="!newUser.valid" class="btn black btn-lg" type="submit">Register</button>
+        <button class="btn black btn-lg" type="submit">Register</button>
       </form>
     </mat-card>
     <div style="margin-bottom: 150px;"></div>

@@ -41,7 +41,10 @@ export class UserDetailComponent implements OnInit {
     this.authServ.updateUser(this.user).subscribe(
       updatedUser => {
         this.user = updatedUser;
-        console.log(this.user);
+        this.authServ.currrent.next(this.user);
+        if (!this.user.roles.active) {
+          this.authServ.logout();
+        }
       },
       err => {
         console.log(err.error);

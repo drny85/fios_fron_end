@@ -14,7 +14,7 @@ export class AllusersComponent implements OnInit {
   ngOnInit() {
     this.authServ.getAllUsers().subscribe(users => {
       this.users = users;
-      console.log(this.users);
+      this.authServ.currrent.next();
     });
   }
 }
