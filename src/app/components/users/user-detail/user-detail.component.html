@@ -22,6 +22,10 @@
           <li *ngIf="user?.vendor" class="collection-item capitalized"><b>Company: </b>
             {{ user?.vendor }}
           </li>
+
+          <li *ngIf="user?.coach" class="collection-item capitalized"><b>Coach: </b>
+            {{ user?.coach.name }} {{ user?.coach.last_name }}
+          </li>
           <div class="row center">
             <!-- Switch -->
             <h4 style="margin:15px;" class="center black z-depth-3 white-text">Status and Roles</h4>

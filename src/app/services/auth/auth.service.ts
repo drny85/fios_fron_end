@@ -52,7 +52,7 @@ export class AuthService implements OnInit {
   }
 
   getCoaches() {
-    return this.http.get<User[]>(this.baseUrl + "/coaches");
+    return this.http.get<User[]>(this.baseUrl + "coaches");
   }
 
   getUserById(id: string) {
