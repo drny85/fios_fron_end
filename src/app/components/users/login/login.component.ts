@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authServ.login(e.value.email, e.value.password).subscribe(
       user => {
         if (user) {
-          console.log("User", user);
           this.authServ.userLoginHandler(user);
           if (!user.user.roles.active) {
             this.activeMsg["msg"] =
@@ -39,10 +38,10 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.router.navigate(["/"]);
           }
         }
-        console.log(this.activeMsg);
       },
       err => {
         this.errors.message = err.error.message;
+        console.log(err.error);
       }
     );
   }

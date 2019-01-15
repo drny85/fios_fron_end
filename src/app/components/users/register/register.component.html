@@ -5,32 +5,35 @@
       <form #newUser="ngForm" (ngSubmit)="registerUser(newUser)">
         <div class="row">
           <div class="input-field col s6 l6">
-            <input id="name" name="name" type="text" required #user_name [(ngModel)]="user.name" class="validate">
+            <input id="name" name="name" type="text" required #user_name="ngModel" [(ngModel)]="user.name" class="validate">
             <label for="name">Name</label>
+            <p class="red-text" *ngIf="user_name.errors?.required && user_name.touched">Name is required</p>
           </div>
 
           <div class="input-field col s6 l6">
-            <input id="last_name" name="last_name" required #user_last_name [(ngModel)]="user.last_name" type="text"
+            <input id="last_name" name="last_name" required #last_name="ngModel" [(ngModel)]="user.last_name" type="text"
               class="validate">
             <label for="last_name">Last Name</label>
+            <p class="red-text" *ngIf="last_name.errors?.required && last_name.touched">Last Name is required</p>
+            <p class="red-text" *ngIf="errors.name">Last Name is required</p>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6 l6">
-            <input id="phone" name="phone" (keyup)="formatPhone(user_phone)" #user_phone [(ngModel)]="user.phone"
+            <input id="phone" name="phone" (keyup)="formatPhone(phone)" #phone="ngModel" [(ngModel)]="user.phone"
               required type="tel" class="validate">
             <label for="phone">Phone</label>
           </div>
 
           <div class="input-field col s6 l6">
-            <input id="email" name="email" type="email" #user_email [(ngModel)]="user.email" email class="validate">
+            <input id="email" name="email" type="email" #email="ngModel" [(ngModel)]="user.email" email class="validate">
             <label for="email">Email</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6 l6">
-            <input id="password" type="password" minlength="6" name="password" #user_psw="ngModel" [(ngModel)]="user.password"
-              required class="validate">
+            <input id="password" type="password" minlength="6" name="password" autocomplete="off" #user_psw="ngModel"
+              [(ngModel)]="user.password" required class="validate">
             <label for="password">Password</label>
           </div>
 
@@ -45,7 +48,7 @@
 
         </div>
         <br>
-        <button class="btn black btn-lg" type="submit">Register</button>
+        <button [disabled]="!newUser.valid" class="btn black btn-lg" type="submit">Register</button>
       </form>
     </mat-card>
     <div style="margin-bottom: 150px;"></div>

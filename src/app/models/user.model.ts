@@ -11,4 +11,6 @@ export interface User {
   message?: string;
   user?: Object;
   coach?: string;
+  title?: string;
+  vendor?: string;
 }

@@ -22,6 +22,7 @@ import { AllusersComponent } from "./components/users/allusers/allusers.componen
 import { UserDetailComponent } from "./components/users/user-detail/user-detail.component";
 import { AdminGuard } from "./guards/admin.guard";
 import { ActiveGuard } from "./guards/active.guard";
+import { UserEditComponent } from "./components/users/user-edit/user-edit.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [ActiveGuard] },
@@ -87,6 +88,11 @@ const routes: Routes = [
     component: AllusersComponent,
     canActivate: [AdminGuard]
   },
+  {
+    path: "user/edit/:id",
+    component: UserEditComponent,
+    canActivate: [ActiveGuard]
+  },
   { path: "today", component: TodayComponent, canActivate: [ActiveGuard] },
 
   {
@@ -109,7 +115,7 @@ const routes: Routes = [
     component: ManagerDetailsComponent,
     canActivate: [ActiveGuard]
   },
-  {path: "**", redirectTo: 'home'}
+  { path: "**", redirectTo: "home" }
 ];
 
 @NgModule({

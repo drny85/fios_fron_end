@@ -33,26 +33,6 @@
             <li *ngIf="user?.coach" class="collection-item capitalized"><i class="material-icons">supervisor_account</i>
               Coach : {{ user?.coach.name }} {{
               user?.coach.last_name }}</li>
-            <li *ngIf="!user?.coach" class="collection-item capitalized"><i class="material-icons">supervisor_account</i>
-              Coach : <button data-target="modal1" class="btn grey modal-trigger">Modal</button>
-            </li>
-            <!-- Modal Structure -->
-            <div id="modal1" class="modal">
-              <div class="modal-content">
-                <h4>Addin my Coach</h4>
-                <div class="input-field col s12">
-                  <select class="" name="coach" [(ngModel)]="coach">
-                    <option *ngFor="let coach of coaches" value="{{coach.name}}">{{coach.name}} {{coach.last_name}}</option>
-                  </select>
-                  <label>Materialize Select</label>
-                  {{coaches | json }}
-                </div>
-                <div style="margin-bottom: 100px"></div>
-              </div>
-              <div class="modal-footer">
-                <button class="modal-close waves-effect grey btn-flat">Add Coach</button>
-              </div>
-            </div>
 
 
             <li class="collection-item"><i class="material-icons tiny">person</i> Active: {{ user?.roles.active ? 'Yes'

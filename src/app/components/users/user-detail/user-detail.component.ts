@@ -42,9 +42,7 @@ export class UserDetailComponent implements OnInit {
       updatedUser => {
         this.user = updatedUser;
         this.authServ.currrent.next(this.user);
-        if (!this.user.roles.active) {
-          this.authServ.logout();
-        }
+        console.log("U:", this.user);
       },
       err => {
         console.log(err.error);

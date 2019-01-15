@@ -43,6 +43,7 @@ import { AllManagersComponent } from "./components/managers/all-managers/all-man
 import { AuthInterceptor } from "./services/intercector.service";
 import { AllusersComponent } from './components/users/allusers/allusers.component';
 import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
+import { UserEditComponent } from './components/users/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { UserDetailComponent } from './components/users/user-detail/user-detail.
     ManagerEditComponent,
     AllManagersComponent,
     AllusersComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
