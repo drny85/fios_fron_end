@@ -1,7 +1,12 @@
 <div>
   <h3 class="center z-depth-3">Register/Sign up</h3>
+
   <div>
+
     <mat-card>
+      <div *ngIf="error" class="">
+        <h4 class="center red-text">{{ error.message }}</h4>
+      </div>
       <form #newUser="ngForm" (ngSubmit)="registerUser(newUser)">
         <div class="row">
           <div class="input-field col s6 l6">
@@ -21,7 +26,7 @@
         <div class="row">
           <div class="input-field col s6 l6">
             <input id="phone" name="phone" (keyup)="formatPhone(phone)" #phone="ngModel" [(ngModel)]="user.phone"
-              required type="tel" class="validate">
+              required type="tel" maxlength="12" minlength="12" class="validate">
             <label for="phone">Phone</label>
           </div>
 
@@ -41,8 +46,8 @@
             <input id="confirm_password" [disabled]="user.password.length < 6" name="confirm_password" (keyup)="checkPassword(user_psw1)"
               #user_psw1="ngModel" [(ngModel)]="user.password1" minlength="6" type="password" required class="validate">
             <label for="confirm_password">Confirm password</label>
-            <div *ngIf="user_psw1.errors?.equalTo && user_psw1.touched" class="alert alert-invalid">
-              Passwrod does not match.
+            <div *ngIf="errors?.password1" class="alert alert-invalid">
+              Password does not match.
             </div>
           </div>
 
@@ -50,6 +55,11 @@
         <br>
         <button [disabled]="!newUser.valid" class="btn black btn-lg" type="submit">Register</button>
       </form>
+      <br>
+
+      <div *ngIf="error" style="height: 5rem;" class="orange center">
+        <h4 class="center">{{ error }}</h4>
+      </div>
     </mat-card>
     <div style="margin-bottom: 150px;"></div>
 

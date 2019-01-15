@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   };
 
   errors = {};
+  error = "";
 
   password1: string;
   pswMatched: boolean = false;
@@ -43,6 +44,10 @@ export class RegisterComponent implements OnInit {
         }
       },
       err => {
+        if (err.error.message) {
+          console.log(err.error);
+          this.error = err.error.message;
+        }
         let errors = err.error as Array<any>;
         if (errors.length > 0) {
           errors.forEach(e => {
