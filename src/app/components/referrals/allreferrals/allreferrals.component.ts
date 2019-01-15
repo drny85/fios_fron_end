@@ -25,6 +25,7 @@ export class AllreferralsComponent implements OnInit {
   getReferrals() {
     this.referralServ.getReferrals().subscribe(referrals => {
       this.sorted = referrals;
+
       this.actidedRoute.queryParamMap.subscribe(params => {
         this.status = params.get("status");
         if (
@@ -33,6 +34,7 @@ export class AllreferralsComponent implements OnInit {
           this.status === "undefined"
         ) {
           this.referrals = referrals;
+          console.log(this.referrals);
         } else {
           this.referrals = this.sorted.filter(
             ref => ref.status === this.status

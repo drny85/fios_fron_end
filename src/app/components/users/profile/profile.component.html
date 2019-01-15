@@ -2,7 +2,7 @@
   <div class="col s12 m5">
     <div class="card">
       <div class="card-image">
-        <img class="responsive-img" src="../../../../assets/images/rebecca.png">
+        <img class="responsive-img" width="280" height="200" src="https://svgsilh.com/svg_v2/1299805.svg">
         <span class="card-title capitalized">{{user?.name }} {{ user?.last_name }}</span>
       </div>
       <div class="card-content">
@@ -29,7 +29,9 @@
           <ul class="collection">
             <li class="collection-item"><i class="material-icons">email</i> Email: {{ user?.email }}</li>
             <li class="collection-item"><i class="material-icons">phone</i> Phone: {{ user?.phone }}</li>
-            <li *ngIf="user?.vendor" class="collection-item">Company: {{user?.vendor }}</li>
+            <li *ngIf="user?.vendor" class="collection-item capitalized"><i class="material-icons">business</i>
+              Company:
+              {{user?.vendor }}</li>
             <li *ngIf="user?.coach" class="collection-item capitalized"><i class="material-icons">supervisor_account</i>
               Coach : {{ user?.coach.name }} {{
               user?.coach.last_name }}</li>
