@@ -1,7 +1,13 @@
 <div class="animated fadeIn">
+  <div *ngIf="referralBy">
+    <h5 class="center text-italic">These referrals are from <span class="capitalized">{{ referralBy.name }} {{
+        referralBy.last_name
+        }}</span> </h5>
+  </div>
   <div>
     <a class="btn waves-effect black waves-light mt-8" routerLink="/add-referral">Add Referral</a>
   </div>
+  <br>
   <div class="nav-content white center-align">
     <ul class="tabs tabs-grey black-text ">
       <li class="tab"><a routerLink="/myreferrals/:id" [queryParams]="{status: null}" [class.active]="status === null">ALL</a></li>
@@ -14,6 +20,7 @@
           Sold</a></li>
     </ul>
   </div>
+
   <br>
   <div *ngIf="referrals.length > 0" class="card">
     <table>

@@ -13,6 +13,7 @@ export class MyreferralsComponent implements OnInit {
   allreferrals: Referral[] = [];
   id: string;
   status: string = "";
+  referralBy: any;
 
   constructor(
     private referralServ: ReferralService,
@@ -26,6 +27,10 @@ export class MyreferralsComponent implements OnInit {
   getReferrals() {
     this.id = this.activedRoute.snapshot.params["id"];
     this.referralServ.getReferralsById(this.id).subscribe(referrals => {
+      if (referrals) {
+        this.referralBy = referrals.slice(0, 1)[0].referralBy;
+      }
+
       this.allreferrals = referrals;
       this.activedRoute.queryParamMap.subscribe(params => {
         this.status = params.get("status");
