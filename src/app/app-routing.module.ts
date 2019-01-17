@@ -23,6 +23,8 @@ import { UserDetailComponent } from "./components/users/user-detail/user-detail.
 import { AdminGuard } from "./guards/admin.guard";
 import { ActiveGuard } from "./guards/active.guard";
 import { UserEditComponent } from "./components/users/user-edit/user-edit.component";
+import { NotesComponent } from "./components/notes/notes.component";
+import { EditNoteComponent } from "./components/edit-note/edit-note.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [ActiveGuard] },
@@ -115,6 +117,13 @@ const routes: Routes = [
     component: ManagerDetailsComponent,
     canActivate: [ActiveGuard]
   },
+  { path: "notes", component: NotesComponent, canActivate: [ActiveGuard] },
+  {
+    path: "notes/:id",
+    component: EditNoteComponent,
+    canActivate: [ActiveGuard]
+  },
+
   { path: "**", redirectTo: "home" }
 ];
 

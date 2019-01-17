@@ -44,6 +44,8 @@ import { AuthInterceptor } from "./services/intercector.service";
 import { AllusersComponent } from './components/users/allusers/allusers.component';
 import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
 import { UserEditComponent } from './components/users/user-edit/user-edit.component';
+import { NotesComponent } from './components/notes/notes.component';
+import { EditNoteComponent } from './components/edit-note/edit-note.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { UserEditComponent } from './components/users/user-edit/user-edit.compon
     AllManagersComponent,
     AllusersComponent,
     UserDetailComponent,
-    UserEditComponent
+    UserEditComponent,
+    NotesComponent,
+    EditNoteComponent
   ],
   imports: [
     BrowserModule,

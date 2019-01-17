@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ReferralService } from "../../services/referral/referral.service";
 import { Referral } from "../../models/referral.model";
 import { map } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-today",
@@ -30,7 +31,7 @@ export class TodayComponent implements OnInit {
 
   loading = false;
 
-  constructor(private referralServ: ReferralService) {}
+  constructor(private referralServ: ReferralService, private router: Router) {}
 
   ngOnInit() {
     this.getReferrals();
@@ -58,5 +59,9 @@ export class TodayComponent implements OnInit {
 
     let todaySales = [...this.referrals];
     todaySales.filter(ref => ref.order_date === this.todayDate);
+  }
+
+  goToNotes() {
+    this.router.navigate(["notes"]);
   }
 }

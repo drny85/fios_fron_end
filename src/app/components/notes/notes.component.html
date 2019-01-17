@@ -1,0 +1,25 @@
+<div class="note">
+  <div class="card">
+    <div class="card-body">
+      <br>
+      <h3 class="card-title center mt-5">
+        Adding a new note
+      </h3>
+      <br>
+      <div class="form_div">
+        <form #note_form="ngForm" (ngSubmit)="addNote(note_form)">
+          <div class="mat-form">
+            <mat-form-field>
+              <textarea matInput name="note" required ngModel placeholder="Type your notes" cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="5"></textarea>
+
+            </mat-form-field>
+          </div>
+          <div>
+            <button style="width: 20rem;" class="btn black ml-5" type="submit">Add Note</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
