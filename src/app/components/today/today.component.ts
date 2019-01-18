@@ -38,16 +38,12 @@ export class TodayComponent implements OnInit {
     this.getTodayOrders();
   }
 
-  move(e: HTMLDivElement) {
-    e.setAttribute("class", "animated flash");
-    e.remove();
-  }
-
   getReferrals() {
     this.loading = true;
     this.referralServ.getReferrals().subscribe(referrals => {
       this.referrals = referrals;
       this.loading = false;
+      console.log(this.referrals);
     });
   }
 

@@ -60,7 +60,7 @@
             </div>
             <div class="row" *ngIf="user.title === 'engagement manager'">
               <div class="input-field mat-form col s12">
-
+                <label for="coach">Coach</label>
                 <mat-select name="coach" id="coach" placeholder="{{ user.coach?.name | uppercase}} {{
                   user.coach?.last_name | uppercase}}"
                   [(ngModel)]="user.coach">

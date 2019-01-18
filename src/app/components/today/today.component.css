@@ -10,3 +10,7 @@
   height: 300px;
   background-color: rgb(165, 143, 143);
 }
+
+box3 .center {
+  margin: 0 auto;
+}

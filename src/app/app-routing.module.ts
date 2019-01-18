@@ -25,6 +25,7 @@ import { ActiveGuard } from "./guards/active.guard";
 import { UserEditComponent } from "./components/users/user-edit/user-edit.component";
 import { NotesComponent } from "./components/notes/notes.component";
 import { EditNoteComponent } from "./components/edit-note/edit-note.component";
+import { NightlyReportComponent } from "./components/nightly-report/nightly-report.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [ActiveGuard] },
@@ -121,6 +122,11 @@ const routes: Routes = [
   {
     path: "notes/:id",
     component: EditNoteComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: "nightly-report",
+    component: NightlyReportComponent,
     canActivate: [ActiveGuard]
   },
 

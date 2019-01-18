@@ -1,6 +1,6 @@
 <div class="">
   <h2 class="center">Add New Referral</h2>
-  <div class="card grey lighten-5 animated fadeInDown">
+  <div class="card grey lighten-5 animated zoomIn">
     <form id="form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
       <div class="row">
         <div class="input-field col s6">
@@ -82,7 +82,7 @@
           <mat-form-field>
             <mat-select class="capitalized" [(ngModel)]="referral.manager" #ref_manager="ngModel" placeholder="Account Manager"
               name="manager">
-              <mat-option selected value=""> Select an AM</mat-option>
+              <mat-option selected value=""> <a routerLink="/manager/add-manager">Add a new AM</a></mat-option>
               <mat-option class="capitalized" *ngFor="let manager of managers" [value]="manager._id">
                 {{ manager.name }} {{ manager.last_name }}
               </mat-option>
@@ -97,7 +97,7 @@
           <mat-form-field>
             <mat-select class="capitalized" [(ngModel)]="referral.referralBy" #ref_referralBy="ngModel" placeholder="Referral By"
               name="referralBy">
-              <mat-option selected value=""> Select a referee</mat-option>
+              <mat-option selected value=""> <a routerLink="/referee/add-referee">Add a new Referee</a></mat-option>
               <mat-option class="capitalized" *ngFor="let referee of referees" [value]="referee._id">
                 {{ referee.name }} {{ referee.last_name }}
               </mat-option>

@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="center card-title">Today Report</h3>
+    <div class="main">
+      <div class="table_div">
+        <table>
+          <thead>
+            <tr>
+              <th>Mon</th>
+              <th>Address</th>
+              <th>Due Date</th>
+              <th>Package</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let referral of referrals">
+              <td class="upper">{{referral.mon}}</td>
+              <td>{{referral.address.address}} {{referral.address.city}}</td>
+              <td>{{ referral.due_date | date: 'shortDate'}}</td>
+              <td>{{ referral.package }}</td>
+              <td><a class="btn grey" routerLink="/detail/{{referral._id }}">View Details</a></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr aria-colspan="5">
+              <td class="grey lighten-2" colspan="5"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="all_notes">
+        <h4 class="center">Here are all my notes from today</h4>
+        <ul class="collection">
+          <li *ngFor="let n of notes" class="collection-item">
+            <p>{{n.note}}</p>
+            <i style="color:grey;"> <span>{{n.created | date : 'medium'}}</span></i>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>

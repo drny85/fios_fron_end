@@ -17,3 +17,8 @@
 .delete:hover {
   cursor: pointer;
 }
+
+
+textarea.mat-input-element {
+  padding: 1rem;
+}

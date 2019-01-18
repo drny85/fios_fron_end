@@ -46,6 +46,7 @@ import { UserDetailComponent } from './components/users/user-detail/user-detail.
 import { UserEditComponent } from './components/users/user-edit/user-edit.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { EditNoteComponent } from './components/edit-note/edit-note.component';
+import { NightlyReportComponent } from './components/nightly-report/nightly-report.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { EditNoteComponent } from './components/edit-note/edit-note.component';
     UserDetailComponent,
     UserEditComponent,
     NotesComponent,
-    EditNoteComponent
+    EditNoteComponent,
+    NightlyReportComponent
   ],
   imports: [
     BrowserModule,

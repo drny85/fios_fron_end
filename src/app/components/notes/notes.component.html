@@ -1,22 +1,21 @@
 <div class="note">
   <div class="card">
     <div class="card-body">
-      <br>
-      <h3 class="card-title center mt-5">
-        Adding a new note
-      </h3>
-      <br>
+      <br />
+      <h2 class="card-title center mt-5">Adding a new note</h2>
+      <br />
       <div class="form_div">
         <form #note_form="ngForm" (ngSubmit)="addNote(note_form)">
           <div class="mat-form">
             <mat-form-field>
               <textarea matInput name="note" required ngModel placeholder="Type your notes" cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="5"></textarea>
-
             </mat-form-field>
           </div>
           <div>
-            <button style="width: 20rem;" class="btn black ml-5" type="submit">Add Note</button>
+            <button style="width: 20rem; margin-bottom: 2rem;" class="btn black ml-5" type="submit">
+              Add Note
+            </button>
           </div>
         </form>
       </div>
@@ -24,25 +23,30 @@
   </div>
   <div *ngIf="notes" class="notes">
     <h4 class="center">Today's Notes</h4>
-    <br>
+    <br />
     <div *ngFor="let n of notes" class="list-notes card">
-
-
-      <p class="p_list">{{ n.note }}</p><span class="right">
+      <p class="p_list gray">{{ n.note }}</p>
+      <span class="right">
         <!-- Modal Trigger -->
-        <button data-target="modal1" (click)="openModal(n._id)" class="btn modal-trigger orange"><i class="material-icons">edit</i></button></span>
+        <button data-target="modal1" (click)="openModal(n._id)" class="btn modal-trigger orange">
+          <i class="material-icons">edit</i>
+        </button></span>
 
-      <blockquote class="posted">posted: {{ n.created | date:'medium' }}</blockquote>
+      <blockquote class="posted">
+        posted: {{ n.created | date: "medium" }}
+      </blockquote>
       <!-- Modal Structure -->
       <div id="modal1" class="modal">
         <div class="modal-content">
           <h5 class="center">Are you sure you want to delete this note?</h5>
         </div>
         <div class="modal-footer">
-          <button style="margin-right: 8px;" (click)="onDelete()" class="btn red">Delete</button>
+          <button style="margin-right: 8px;" (click)="onDelete()" class="btn red">
+            Delete
+          </button>
           <button type="button" class="btn gray modal-close">Cancel</button>
         </div>
-
       </div>
     </div>
   </div>
+</div>
