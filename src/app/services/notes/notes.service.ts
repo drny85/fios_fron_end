@@ -13,7 +13,15 @@ export class NotesService {
     return this.http.post<Note>(this.BASE_URL + "new_note", note);
   }
 
-  getNoteByDate() {
+  getTodayNotes() {
     return this.http.get<Note[]>(this.BASE_URL + "today");
+  }
+
+  deleteNote(id: string) {
+    return this.http.delete(this.BASE_URL + `delete/${id}`);
+  }
+
+  getNoteByDate(date: string) {
+    return this.http.get(this.BASE_URL + "date/" + date);
   }
 }

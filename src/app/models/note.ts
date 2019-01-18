@@ -3,5 +3,5 @@ export interface Note {
   _id?: string;
   note: string;
   author?: User;
-  created: string;
+  created?: string;
 }

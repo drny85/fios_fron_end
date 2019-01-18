@@ -1,0 +1,19 @@
+.list-notes {
+  margin: 10px;
+  padding: 10px;
+}
+
+.list-notes p {
+  font-size: 1.5rem;
+
+}
+
+.list-notes .posted {
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+}
+
+.delete:hover {
+  cursor: pointer;
+}
