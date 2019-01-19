@@ -14,7 +14,13 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatProgressSpinnerModule,
-  MatCardModule
+  MatCardModule,
+  MatTableModule,
+  MatPaginator,
+  MatIconModule,
+  MatPaginatorModule,
+  MatSort,
+  MatSortModule
 } from "@angular/material";
 import { FormsModule } from "@angular/forms";
 import { HomeComponent } from "./components/home/home.component";
@@ -41,12 +47,12 @@ import { ManagerEditComponent } from "./components/managers/manager-edit/manager
 import { AllManagersComponent } from "./components/managers/all-managers/all-managers.component";
 
 import { AuthInterceptor } from "./services/intercector.service";
-import { AllusersComponent } from './components/users/allusers/allusers.component';
-import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
-import { UserEditComponent } from './components/users/user-edit/user-edit.component';
-import { NotesComponent } from './components/notes/notes.component';
-import { EditNoteComponent } from './components/edit-note/edit-note.component';
-import { NightlyReportComponent } from './components/nightly-report/nightly-report.component';
+import { AllusersComponent } from "./components/users/allusers/allusers.component";
+import { UserDetailComponent } from "./components/users/user-detail/user-detail.component";
+import { UserEditComponent } from "./components/users/user-edit/user-edit.component";
+import { NotesComponent } from "./components/notes/notes.component";
+import { EditNoteComponent } from "./components/edit-note/edit-note.component";
+import { NightlyReportComponent } from "./components/nightly-report/nightly-report.component";
 
 @NgModule({
   declarations: [
@@ -91,6 +97,10 @@ import { NightlyReportComponent } from './components/nightly-report/nightly-repo
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTableModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule,
     FormsModule
   ],
   providers: [

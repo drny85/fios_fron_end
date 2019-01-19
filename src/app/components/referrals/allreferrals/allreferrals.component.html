@@ -1,4 +1,4 @@
-<div *ngIf="referrals" class="nav-content center-align">
+<!-- <div *ngIf="referrals" class="nav-content center-align">
   <ul class="tabs">
     <li class="tab"><a [class.active]="status === ''" routerLink="/referrals" [queryParams]="{status: ''}">All</a></li>
     <li class="tab"><a [class.active]="status === new" routerLink="/referrals" [queryParams]="{status: 'new'}">New</a></li>
@@ -10,69 +10,88 @@
         Sold</a></li>
 
   </ul>
-</div>
-<div *ngIf="referrals.length > 0" class="">
+</div> -->
+<div class="">
 
 
   <h4 style="margin: 10px;" class="center z-depth-2  lighten-3">All Referrals </h4>
   <a class="btn waves-effect black waves-light mb-5" routerLink="/add-referral">Add Referral</a>
   <br>
-  <br>
-  <div class="animated fadeInLeft">
-    <table id="referrals_table" class="table z-depth-3 highlight">
-      <thead class="grey lighten-1">
-        <tr>
-          <th>Full Name</th>
-          <th>Address</th>
-          <th>Apt</th>
-          <th>Phone</th>
-          <th>Move In</th>
-          <th>Status</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
 
+  <div class="input-field col s12">
+    <input class="place" (keyup)="applyFilter($event.target.value)" placeholder="Search for referral">
 
-        <tr *ngFor="let referral of referrals">
-          <td class="">
-            {{ referral.name }} {{referral.last_name}}
-
-          </td>
-          <td>
-            {{ referral.address.address }}
-          </td>
-          <td id="apt">
-            {{ referral.address.apt }}
-          </td>
-          <td>
-            {{ referral.phone }}
-          </td>
-          <td>
-            {{ referral.moveIn | date: 'mediumDate'}}
-          </td>
-          <td [ngClass]="{ 
-            'lime lighten-2': referral.status === 'pending', 
-            'deep-orange': referral.status === 'not sold',
-            'blue darken-1': referral.status === 'new',
-            'orange lighten-4': referral.status === 'in progress',
-            'teal lighten-1': referral.status === 'closed',
-            'center': '!always'
-          }">
-
-            {{ referral.status }}
-          </td>
-          <td class="center"><a class="btn black" routerLink="/detail/{{referral._id}}">Details</a></td>
-        </tr>
-
-      </tbody>
-    </table>
   </div>
 
-</div>
 
-<div *ngIf="referrals.length === 0" class="z-depth-3">
-  <h3 class="center">No Data</h3>
-  <a class="btn waves-effect black waves-light mb-5" routerLink="/add-referral">Add Referral</a>
-  <div style="margin-bottom: 100px;"></div>
-</div>
+
+  <div class="mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} {{element.last_name}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="address">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.address.address}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="apt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Apt </mat-header-cell>
+        <mat-cell class="upper" *matCellDef="let element"> {{element.address.apt}} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.phone}} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="move">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Move In </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.moveIn | date: 'shortDate'}} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.status}}
+        </mat-cell>
+      </ng-container>
+      <!-- action column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <a class="btn black" routerLink="/detail/{{row._id}}">Details</a>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Loading data...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          No data.
+        </mat-footer-cell>
+      </ng-container>
+
+      <mat-header-row class="grey" *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row class="capitalized" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row>
+
+
+
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[10, 25, 35, 50, 100]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+    <div style="margin-bottom: 100px;"></div>
+  </div>
