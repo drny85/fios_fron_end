@@ -10,7 +10,7 @@ export interface User {
   token?: string;
   message?: string;
   user?: Object;
-  coach?: string;
+  coach?: any;
   title?: string;
   vendor?: string;
 }
