@@ -12,65 +12,82 @@
   </ul>
 </div> -->
 <div class="">
-
-
-  <h4 style="margin: 10px;" class="center z-depth-2  lighten-3">All Referrals </h4>
-  <a class="btn waves-effect black waves-light mb-5" routerLink="/add-referral">Add Referral</a>
-  <br>
+  <h4 style="margin: 10px; padding:10px;" class="center lighten-3">
+    All Referrals
+  </h4>
+  <a class="btn waves-effect black waves-light mb-5" routerLink="/add-referral"
+    >Add Referral</a
+  >
+  <br />
 
   <div class="input-field col s12">
-    <input class="place" (keyup)="applyFilter($event.target.value)" placeholder="Search for referral">
-
+    <input
+      class="place"
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Search by name, phone, order number, or status."
+    />
   </div>
 
-
-
   <div class="mat-elevation-z8">
-
     <mat-table [dataSource]="dataSource" matSort>
-
       <!-- Position Column -->
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}} {{element.last_name}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Full Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.name }} {{ element.last_name }}
+        </mat-cell>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="address">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.address.address}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Address
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.address.address }}
+        </mat-cell>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="apt">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Apt </mat-header-cell>
-        <mat-cell class="upper" *matCellDef="let element"> {{element.address.apt}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Apt
+        </mat-header-cell>
+        <mat-cell class="upper" *matCellDef="let element">
+          {{ element.address.apt }}
+        </mat-cell>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="phone">
         <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.phone}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ element.phone }} </mat-cell>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="move">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Move In </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.moveIn | date: 'shortDate'}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Move In
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.moveIn | date: "shortDate" }}
+        </mat-cell>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          {{element.status}}
-        </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Status
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.status }} </mat-cell>
       </ng-container>
       <!-- action column -->
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <a class="btn black" routerLink="/detail/{{row._id}}">Details</a>
+          <a class="btn black" routerLink="/detail/{{ row._id }}">Details</a>
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="loading">
@@ -84,14 +101,30 @@
         </mat-footer-cell>
       </ng-container>
 
-      <mat-header-row class="grey" *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row class="capitalized" *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></mat-footer-row>
-      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row>
-
-
-
+      <mat-header-row
+        class="grey"
+        *matHeaderRowDef="displayedColumns"
+      ></mat-header-row>
+      <mat-row
+        class="capitalized"
+        *matRowDef="let row; columns: displayedColumns"
+      ></mat-row>
+      <mat-footer-row
+        *matFooterRowDef="['loading']"
+        [ngClass]="{ hide: dataSource != null }"
+      ></mat-footer-row>
+      <mat-footer-row
+        *matFooterRowDef="['noData']"
+        [ngClass]="{
+          hide: !(dataSource != null && dataSource.data.length == 0)
+        }"
+      ></mat-footer-row>
     </mat-table>
-    <mat-paginator [pageSizeOptions]="[10, 25, 35, 50, 100]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+    <mat-paginator
+      [pageSizeOptions]="[10, 25, 35, 50, 100]"
+      [pageSize]="10"
+      showFirstLastButtons
+    ></mat-paginator>
     <div style="margin-bottom: 100px;"></div>
   </div>
+</div>
