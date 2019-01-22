@@ -5,13 +5,26 @@ import { NgForm } from "@angular/forms";
 import { Note } from "src/app/models/note";
 import * as moment from "moment";
 import { NotesService } from "../../services/notes/notes.service";
+import {
+  trigger,
+  animate,
+  style,
+  transition,
+  state
+} from "@angular/animations";
 
 declare let M: any;
 
 @Component({
   selector: "app-notes",
   templateUrl: "./notes.component.html",
-  styleUrls: ["./notes.component.css"]
+  styleUrls: ["./notes.component.css"],
+  animations: [
+    trigger("fade", [
+      state("void", style({ opacity: 0 })),
+      transition(":enter, :leave", [animate(1500)])
+    ])
+  ]
 })
 export class NotesComponent implements OnInit {
   note: Note = {
@@ -42,11 +55,11 @@ export class NotesComponent implements OnInit {
       this.notesServ.addNote(this.note).subscribe(
         notes => {
           if (notes) {
-            n.reset();
             this.getTodayNotes();
+            n.reset();
           }
         },
-        err => console.log(err)
+        (err: Response) => console.log(err.status)
       );
     }
   }

@@ -1,4 +1,4 @@
-<div class="">
+<div *ngIf="user?.profileCompleted; else noProfile" class="container">
   <h2 class="center">Add New Referral</h2>
   <div class="card grey lighten-5 animated zoomIn">
     <form id="form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
@@ -28,18 +28,18 @@
 
       <div class="row">
         <div class="input-field col s12 l4">
-          <input type="text" id="address" [(ngModel)]="referral.address.address" #ref_address.address="ngModel" name="address"
+          <input type="text" id="address" [(ngModel)]="referral.address" #ref_address.address="ngModel" name="address"
             required class="validate capitalized" />
           <label for="address">Address</label>
         </div>
 
         <div class="input-field col s12 l4">
-          <input type="text" id="apt" [(ngModel)]="referral.address.apt" #ref_apt="ngModel" name="apt" class="validate upper" />
+          <input type="text" id="apt" [(ngModel)]="referral.apt" #ref_apt="ngModel" name="apt" class="validate upper" />
           <label for="apt">Apt</label>
         </div>
 
         <div class="input-field col s12 l4">
-          <input type="text" id="zipcode" [(ngModel)]="referral.address.zipcode" #ref_zipcode="ngModel" (keyup)="populateCity(ref_zipcode)"
+          <input type="text" id="zipcode" [(ngModel)]="referral.zipcode" #ref_zipcode="ngModel" (keyup)="populateCity(ref_zipcode)"
             name="zipcode" maxlength="5" minlength="5" required class="validate" />
           <label for="zipcode">Zip code</label>
         </div>
@@ -47,8 +47,7 @@
 
       <div class="row">
         <div class="input-field col s12 l4">
-          <input type="text" id="city" [(ngModel)]="referral.address.city" #ref_city="ngModel" name="city" required
-            class="validate" />
+          <input type="text" id="city" [(ngModel)]="referral.city" #ref_city="ngModel" name="city" required class="validate" />
           <label for="city">City</label>
         </div>
 
@@ -90,8 +89,9 @@
           </mat-form-field>
         </div>
         <div class="input-field col s12 l3">
-          <input type="date" [(ngModel)]="referral.moveIn" #ref_moveIn="ngModel" name="moveIn" id="moveIn" required />
-          <label for="moveIn">Move In</label>
+          <input type="date" [(ngModel)]="referral.moveIn" #ref_moveIn="ngModel" name="moveIn" placeholder="Move In" id="moveIn"
+            required />
+          <label class="active" for="moveIn">Move In</label>
         </div>
         <div class="input-field mat-form col s12 l3">
           <mat-form-field>
@@ -139,3 +139,14 @@
   </div>
   <div style="margin-bottom:100px;"></div>
 </div>
+<ng-template #noProfile>
+  <div class="center noProfile container">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="center">Great that you want to add your first referral</h4>
+        <p>Please complete you profile first by adding your account managers and your coach.</p>
+        <a class="center btn black" routerLink="/user/profile">Go to my Profile</a>
+      </div>
+    </div>
+  </div>
+</ng-template>

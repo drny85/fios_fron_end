@@ -11,24 +11,18 @@
 
   </ul>
 </div> -->
-<div class="">
+<div class="container">
   <h4 style="margin: 10px; padding:10px;" class="center lighten-3">
     All Referrals
   </h4>
-  <a class="btn waves-effect black waves-light mb-5" routerLink="/add-referral"
-    >Add Referral</a
-  >
+  <a class="btn waves-effect black waves-light mb-5" routerLink="/add-referral">Add Referral</a>
   <br />
 
-  <div class="input-field col s12">
-    <input
-      class="place"
-      (keyup)="applyFilter($event.target.value)"
-      placeholder="Search by name, phone, order number, or status."
-    />
+  <div class="input-field col s12 animated fadeInLeft">
+    <input class="place" (keyup)="applyFilter($event.target.value)" placeholder="Search by name, phone, order #, status, apt #, etc." />
   </div>
 
-  <div class="mat-elevation-z8">
+  <div class="mat-elevation-z8 animated zoomIn">
     <mat-table [dataSource]="dataSource" matSort>
       <!-- Position Column -->
       <ng-container matColumnDef="name">
@@ -46,7 +40,7 @@
           Address
         </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          {{ element.address.address }}
+          {{ element.address }}
         </mat-cell>
       </ng-container>
 
@@ -56,7 +50,7 @@
           Apt
         </mat-header-cell>
         <mat-cell class="upper" *matCellDef="let element">
-          {{ element.address.apt }}
+          {{ element.apt }}
         </mat-cell>
       </ng-container>
 
@@ -97,34 +91,18 @@
       </ng-container>
       <ng-container matColumnDef="noData">
         <mat-footer-cell *matFooterCellDef colspan="6">
-          No data.
+          <h3 class="center">No Data to show.</h3>
         </mat-footer-cell>
       </ng-container>
 
-      <mat-header-row
-        class="grey"
-        *matHeaderRowDef="displayedColumns"
-      ></mat-header-row>
-      <mat-row
-        class="capitalized"
-        *matRowDef="let row; columns: displayedColumns"
-      ></mat-row>
-      <mat-footer-row
-        *matFooterRowDef="['loading']"
-        [ngClass]="{ hide: dataSource != null }"
-      ></mat-footer-row>
-      <mat-footer-row
-        *matFooterRowDef="['noData']"
-        [ngClass]="{
+      <mat-header-row class="grey" *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row class="capitalized" *matRowDef="let row; columns: displayedColumns"></mat-row>
+      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{ hide: dataSource != null }"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{
           hide: !(dataSource != null && dataSource.data.length == 0)
-        }"
-      ></mat-footer-row>
+        }"></mat-footer-row>
     </mat-table>
-    <mat-paginator
-      [pageSizeOptions]="[10, 25, 35, 50, 100]"
-      [pageSize]="10"
-      showFirstLastButtons
-    ></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[10, 25, 35, 50, 100]" [pageSize]="10" showFirstLastButtons></mat-paginator>
     <div style="margin-bottom: 100px;"></div>
   </div>
 </div>

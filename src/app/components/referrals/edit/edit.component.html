@@ -1,4 +1,4 @@
-<div class="">
+<div class="container">
   <h2 class="center">Update Referral</h2>
   <div class="card grey lighten-5 animated fadeInDown">
     <form id="form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
@@ -28,18 +28,18 @@
 
       <div class="row">
         <div class="input-field col s12 l4">
-          <input type="text" id="address" [(ngModel)]="referral.address.address" #ref_address.address="ngModel" name="address"
+          <input type="text" id="address" [(ngModel)]="referral.address" #ref_address.address="ngModel" name="address"
             required class="validate" />
           <label class="active" for="address">Address</label>
         </div>
 
         <div class="input-field col s12 l4">
-          <input type="text" id="apt" [(ngModel)]="referral.address.apt" #ref_apt="ngModel" name="apt" />
+          <input type="text" id="apt" [(ngModel)]="referral.apt" #ref_apt="ngModel" name="apt" />
           <label class="active" for="apt">Apt</label>
         </div>
 
         <div class="input-field col s12 l4">
-          <input type="text" id="zipcode" [(ngModel)]="referral.address.zipcode" #ref_zipcode="ngModel" (keyup)="populateCity(ref_zipcode)"
+          <input type="text" id="zipcode" [(ngModel)]="referral.zipcode" #ref_zipcode="ngModel" (keyup)="populateCity(ref_zipcode)"
             name="zipcode" maxlength="5" minlength="5" required class="validate" />
           <label class="active" for="zipcode">Zip code</label>
         </div>
@@ -47,8 +47,7 @@
 
       <div class="row">
         <div class="input-field col s12 l4">
-          <input type="text" id="city" [(ngModel)]="referral.address.city" #ref_city="ngModel" name="city" required
-            class="validate" />
+          <input type="text" id="city" [(ngModel)]="referral.city" #ref_city="ngModel" name="city" required class="validate" />
           <label class="active" for="city">City</label>
         </div>
 
@@ -59,7 +58,8 @@
         </div>
 
         <div class="input-field col s12 l4">
-          <input type="email" id="email" [(ngModel)]="referral.email" #ref_email="ngModel" email name="email" class="validate" />
+          <input type="email" id="email" [(ngModel)]="referral.email" placeholder="Email" #ref_email="ngModel" email
+            name="email" class="validate" />
           <label class="active" for="city">Email</label>
         </div>
       </div>
@@ -84,7 +84,8 @@
         <div class="input-field mat-form col s12 l3">
           <mat-form-field>
             <mat-select class="capitalized" class="validate" [(ngModel)]="referral.referralBy" #ref_referralBy="ngModel"
-              placeholder="{{referral.referralBy.name | uppercase}} {{referral.referralBy.last_name | uppercase }}" name="referralBy">
+              placeholder="{{referral.referralBy.name | uppercase}} {{referral.referralBy.last_name | uppercase }}"
+              name="referralBy">
               <mat-option class="capitalized" *ngFor="let referee of referees" [value]="referee._id">
                 {{ referee.name }} {{ referee.last_name }}
               </mat-option>

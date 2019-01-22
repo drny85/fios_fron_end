@@ -1,4 +1,4 @@
-<div class="grey">
+<div class="container">
 
   <h3 class="center z-depth-3">Referral Details</h3>
   <div *ngIf="referral" class="card animated fadeInDown">
@@ -41,16 +41,16 @@
 
           </div>
           <li class="collection-item capitalized"><b class="mr-3">Address: </b>
-            {{ referral.address.address}}
+            {{ referral.address}}
           </li>
           <li class="collection-item upper"><b>Apt:</b>
-            {{ referral.address.apt}}
+            {{ referral.apt}}
           </li>
           <li class="collection-item">City:
-            {{ referral.address.city }}
+            {{ referral.city }}
           </li>
           <li class="collection-item">Zip code:
-            {{ referral.address.zipcode }}
+            {{ referral.zipcode }}
           </li>
           <li class="collection-item"><i class="material-icons tiny">
               phone

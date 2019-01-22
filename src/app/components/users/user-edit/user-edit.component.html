@@ -1,80 +1,82 @@
-<div class="card">
-  <div class="card-body">
-    <h4 class="center mtb-5">Updatating User</h4>
-    <br>
-    <div style="height: 5rem;" class="orange" *ngIf="error">
-      <h4 class="center">{{ error }}, Please contact your coach to make any changes.</h4>
-    </div>
-    <div class="main_form" *ngIf="user">
-      <form #update_user="ngForm" (ngSubmit)="updateUser()">
-        <div class="row">
-          <div class="input-field col s6 l6">
-            <input id="name" name="name" type="text" required #user_name="ngModel" [(ngModel)]="user.name" class="validate">
-            <label class="active" for="name">Name</label>
-            <p class="red-text" *ngIf="user_name.errors?.required && user_name.touched">Name is required</p>
-          </div>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="center mtb-5">Updatating User</h4>
+      <br>
+      <div style="height: 5rem;" class="orange" *ngIf="error">
+        <h4 class="center">{{ error }}, Please contact your coach to make any changes.</h4>
+      </div>
+      <div class="main_form" *ngIf="user">
+        <form #update_user="ngForm" (ngSubmit)="updateUser()">
+          <div class="row">
+            <div class="input-field col s6 l6">
+              <input id="name" name="name" type="text" required #user_name="ngModel" [(ngModel)]="user.name" class="validate">
+              <label class="active" for="name">Name</label>
+              <p class="red-text" *ngIf="user_name.errors?.required && user_name.touched">Name is required</p>
+            </div>
 
-          <div class="input-field col s6 l6">
-            <input id="last_name" name="last_name" required #last_name="ngModel" [(ngModel)]="user.last_name" type="text"
-              class="validate">
-            <label class="active" for="last_name">Last Name</label>
-            <p class="red-text" *ngIf="last_name.errors?.required && last_name.touched">Last Name is required</p>
+            <div class="input-field col s6 l6">
+              <input id="last_name" name="last_name" required #last_name="ngModel" [(ngModel)]="user.last_name" type="text"
+                class="validate">
+              <label class="active" for="last_name">Last Name</label>
+              <p class="red-text" *ngIf="last_name.errors?.required && last_name.touched">Last Name is required</p>
 
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6 l6">
-            <input id="phone" name="phone" (keyup)="formatPhone(phone)" #phone="ngModel" [(ngModel)]="user.phone"
-              required type="tel" class="validate">
-            <label class="active" for="phone">Phone</label>
-          </div>
-
-          <div class="input-field col s6 l6">
-            <input id="email" name="email" type="email" #email="ngModel" [(ngModel)]="user.email" email class="validate">
-            <label class="active" for="email">Email</label>
+            </div>
           </div>
           <div class="row">
-            <div class="input-field mat-form col s6 l6">
-              <mat-form-field>
-                <mat-select name="title" placeholder="Title" id="title" class="validate" [(ngModel)]="user.title"
-                  #title="ngModel" required>
-                  <mat-option value="engagement manager">Engagement Manager</mat-option>
-                  <mat-option value="coach">Coach</mat-option>
-                  <mat-option value="Account Manager">Account Manager</mat-option>
-                  <mat-option value="door to door">Door to Door</mat-option>
-                  <mat-option value="other">Other</mat-option>
-                </mat-select>
-              </mat-form-field>
+            <div class="input-field col s6 l6">
+              <input id="phone" name="phone" (keyup)="formatPhone(phone)" #phone="ngModel" [(ngModel)]="user.phone"
+                required type="tel" class="validate">
+              <label class="active" for="phone">Phone</label>
             </div>
-            <div class="input-field mat-form col s6 l6">
-              <mat-form-field>
-                <mat-select name="vendor" placeholder="Vendor/Company" (selectionChange)="checkVendor(vendor)" id="vendor"
-                  class="validate" [(ngModel)]="user.vendor" #vendor="ngModel" required>
-                  <mat-option value="drasco">Drasco</mat-option>
-                  <mat-option value="other">Other</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <div *ngIf="showOtherVendor" class="input-field">
-                <input type="text" class="" name="otherVendor" placeholder="Type your vendor/company" [(ngModel)]="user.vendor">
+
+            <div class="input-field col s6 l6">
+              <input id="email" name="email" type="email" #email="ngModel" [(ngModel)]="user.email" email class="validate">
+              <label class="active" for="email">Email</label>
+            </div>
+            <div class="row">
+              <div class="input-field mat-form col s6 l6">
+                <mat-form-field>
+                  <mat-select name="title" placeholder="Title" id="title" class="validate" [(ngModel)]="user.title"
+                    #title="ngModel" required>
+                    <mat-option value="engagement manager">Engagement Manager</mat-option>
+                    <mat-option value="coach">Coach</mat-option>
+                    <mat-option value="Account Manager">Account Manager</mat-option>
+                    <mat-option value="door to door">Door to Door</mat-option>
+                    <mat-option value="other">Other</mat-option>
+                  </mat-select>
+                </mat-form-field>
               </div>
-            </div>
-            <div class="row" *ngIf="user.title === 'engagement manager'">
-              <div class="input-field mat-form col s12">
-                <label for="coach">Coach</label>
-                <mat-select name="coach" id="coach" placeholder="{{ user.coach?.name | uppercase}} {{
+              <div class="input-field mat-form col s6 l6">
+                <mat-form-field>
+                  <mat-select name="vendor" placeholder="Vendor/Company" (selectionChange)="checkVendor(vendor)" id="vendor"
+                    class="validate" [(ngModel)]="user.vendor" #vendor="ngModel" required>
+                    <mat-option value="drasco">Drasco</mat-option>
+                    <mat-option value="other">Other</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div *ngIf="showOtherVendor" class="input-field">
+                  <input type="text" class="" name="otherVendor" placeholder="Type your vendor/company" [(ngModel)]="user.vendor">
+                </div>
+              </div>
+              <div class="row" *ngIf="user.title === 'engagement manager'">
+                <div class="input-field mat-form col s12">
+                  <label for="coach">Coach</label>
+                  <mat-select name="coach" id="coach" placeholder="{{ user.coach?.name | uppercase}} {{
                   user.coach?.last_name | uppercase}}"
-                  [(ngModel)]="user.coach">
-                  <mat-option value="{{ user.coach_id}}"></mat-option>
-                  <mat-option *ngFor="let coach of coaches" [value]="coach._id">{{ coach.name | uppercase}} {{
-                    coach.last_name | uppercase}}</mat-option>
-                </mat-select>
+                    [(ngModel)]="user.coach">
+                    <mat-option value="{{ user.coach_id}}"></mat-option>
+                    <mat-option *ngFor="let coach of coaches" [value]="coach._id">{{ coach.name | uppercase}} {{
+                      coach.last_name | uppercase}}</mat-option>
+                  </mat-select>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <br>
-        <button [disabled]="!update_user.valid" class="btn black btn-lg" type="submit">Update Profile</button>
-      </form>
+          <br>
+          <button [disabled]="!update_user.valid" class="btn black btn-lg" type="submit">Update Profile</button>
+        </form>
+      </div>
     </div>
   </div>

@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans');
+
+@media screen and (max-width: 876px) {
+  img {
+
+    height: auto;
+  }
+
+  #showcase h1 {
+    font-size: 0.5rem
+  }
+
+  #showcase p {
+    font-size: 12px !important;
+    text-align: center;
+    padding: 10px;
+  }
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+#showcase {
+  background-image: url('../../../assets//images/gaming.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  position: relative;
+  top: 0;
+
+}
+
+#showcase h1 {
+
+  line-height: 1.2;
+  color: rgb(12, 11, 11);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem
+}
+
+#showcase p {
+
+  color: rgb(15, 14, 14);
+
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+#showcase .button {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: rgb(7, 7, 7);
+  border: #926239 1px solid;
+  padding: 15px 30px;
+  border-radius: 10px;
+  margin-top: 20px;
+
+
+}
+
+#showcase .button:hover {
+  background: #E6D8BE;
+  color: rgb(17, 16, 16);
+
+}

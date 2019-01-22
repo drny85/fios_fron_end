@@ -16,10 +16,8 @@ import {
   MatProgressSpinnerModule,
   MatCardModule,
   MatTableModule,
-  MatPaginator,
   MatIconModule,
   MatPaginatorModule,
-  MatSort,
   MatSortModule
 } from "@angular/material";
 import { FormsModule } from "@angular/forms";

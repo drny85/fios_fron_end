@@ -26,12 +26,12 @@ export class EditComponent implements OnInit {
   referral: Referral = {
     name: "",
     last_name: "",
-    address: {
-      address: "",
-      apt: "",
-      city: "",
-      zipcode: ""
-    },
+
+    address: "",
+    apt: "",
+    city: "",
+    zipcode: "",
+
     phone: "",
     mon: "",
     due_date: "",
@@ -134,11 +134,11 @@ export class EditComponent implements OnInit {
     let v = e.value;
     if (v.length >= 3) {
       if (v === "104") {
-        this.referral.address.city = "Bronx";
+        this.referral.city = "Bronx";
       } else if (v === "107") {
-        this.referral.address.city = "Yonkers";
+        this.referral.city = "Yonkers";
       } else if (v === "100") {
-        this.referral.address.city = "Manhattan";
+        this.referral.city = "Manhattan";
       }
     }
   }

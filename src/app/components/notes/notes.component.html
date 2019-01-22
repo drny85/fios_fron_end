@@ -1,4 +1,4 @@
-<div class="note">
+<div class="note container">
   <div class="card">
     <div class="card-body">
       <br />
@@ -24,7 +24,7 @@
   <div *ngIf="notes" class="notes">
     <h4 class="center">Today's Notes</h4>
     <br />
-    <div *ngFor="let n of notes" class="list-notes card">
+    <div @fade *ngFor="let n of notes" class="list-notes card">
       <p class="p_list gray">{{ n.note }}</p>
       <span class="right">
         <!-- Modal Trigger -->

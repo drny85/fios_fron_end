@@ -6,12 +6,11 @@ export interface Referral {
   _id?: string;
   name: string;
   last_name: string;
-  address: {
-    address: string;
-    apt?: string;
-    city: string;
-    zipcode: string;
-  };
+
+  address: string;
+  apt?: string;
+  city: string;
+  zipcode: string;
   phone: string;
   mon?: string;
   email?: string;

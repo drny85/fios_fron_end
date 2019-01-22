@@ -5,6 +5,7 @@ import { AuthService } from "../../../services/auth/auth.service";
 import { User } from "../../../models/user.model";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
+import { query } from "@angular/animations";
 
 declare let M: any;
 
@@ -15,7 +16,7 @@ declare let M: any;
 })
 export class LoginComponent implements OnInit, OnDestroy {
   errors: any = {};
-  user: any;
+  user: User;
   activeMsg = {};
   activated = false;
 
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.authServ.userLoginHandler(user);
           if (!user.user.roles.active) {
             this.activeMsg["msg"] =
-              "You account has been created but you has not been activated";
+              "Your account has been created but has not been activated";
             this.activated = true;
           } else {
             this.router.navigate(["/"]);

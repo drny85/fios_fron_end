@@ -85,13 +85,13 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  checkPassword(v: NgForm) {
-    let psw1 = v.value;
-    console.log(this.pswMatched, v.valid);
-    if (this.password1 === psw1) {
-      this.pswMatched = true;
-    } else {
-      this.pswMatched = false;
-    }
-  }
+  // checkPassword(v: NgForm) {
+  //   let psw1 = v.value;
+  //   console.log(this.pswMatched, v.valid);
+  //   if (this.password1 === psw1) {
+  //     this.pswMatched = true;
+  //   } else {
+  //     this.pswMatched = false;
+  //   }
+  // }
 }

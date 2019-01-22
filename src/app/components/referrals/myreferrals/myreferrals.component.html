@@ -1,4 +1,4 @@
-<div class="animated fadeIn">
+<div class="animated fadeIn container">
   <div *ngIf="referralBy">
     <h5 class="center text-italic">These referrals are from <span class="capitalized">{{ referralBy.name }} {{
         referralBy.last_name
@@ -39,7 +39,7 @@
 
         <tr *ngFor="let referral of referrals">
           <td class="capitalized">{{ referral.name }} {{ referral.last_name }} </td>
-          <td class="capitalized">{{referral.address.address}}, {{referral.address.city}} </td>
+          <td class="capitalized">{{referral.address}}, {{referral.city}} </td>
           <td>{{ referral.phone }} </td>
           <td><a class="lowercase blue-text" href="mailto:{{ referral.email}}">{{ referral.email }}</a></td>
           <td>{{ referral.moveIn | date : 'mediumDate'}}</td>
