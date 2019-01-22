@@ -22,7 +22,7 @@ declare let M: any;
   animations: [
     trigger("fade", [
       state("void", style({ opacity: 0 })),
-      transition(":enter, :leave", [animate(1500)])
+      transition(":enter, :leave", [animate("0.5s ease-in")])
     ])
   ]
 })

@@ -2,6 +2,7 @@
   <div class="card">
     <div class="card-body">
       <h2 class="center card-title">Today Report</h2>
+      <button class="btn black send_report" (click)="sendMyReport()">Send Report</button>
       <div class="main">
         <div *ngIf="referrals.length > 0" class="table_div">
           <table>
@@ -30,7 +31,7 @@
             </tfoot>
           </table>
         </div>
-        <div class="all_notes">
+        <div *ngIf="notes.length > 0; else noNotes" class="all_notes">
           <h4 class="center">Here are all my notes from today</h4>
           <ul class="collection">
             <li *ngFor="let n of notes" class="collection-item">
@@ -41,6 +42,13 @@
           </ul>
 
         </div>
+        <ng-template #noNotes>
+          <div class="noNotes">
+            <h3 style="padding:10px;" class="center">You have no notes for today</h3>
+            <a routerLink="/notes" class="center btn black">Add Note</a>
+          </div>
+
+        </ng-template>
       </div>
     </div>
   </div>

@@ -4,6 +4,7 @@ import { NotesService } from "../../services/notes/notes.service";
 import { Referral } from "src/app/models/referral.model";
 import { Note } from "../../models/note";
 import * as moment from "moment";
+import { ReportsService } from "src/app/services/report/reports.service";
 
 @Component({
   selector: "app-nightly-report",
@@ -19,7 +20,8 @@ export class NightlyReportComponent implements OnInit {
 
   constructor(
     private refServ: ReferralService,
-    private notesServ: NotesService
+    private notesServ: NotesService,
+    private reportServ: ReportsService
   ) {}
 
   ngOnInit() {
@@ -45,6 +47,16 @@ export class NightlyReportComponent implements OnInit {
     this.notesServ.getTodayNotes().subscribe(
       notes => {
         this.notes = notes;
+      },
+      err => console.log(err)
+    );
+  }
+
+  sendMyReport() {
+    console.log("click");
+    this.reportServ.sendNightlyReport(this.notes, this.referrals).subscribe(
+      report => {
+        console.log(report);
       },
       err => console.log(err)
     );

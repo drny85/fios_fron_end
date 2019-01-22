@@ -2,3 +2,27 @@
   padding: 12px;
 
 }
+
+.noNotes {
+  display: grid;
+  grid-gap: 1rem;
+
+}
+
+.noNotes a {
+  margin-bottom: 1rem;
+}
+
+.send_report {
+  right: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  margin: 12px;
+
+
+}
+
+.container {
+  position: relative;
+}
