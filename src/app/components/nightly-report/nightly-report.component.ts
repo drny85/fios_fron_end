@@ -5,6 +5,9 @@ import { Referral } from "src/app/models/referral.model";
 import { Note } from "../../models/note";
 import * as moment from "moment";
 import { ReportsService } from "src/app/services/report/reports.service";
+import { Router } from "@angular/router";
+
+declare let M: any;
 
 @Component({
   selector: "app-nightly-report",
@@ -21,7 +24,8 @@ export class NightlyReportComponent implements OnInit {
   constructor(
     private refServ: ReferralService,
     private notesServ: NotesService,
-    private reportServ: ReportsService
+    private reportServ: ReportsService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -56,7 +60,10 @@ export class NightlyReportComponent implements OnInit {
     console.log("click");
     this.reportServ.sendNightlyReport(this.notes, this.referrals).subscribe(
       report => {
-        console.log(report);
+        if (report) {
+          this.router.navigate(["/"]);
+          M.toast({ html: "Report has been sent!" });
+        }
       },
       err => console.log(err)
     );
