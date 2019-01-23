@@ -2,8 +2,8 @@
   <h2 class="center z-depth-3">
     Login
   </h2>
-  <div *ngIf="errors.message" class="alert alert-warning" role="alert">
-    {{ errors.message}}
+  <div *ngIf="errors?.message" class="alert alert-warning" role="alert">
+    {{ errors.message }}
   </div>
   <div *ngIf="activeMsg">
     <p class="center red-text">{{ activeMsg.msg }}</p>

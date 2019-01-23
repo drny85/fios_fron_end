@@ -96,11 +96,10 @@ export class AddReferralComponent implements OnInit {
     if (this.referral.userId === "") {
       this.referral.userId = this.user._id;
     }
-    this.referral.coach = this.user.coach;
+
+    console.log("This referral", this.referral);
     this.referralServ.addReferral(this.referral).subscribe(
       ref => {
-        console.log("Ref:", ref);
-        e.reset();
         this.router.navigate(["referrals"]);
       },
       error => {
