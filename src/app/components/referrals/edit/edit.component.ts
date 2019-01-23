@@ -96,7 +96,7 @@ export class EditComponent implements OnInit {
 
   onSubmit(e: NgForm) {
     this.referral.updated = moment().format("MMMM Do YYYY, h:mm:ss a");
-    this.referral.coach = this.user.coach._id;
+    // this.referral.coach = this.user.coach._id;
     this.refServ.updateReferral(this.referral).subscribe(ref => {
       if (ref) {
         e.reset();
