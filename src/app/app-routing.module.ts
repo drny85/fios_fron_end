@@ -84,7 +84,7 @@ const routes: Routes = [
   {
     path: "user/detail/:id",
     component: UserDetailComponent,
-    canActivate: [ActiveGuard]
+    canActivate: [ActiveGuard, AdminGuard]
   },
   {
     path: "user/all",

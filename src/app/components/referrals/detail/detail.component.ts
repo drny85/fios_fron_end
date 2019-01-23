@@ -3,6 +3,8 @@ import { ReferralService } from "../../../services/referral/referral.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import * as moment from "moment";
 import { Referral } from "src/app/models/referral.model";
+import { trigger, transition, style, animate } from "@angular/animations";
+import { type } from "os";
 
 declare let M: any;
 
@@ -14,6 +16,7 @@ declare let M: any;
 export class DetailComponent implements OnInit {
   referral: Referral;
   id: string;
+  error = {};
 
   constructor(
     private refServ: ReferralService,
@@ -36,9 +39,18 @@ export class DetailComponent implements OnInit {
   confirmDelete(id: string) {
     if (!confirm("Are you sure you want to delete it?")) return;
 
-    this.refServ.deleteReferal(id).subscribe(ref => {
-      this.router.navigate(["/referrals"]);
-      M.toast({ html: "Referral Deleted!", classes: "red" });
-    });
+    this.refServ.deleteReferal(id).subscribe(
+      ref => {
+        this.router.navigate(["/referrals"]);
+        M.toast({ html: "Referral Deleted!", classes: "red" });
+      },
+      (error: Response) => {
+        if (error.status === 401) {
+          this.error["msg"] = "Unauthorized";
+          console.log(this.error);
+          M.toast({ html: "Referral CANNOT BE DELETED", classes: "red" });
+        }
+      }
+    );
   }
 }

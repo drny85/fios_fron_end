@@ -51,7 +51,7 @@ export class UserEditComponent implements OnInit {
       user => {
         this.user = user;
 
-        this.router.navigate(["user/detail/" + this.id]);
+        this.router.navigate(["/user/profile"]);
       },
       err => {
         this.error = err.error;
