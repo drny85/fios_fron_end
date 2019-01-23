@@ -59,8 +59,8 @@ export class NightlyReportComponent implements OnInit {
   sendMyReport() {
     console.log("click");
     this.reportServ.sendNightlyReport(this.notes, this.referrals).subscribe(
-      report => {
-        if (report) {
+      (report: { message: string }) => {
+        if (report.message === "success") {
           this.router.navigate(["/"]);
           M.toast({ html: "Report has been sent!" });
         }
