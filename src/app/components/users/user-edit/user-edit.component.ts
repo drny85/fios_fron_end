@@ -3,7 +3,7 @@ import { AuthService } from "../../../services/auth/auth.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { User } from "../../../models/user.model";
 import { NgForm } from "@angular/forms";
-import { userInfo } from "os";
+
 
 @Component({
   selector: "app-user-edit",
@@ -51,7 +51,7 @@ export class UserEditComponent implements OnInit {
       user => {
         this.user = user;
 
-        this.router.navigate(["user/detail/" + this.id]);
+        this.router.navigate(["/user/profile"]);
       },
       err => {
         this.error = err.error;
