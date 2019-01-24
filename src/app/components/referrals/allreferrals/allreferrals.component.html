@@ -75,7 +75,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Status
         </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.status }} </mat-cell>
+        <mat-cell [ngClass]="{'green-text': element.status === 'closed'}" *matCellDef="let element"> {{ element.status }} </mat-cell>
       </ng-container>
       <!-- action column -->
       <ng-container matColumnDef="actions">

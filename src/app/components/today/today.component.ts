@@ -1,8 +1,10 @@
+import { Units } from './../../models/units.model';
 import { Component, OnInit } from "@angular/core";
 import { ReferralService } from "../../services/referral/referral.service";
 import { Referral } from "../../models/referral.model";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
+import * as moment from 'moment';
 
 @Component({
   selector: "app-today",
@@ -10,6 +12,10 @@ import { Router } from "@angular/router";
   styleUrls: ["./today.component.css"]
 })
 export class TodayComponent implements OnInit {
+  todayUnits:number;
+  today = moment()
+    .format()
+    .split("T")[0];
   days = {
     0: "sunday",
     1: "monday",
@@ -36,15 +42,24 @@ export class TodayComponent implements OnInit {
   ngOnInit() {
     this.getReferrals();
     this.getTodayOrders();
+    
   }
 
   getReferrals() {
     this.loading = true;
+    this.todayUnits = 0;
     this.referralServ.getReferrals().subscribe(referrals => {
       this.referrals = referrals;
       this.loading = false;
-      console.log(this.referrals);
+      let units = new Units(referrals.filter(ref => ref.status === "closed" &&
+      ref.order_date.split("T")[0] === this.today));
+      this.todayUnits = units.totalUnits;
     });
+   
+    
+    
+
+    
   }
 
   getTodayOrders() {

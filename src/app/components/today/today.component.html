@@ -6,6 +6,7 @@
   <div class="grid">
     <div class="z-depth-2 box1">
       <h4 class="center">Orders Placed Today</h4>
+      <p class="total_order_today">{{ todayUnits ? todayUnits: 0 }}</p>
     </div>
     <div class="z-depth-2 box2" (click)="goToNotes()">
       <h4 class="center">Today's Notes</h4>
