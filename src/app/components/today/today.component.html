@@ -35,10 +35,13 @@
         <div class="card-image">
           <img src="../../../assets/images//calendar.png">
           <span class="card-title black-text">Today's Total Units</span>
+
         </div>
         <div class="card-content">
-          <p>So far I have <span [ngClass]="{'red-text': todayUnits == 0, 'yellow-text': todayUnits == 2, 'green-text': todayUNits >= 3}">{{
+          <p>So far I have <span [ngClass]="{'red-text': todayUnits === 0, 'yellow-text': todayUnits === 2, 'green-text': todayUnits >= 3}">{{
               todayUnits }}</span> units</p>
+          <i *ngIf="todayUnits >= 3">Great!, you met your daily DRR..<i class="material-icons">check</i></i>
+          <i *ngIf="todayUnits === 2">You are 1 unit away from your daily goal. Keep it up!</i>
         </div>
         <div class="card-action ">
           <a class="btn black" routerLink="/today/details">View Today's Details</a>

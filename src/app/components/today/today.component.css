@@ -26,6 +26,16 @@ img {
 
 }
 
+.card-content .material-icons {
+  color: green;
+  font-size: 1.2rem;
+}
+
+.card-content i {
+  padding: 0.5rem;
+  color: rgb(138, 136, 136);
+  font-size: 0.8rem;
+}
 
 .card-action a {
   width: 100%;
@@ -38,6 +48,8 @@ img {
 .card-content span {
   font-weight: bolder;
   font-size: 3rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 }
 
 img {
