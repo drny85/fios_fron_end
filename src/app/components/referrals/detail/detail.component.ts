@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from "@angular/router";
 import * as moment from "moment";
 import { Referral } from "src/app/models/referral.model";
 import { trigger, transition, style, animate } from "@angular/animations";
-import { type } from "os";
 
 declare let M: any;
 

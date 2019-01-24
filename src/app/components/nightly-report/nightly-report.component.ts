@@ -1,3 +1,4 @@
+import { Units } from './../../models/units.model';
 import { Component, OnInit } from "@angular/core";
 import { ReferralService } from "src/app/services/referral/referral.service";
 import { NotesService } from "../../services/notes/notes.service";
@@ -16,6 +17,7 @@ declare let M: any;
 })
 export class NightlyReportComponent implements OnInit {
   referrals: Referral[] = [];
+  units: number = 0;
   notes: Note[] = [];
   today = moment()
     .format()
@@ -41,7 +43,11 @@ export class NightlyReportComponent implements OnInit {
             ref.status === "closed" &&
             ref.order_date.split("T")[0] === this.today
         );
-        console.log(this.referrals);
+
+        let units = new Units(this.referrals);
+        console.log(units.totalUnits);
+        console.log(units.packagesCount);
+        
       },
       err => console.log(err)
     );

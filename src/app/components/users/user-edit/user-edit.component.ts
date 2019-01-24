@@ -3,7 +3,7 @@ import { AuthService } from "../../../services/auth/auth.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { User } from "../../../models/user.model";
 import { NgForm } from "@angular/forms";
-import { userInfo } from "os";
+
 
 @Component({
   selector: "app-user-edit",
