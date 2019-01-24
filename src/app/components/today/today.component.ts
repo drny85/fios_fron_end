@@ -1,10 +1,10 @@
-import { Units } from './../../models/units.model';
+import { Units } from "./../../models/units.model";
 import { Component, OnInit } from "@angular/core";
 import { ReferralService } from "../../services/referral/referral.service";
 import { Referral } from "../../models/referral.model";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
-import * as moment from 'moment';
+import * as moment from "moment";
 
 @Component({
   selector: "app-today",
@@ -12,7 +12,7 @@ import * as moment from 'moment';
   styleUrls: ["./today.component.css"]
 })
 export class TodayComponent implements OnInit {
-  todayUnits:number;
+  todayUnits: number = 0;
   today = moment()
     .format()
     .split("T")[0];
@@ -42,7 +42,6 @@ export class TodayComponent implements OnInit {
   ngOnInit() {
     this.getReferrals();
     this.getTodayOrders();
-    
   }
 
   getReferrals() {
@@ -51,15 +50,13 @@ export class TodayComponent implements OnInit {
     this.referralServ.getReferrals().subscribe(referrals => {
       this.referrals = referrals;
       this.loading = false;
-      let units = new Units(referrals.filter(ref => ref.status === "closed" &&
-      ref.order_date.split("T")[0] === this.today));
+      // create an array of all referrals
+      let u = new Units(referrals);
+      // create an sub array wit only today referrals closed.
+      let units = new Units(u.todayUnitsArray);
+      // assign total unit total from sub-array.
       this.todayUnits = units.totalUnits;
     });
-   
-    
-    
-
-    
   }
 
   getTodayOrders() {

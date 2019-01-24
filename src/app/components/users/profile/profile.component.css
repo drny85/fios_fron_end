@@ -1,0 +1,19 @@
+/* img {
+  max-width: 20rem;
+
+} */
+ul {
+  padding: 1rem;
+  background-color: beige;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
+}
+
+ul li {
+  padding: 0.9rem;
+  margin: .5rem;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
+}

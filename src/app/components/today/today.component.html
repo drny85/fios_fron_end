@@ -1,4 +1,4 @@
-<div class="z-depth-1 container">
+<!-- <div class="z-depth-1 container">
   <mat-spinner *ngIf="loading" mode="indeterminate" color="primary"></mat-spinner>
   <h2 class="z-depth-3 center">
     {{ todayDate | date: 'fullDate'}}
@@ -25,4 +25,99 @@
 <div class="currentInfo">
 
 
+</div> -->
+
+<div class="container">
+  <div class="grid">
+
+    <div class="box box1">
+      <div class="card">
+        <div class="card-image">
+          <img src="../../../assets/images//calendar.png">
+          <span class="card-title black-text">Today's Total Units</span>
+        </div>
+        <div class="card-content">
+          <p>So far I have <span [ngClass]="{'red-text': todayUnits == 0, 'yellow-text': todayUnits == 2, 'green-text': todayUNits >= 3}">{{
+              todayUnits }}</span> units</p>
+        </div>
+        <div class="card-action ">
+          <a class="btn black" routerLink="/today/details">View Today's Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="box box2">
+      <div class="card">
+        <div class="card-image">
+          <img src="../../../assets/images/notes.jpg">
+          <span class="card-title black-text">Todays's Notes</span>
+        </div>
+        <div class="card-content">
+          <p>Here is a list of my notes</p>
+        </div>
+        <div class="card-action">
+          <a class="btn black" routerLink="/notes">View Notes</a>
+        </div>
+      </div>
+    </div>
+    <div class="box box3">
+      <div class="card">
+        <div class="card-image">
+          <img class="responsive-img" src="../../../assets/images/report.png">
+          <span class="card-title black-text">Today's Report</span>
+        </div>
+        <div class="card-content">
+          <p>Here I can view today's orders and notes</p>
+        </div>
+        <div class="card-action">
+          <a class="btn black" routerLink="/nightly-report">View Today's Report</a>
+        </div>
+      </div>
+    </div>
+    <div class="box box4">
+      <div class="card">
+        <div class="card-image">
+          <img class="responsive-img" src="../../../assets/images//calendar.png">
+          <span class="card-title">Card Title</span>
+        </div>
+        <div class="card-content">
+          <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+    <div class="box box5">
+      <div class="card">
+        <div class="card-image">
+          <img class="responsive-img" src="../../../assets/images//calendar.png">
+          <span class="card-title ">Card Title</span>
+        </div>
+        <div class="card-content">
+          <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+    <div class="box box6">
+      <div class="card">
+        <div class="card-image">
+          <img class="responsive-img" src="../../../assets/images//calendar.png">
+          <span class="card-title">Card Title</span>
+        </div>
+        <div class="card-content">
+          <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

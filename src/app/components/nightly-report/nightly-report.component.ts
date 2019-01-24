@@ -1,4 +1,4 @@
-import { Units } from './../../models/units.model';
+import { Units } from "./../../models/units.model";
 import { Component, OnInit } from "@angular/core";
 import { ReferralService } from "src/app/services/referral/referral.service";
 import { NotesService } from "../../services/notes/notes.service";
@@ -47,7 +47,6 @@ export class NightlyReportComponent implements OnInit {
         let units = new Units(this.referrals);
         console.log(units.totalUnits);
         console.log(units.packagesCount);
-        
       },
       err => console.log(err)
     );
@@ -63,7 +62,7 @@ export class NightlyReportComponent implements OnInit {
   }
 
   sendMyReport() {
-    console.log("click");
+    if (!confirm("Do you want to send your report now?")) return;
     this.reportServ.sendNightlyReport(this.notes, this.referrals).subscribe(
       (report: { message: string }) => {
         if (report.message === "success") {

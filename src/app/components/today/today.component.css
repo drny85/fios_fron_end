@@ -1,24 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Sarabun');
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 30px;
+  grid-gap: 2rem;
+  ;
+  width: 100%;
+
+}
+
+.card-title {
+  font-weight: bolder;
+  font-family: 'Sarabun', sans-serif;
+}
+
+img {
+  width: 300px;
+  height: 320px;
+  opacity: 0.7;
+
+}
+
+.card-content {
+  height: 6rem;
+
+}
+
+
+.card-action a {
   width: 100%;
 }
 
+.card-content p {
+  font-size: 1.3rem;
+}
+
+.card-content span {
+  font-weight: bolder;
+  font-size: 3rem;
+}
+
+img {
+  max-width: 20rem;
+  max-height: 25rem;
+}
+
+/* 
 .grid>div {
   width: 100%;
   height: 300px;
   position: relative;
-  background-color: rgb(161, 158, 158);
 }
 
 .box3 a {
-  
+
   left: 50%;
   margin: 0 auto;
   position: absolute;
-  
-}
+
+} */
 
 .total_order_today {
   font-size: 4rem;
