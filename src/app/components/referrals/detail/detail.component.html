@@ -30,13 +30,13 @@
             <li class="collection-item upper"><b class="mr-3 ">MON:</b>
               {{ referral.mon }}
             </li>
-            <li class="collection-item">Order Date:
+            <li class="collection-item"><b>Order Date:</b>
               {{ referral.order_date | date: 'mediumDate'}}
             </li>
-            <li class="collection-item">Due Date:
+            <li class="collection-item"><b>Due Date:</b>
               {{ referral.due_date | date: 'mediumDate'}}
             </li>
-            <li class="collection-item">Package:
+            <li class="collection-item"><b>Package:</b>
               {{ referral.package }}
             </li>
 
@@ -47,36 +47,36 @@
           <li class="collection-item upper"><b>Apt:</b>
             {{ referral.apt}}
           </li>
-          <li class="collection-item">City:
+          <li class="collection-item"><b>City:</b>
             {{ referral.city }}
           </li>
-          <li class="collection-item">Zip code:
+          <li class="collection-item"><b>Zip code:</b>
             {{ referral.zipcode }}
           </li>
           <li class="collection-item"><i class="material-icons tiny">
               phone
-            </i> Phone:
+            </i> <b>Phone:</b>
             {{ referral.phone}}
           </li>
           <li class="collection-item"><i class="material-icons tiny">
               email
-            </i> Email:
+            </i> <b>Email:</b>
             <span><a class="blue-text" href="mailto:{{referral.email}}">
                 {{ referral.email}} </a></span>
           </li>
-          <li class="collection-item">Move In:
+          <li class="collection-item"><b>Move In:</b>
             {{ referral.moveIn | date: 'mediumDate' }}
           </li>
-          <li class="collection-item capitalized">Referred By:
+          <li class="collection-item capitalized"><b>Referred By:</b>
             <a class="black-text" routerLink="/referee/details/{{ referral.referralBy._id }}">
               {{ referral.referralBy.name }} {{ referral.referralBy.last_name }}
             </a>
           </li>
-          <li class="collection-item">Status:
+          <li class="collection-item"><b>Status:</b>
             <span class="upper">
               {{ referral.status }}</span>
           </li>
-          <li *ngIf="referral.updatedBy" class="collection-item">Updated By:
+          <li *ngIf="referral.updatedBy" class="collection-item"><b>Updated By:</b>
             <span class="capitalized">
               {{ referral.updatedBy.name}} {{ referral.updatedBy.last_name}} </span><span class="text-italic"> on {{
               referral.updated }}</span>

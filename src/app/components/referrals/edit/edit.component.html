@@ -112,8 +112,8 @@
             <label class="active" for="mon">MON</label>
           </div>
           <div class="input-field mat-form col s6 l3">
-            <input type="date" [(ngModel)]="referral.due_date" class="validate" required #ref_due_date="ngModel" name="due_date"
-              id="due_date" />
+            <input type="date" [(ngModel)]="referral.due_date" class="validate" (change)="checkIn(ref_due_date)"
+              required #ref_due_date="ngModel" name="due_date" id="due_date" />
             <label for="due_date">Due Date</label>
           </div>
           <div class="input-field mat-form col s6 l3">

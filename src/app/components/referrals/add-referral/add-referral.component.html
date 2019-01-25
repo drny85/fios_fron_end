@@ -101,6 +101,7 @@
               <mat-option class="capitalized" *ngFor="let referee of referees" [value]="referee._id">
                 {{ referee.name }} {{ referee.last_name }}
               </mat-option>
+              <mat-option class="capitalized" value="me">Me - No a referral</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -134,7 +135,7 @@
       </div>
       <br />
     </form>
-
+    {{referral | json }}
   </div>
   <div style="margin-bottom:100px;"></div>
 </div>

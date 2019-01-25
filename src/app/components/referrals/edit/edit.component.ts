@@ -102,7 +102,7 @@ export class EditComponent implements OnInit {
         e.reset();
         this.router.navigate([`detail/${this.referral._id}`]);
         M.toast({ html: "Referral Updated!", displayLength: 2000 });
-        if (ref.status === "closed") {
+        if (ref.status === "closed" && ref.referralBy !== "me") {
           M.toast({
             html: "Great job on closing that sale!",
             classes: "teal",
@@ -111,6 +111,11 @@ export class EditComponent implements OnInit {
         }
       }
     });
+  }
+
+  checkIn(e) {
+    console.log(e.value);
+    console.log(moment(e.value).format("L"));
   }
 
   formatPhone(obj) {

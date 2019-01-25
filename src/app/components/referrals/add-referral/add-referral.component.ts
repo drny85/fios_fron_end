@@ -10,6 +10,8 @@ import { ManagerService } from "../../../services/manager/manager.service";
 import { User } from "../../../models/user.model";
 import { AuthService } from "../../../services/auth/auth.service";
 
+declare let M: any;
+
 @Component({
   selector: "app-add-referral",
   templateUrl: "./add-referral.component.html",
@@ -100,7 +102,15 @@ export class AddReferralComponent implements OnInit {
     console.log("This referral", this.referral);
     this.referralServ.addReferral(this.referral).subscribe(
       ref => {
-        this.router.navigate(["referrals"]);
+        console.log("Submitted", ref);
+        if (ref) {
+          this.router.navigate(["referrals"]);
+          M.toast({
+            html: "Customer has been added!",
+            classes: "teal",
+            displayLength: 6000
+          });
+        }
       },
       error => {
         if (error) {
