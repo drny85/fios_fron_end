@@ -37,6 +37,9 @@
           <span class="card-title black-text">Today's Total Units</span>
 
         </div>
+        <div class="day">
+          {{ todayDay }}
+        </div>
         <div class="card-content">
           <p>So far I have <span [ngClass]="{'red-text': todayUnits === 0, 'yellow-text': todayUnits === 2, 'green-text': todayUnits >= 3}">{{
               todayUnits }}</span> units</p>
