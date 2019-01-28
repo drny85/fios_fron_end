@@ -52,4 +52,22 @@ export class DetailComponent implements OnInit {
       }
     );
   }
+
+  sendCollateral(email: string) {
+    if (!confirm("You are sending an email to " + email + "?")) return;
+    if (email.length > 5) {
+      this.refServ.sendCollateral(email).subscribe(
+        e => {
+          if (e.message === "Email Sent.") {
+            M.toast({
+              html: `Email has been sent to ${this.referral.name.toUpperCase()}`,
+              displayLength: 6000,
+              classes: "green"
+            });
+          }
+        },
+        error => console.log(error)
+      );
+    }
+  }
 }

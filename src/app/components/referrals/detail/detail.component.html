@@ -63,6 +63,7 @@
             </i> <b>Email:</b>
             <span><a class="blue-text" href="mailto:{{referral.email}}">
                 {{ referral.email}} </a></span>
+            <button (click)="sendCollateral(referral.email)" class="btn black btn-right">Send Collateral</button>
           </li>
           <li class="collection-item"><b>Move In:</b>
             {{ referral.moveIn | date: 'mediumDate' }}
