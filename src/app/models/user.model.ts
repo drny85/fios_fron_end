@@ -13,5 +13,6 @@ export interface User {
   coach?: any;
   title?: string;
   vendor?: string;
+  image?: string;
   profileCompleted?: boolean;
 }

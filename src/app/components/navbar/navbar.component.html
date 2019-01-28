@@ -1,8 +1,8 @@
 <nav id="nav" class="black nav-extended" role="navigation">
-  <div class="nav-wrapper container">
+  <div class="nav-wrapper container desktop">
 
     <a *ngIf="!loggedIn" id="logo-container" routerLink="/" class="brand-logo white-text left">Fios</a>
-   
+
     <a *ngIf="loggedIn" id="logo-container" routerLink="/" class="brand-logo white-text capitalized">{{ user?.name }}</a>
     <ul class="right hide-on-med-and-down">
       <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/today">Home</a></li>
@@ -10,21 +10,18 @@
           Users</a></li>
       <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/referrals">All Referrals</a></li>
 
-      <!-- <li><a routerLinkActive="actived_page current" routerLink="/myreferrals">My
-          Referrals</a></li> -->
       <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/add-referral">Add Referral</a></li>
       <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/manager/add-manager">Add Manager</a></li>
       <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/referee/all-referees">View
           Referees</a></li>
-      <!-- <li><a routerLinkActive="actived_page current" routerLink="/reports">My
-          Reports</a></li> -->
+
       <li *ngIf="!loggedIn" class=""><a routerLink="/user/login">Login</a></li>
       <li *ngIf="loggedIn" class=""><a (click)="logout()">Logout</a></li>
       <li *ngIf="!loggedIn" class=""><a routerLink="/user/register">Register</a> </li>
-      <li *ngIf="loggedIn"> <a  routerLinkActive="actived_page current" routerLink="/user/profile" class="right">Profile</a></li>
+      <li *ngIf="loggedIn"> <a routerLinkActive="actived_page current" routerLink="/user/profile" class="right">Profile</a></li>
 
     </ul>
-   
+
     <ul id="nav-mobile" class="sidenav red lighten-4">
       <li class="active"><a href="/">Home</a></li>
       <li><a href="/referrals">My Referrals</a></li>
@@ -32,5 +29,91 @@
     </ul>
     <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
   </div>
+  <ul id="slide-out" class="sidenav">
+    <li>
+      <div *ngIf="user" class="user-view">
+        <div class="background">
+          <img class="responsive-img sidenav-close" src="../../../assets/images/internet_mob.jpg">
+        </div>
+        <a routerLink="user/profile"><img class="circle" src="{{user?.image}}"></a>
+        <a><span class="white-text name capitalized">{{user?.name }} {{user?.last_name }}</span></a>
+        <a><span class="white-text email">{{user?.email }}</span></a>
+      </div>
+    </li>
+    <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" class="sidenav-close" routerLink="/today">Home</a></li>
+    <li *ngIf="loggedIn && user?.roles.isAdmin"><a class="sidenav-close" routerLinkActive="actived_page current"
+        routerLink="/user/all">Manage
+        Users</a></li>
+    <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" class="sidenav-close" routerLink="/referrals">All
+        Referrals</a></li>
+
+    <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" class="sidenav-close" routerLink="/add-referral">Add
+        Referral</a></li>
+    <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" class="sidenav-close" routerLink="/manager/add-manager">Add
+        Manager</a></li>
+    <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" class="sidenav-close" routerLink="/referee/all-referees">View
+        Referees</a></li>
+
+    <li *ngIf="!loggedIn" class=""><a class="sidenav-close" routerLink="/user/login">Login</a></li>
+    <li *ngIf="loggedIn" class=""><a class="sidenav-close" (click)="logout()">Logout</a></li>
+    <li *ngIf="!loggedIn" class=""><a class="sidenav-close" routerLink="/user/register">Register</a> </li>
+    <li *ngIf="loggedIn"> <a class="sidenav-close" routerLinkActive="actived_page current" routerLink="/user/profile"
+        class="right">Profile</a></li>
+  </ul>
+  <div class="menu_div">
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i id="menu" class="material-icons">menu</i></a>
+    <a *ngIf="loggedIn" id="logo-container" routerLink="/" class="brand-logo white-text capitalized ">{{
+      user?.name }}</a>
+  </div>
+
 
 </nav>
+
+
+
+<!-- <nav>
+  <input type="checkbox" id="nav" class="hidden">
+  <label for="nav" class="nav-btn">
+    <i></i>
+    <i></i>
+    <i></i>
+  </label>
+
+  <div class="nav-wrapper">
+     <ul class="">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="actived_page current" routerLink="/programs">Programs </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="actived_page current" routerLink="/contact">Contact</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="actived_page current" routerLink="/admin">Admin</a>
+      </li>
+
+    </ul> 
+    <a *ngIf="!loggedIn" id="logo-container" routerLink="/" class="brand-logo white-text left">Fios</a>
+
+    <a *ngIf="loggedIn" id="logo-container" routerLink="/" class="brand-logo white-text capitalized">{{ user?.name }}</a>
+    <ul class="">
+      <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/today">Home</a></li>
+      <li *ngIf="loggedIn && user?.roles.isAdmin"><a routerLinkActive="actived_page current" routerLink="/user/all">Manage
+          Users</a></li>
+      <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/referrals">All Referrals</a></li>
+
+      <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/add-referral">Add Referral</a></li>
+      <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/manager/add-manager">Add Manager</a></li>
+      <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/referee/all-referees">View
+          Referees</a></li>
+
+      <li *ngIf="!loggedIn" class=""><a routerLink="/user/login">Login</a></li>
+      <li *ngIf="loggedIn" class=""><a (click)="logout()">Logout</a></li>
+      <li *ngIf="!loggedIn" class=""><a routerLink="/user/register">Register</a> </li>
+      <li *ngIf="loggedIn"> <a routerLinkActive="actived_page current" routerLink="/user/profile" class="right">Profile</a></li>
+
+    </ul>
+  </div>
+</nav> -->

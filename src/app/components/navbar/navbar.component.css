@@ -2,3 +2,32 @@ nav {
   top: 0;
   position: relative;
 }
+
+.sidenav-trigger {
+  margin-bottom: 2rem;
+
+
+}
+
+#menu {
+  font-size: 3rem;
+  color: whitesmoke;
+}
+
+.menu_div {
+  background-color: black;
+
+  height: 4rem;
+  display: none;
+}
+
+@media(max-width:1080px) {
+  .menu_div {
+    display: block;
+
+  }
+
+  .desktop {
+    display: none;
+  }
+}

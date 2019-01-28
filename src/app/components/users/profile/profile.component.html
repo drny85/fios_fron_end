@@ -52,7 +52,10 @@
     <h2 class="header capitalized"> {{user?.name }} {{ user?.last_name }}</h2>
     <div class="card horizontal">
       <div class="card-image">
-        <img src="https://svgsilh.com/svg_v2/1299805.svg">
+        <img *ngIf="!user?.image" src="https://svgsilh.com/svg_v2/1299805.svg">
+        <img *ngIf="user?.image" src="
+        https://d1v58eqpqo0kww.cloudfront.net/A5F1EE1D37/image/1nPAbyDRxXw38r09nqJENZ6BmWvaeJOM_large.png"
+          alt="profile_img">
       </div>
       <div class="card-stacked">
         <div class="card-content">

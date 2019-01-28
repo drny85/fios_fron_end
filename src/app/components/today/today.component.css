@@ -79,3 +79,19 @@ img {
   left: 50%;
   margin: 1rem auto;
 }
+
+@media(max-width: 768px) {
+  .grid {
+
+    grid-template-columns: 1fr;
+
+
+  }
+
+  .card-content {
+    text-align: center;
+    min-height: 8rem;
+
+  }
+
+}

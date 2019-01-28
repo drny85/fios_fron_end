@@ -17,3 +17,12 @@ ul li {
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
 }
+
+
+@media(max-width:768px) {
+  .container {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    column-gap: 2rem;
+  }
+}
