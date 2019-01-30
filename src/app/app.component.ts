@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "./services/auth/auth.service";
+declare let M: any;
 
 @Component({
   selector: "app-root",

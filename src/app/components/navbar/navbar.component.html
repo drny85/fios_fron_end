@@ -33,9 +33,9 @@
     <li>
       <div *ngIf="user" class="user-view">
         <div class="background">
-          <img class="responsive-img sidenav-close" src="../../../assets/images/internet_mob.jpg">
+          <img class="responsive-img" src="../../../assets/images/internet_mob.jpg">
         </div>
-        <a routerLink="user/profile"><img class="circle" src="{{user?.image}}"></a>
+        <a routerLink="user/profile"><img class="circle sidenav-close" src="{{user?.image}}"></a>
         <a><span class="white-text name capitalized">{{user?.name }} {{user?.last_name }}</span></a>
         <a><span class="white-text email">{{user?.email }}</span></a>
       </div>

@@ -5,11 +5,9 @@ html,
 body {
   height: 100vh;
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+  position: relative;
 }
 
 /* Custom Stylesheet */
@@ -80,13 +78,6 @@ ul li a {
 
 .material-icons {
   color: black;
-}
-
-
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
 }
 
 main {
@@ -261,3 +252,12 @@ li .active {
 /* .black {
   background-color: #a30b0b !important;
 } */
+
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100vw;
+  height: 80px;
+
+}
