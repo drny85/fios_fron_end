@@ -53,10 +53,10 @@ export class ReferralService {
       );
   }
 
-  sendCollateral(email: string) {
-    return this.http.post<{ message: string }>(
+  sendCollateral(email: string, referral: Referral) {
+    return this.http.post<{ message: string; referral: Referral }>(
       this.baseUrl + "email/collateral",
-      { email: email }
+      { email: email, referral: referral }
     );
   }
 }

@@ -56,7 +56,7 @@ export class DetailComponent implements OnInit {
   sendCollateral(email: string) {
     if (!confirm("You are sending an email to " + email + "?")) return;
     if (email.length > 5) {
-      this.refServ.sendCollateral(email).subscribe(
+      this.refServ.sendCollateral(email, this.referral).subscribe(
         e => {
           if (e.message === "Email Sent.") {
             M.toast({
