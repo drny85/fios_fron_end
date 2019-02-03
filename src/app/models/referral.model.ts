@@ -27,4 +27,5 @@ export interface Referral {
   coach?: Object;
   updatedBy?: string;
   updated?: string;
+  email_sent?: boolean;
 }
