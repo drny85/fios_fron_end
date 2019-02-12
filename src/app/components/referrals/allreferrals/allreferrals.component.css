@@ -33,3 +33,14 @@ mat-cell {
   font-size: 22px;
   margin-left: 10px;
 }
+
+@media(max-width:978px) {
+  table {
+    width: 100vw;
+  }
+
+  .container {
+    width: 100vw !important;
+  margin: .5rem;
+  }
+}

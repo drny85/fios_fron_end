@@ -21,8 +21,11 @@ ul li {
 
 @media(max-width:768px) {
   .container {
+    position: relative;
     display: grid !important;
     grid-template-columns: 1fr;
     column-gap: 2rem;
   }
+
+  .
 }

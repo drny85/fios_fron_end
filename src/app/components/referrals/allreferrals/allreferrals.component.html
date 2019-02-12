@@ -75,13 +75,9 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Status
         </mat-header-cell>
-<<<<<<< HEAD
-        <mat-cell class="bold" [ngClass]="{'green-text': element.status === 'closed', 'yellow-text': element.status === 'pending', 'blue-text': element.status === 'new'}"
+        <mat-cell class="bold" [ngClass]="{'green-text': element.status === 'closed', 'yellow-text': element.status === 'pending', 'blue-text': element.status === 'new', 'red-text': element.status === 'not sold'}"
           *matCellDef="let element"> {{ element.status
           }} </mat-cell>
-=======
-        <mat-cell [ngClass]="{'green-text': element.status === 'closed'}" *matCellDef="let element"> {{ element.status }} </mat-cell>
->>>>>>> 227398799755454e8fa4d6aec53365b95a4ab433
       </ng-container>
       <!-- action column -->
       <ng-container matColumnDef="actions">
