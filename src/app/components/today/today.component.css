@@ -9,12 +9,16 @@
 
 }
 
+body {
+  height: 100vh;
+}
+
 .day {
   position: absolute;
   top: 20%;
   left: 50%;
   margin: 0 auto;
-  font-size: 3rem;
+  font-size: 1.5rem;
   text-transform: capitalize;
   font-family: 'Segoe UI', Tahoma, Verdana, sans-serif
 }
@@ -28,12 +32,6 @@
   font-family: 'Sarabun', sans-serif;
 }
 
-img {
-  width: 300px;
-  height: 320px;
-  opacity: 0.7;
-
-}
 
 .card-content {
   height: 6rem;
@@ -67,8 +65,14 @@ img {
 }
 
 img {
-  max-width: 20rem;
-  max-height: 25rem;
+  width: 200px;
+  height: 300px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% -50%);
+  text-align: center;
 }
 
 /* 

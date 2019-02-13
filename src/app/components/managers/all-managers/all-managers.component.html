@@ -1,3 +1,44 @@
-<p>
-  all-managers works!
-</p>
+<div class="animated fadeIn container">
+  <br>
+  <div class="mt-5">
+    <a class="btn black" routerLink="/manager/add-manager">Add Manager</a>
+  </div>
+
+  <div *ngIf="managers?.length > 0" class="z-depth-3">
+    <br>
+    <h4 class="center mt-4">All Managers</h4>
+
+    <div class="referee_table">
+      <table>
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let manager of managers">
+            <td>
+              {{ manager.name }} {{ manager.last_name }}
+
+            </td>
+            <td>
+              {{ manager.phone }}
+            </td>
+            <td class="lowercase"><a href="mailto:{{manager.email}}">
+                {{ manager.email }}</a></td>
+            <td><a class="btn grey" routerLink="/manager/details/{{manager._id}}">Details</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="managers?.length === 0" class="z-depth-5">
+    <h2 class="center">No Data</h2>
+  </div>
+
+  <div style="margin-bottom: 100px;" class=""></div>

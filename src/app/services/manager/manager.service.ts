@@ -23,11 +23,8 @@ export class ManagerService {
   }
 
   getManagers() {
-    return this.http.get<Manager>(this.baseUrl + "all-managers").pipe(
-      map(managers => {
-        return managers.managers;
-      })
-    );
+    return this.http.get<Manager[]>(this.baseUrl + "all-managers");
+     
   }
 
   updateManager(manager: Manager) {
@@ -37,5 +34,9 @@ export class ManagerService {
   deleteManager(id: string) {
     if (!id) return;
     return this.http.delete(this.baseUrl + `delete/${id}`);
+  }
+
+  getManager(id: string) {
+    return this.http.get<Manager>(this.baseUrl + `details/${id}`);
   }
 }

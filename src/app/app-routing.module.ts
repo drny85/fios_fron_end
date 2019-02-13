@@ -114,7 +114,7 @@ const routes: Routes = [
     canActivate: [ActiveGuard]
   },
   {
-    path: "manager/details",
+    path: "manager/details/:id",
     component: ManagerDetailsComponent,
     canActivate: [ActiveGuard]
   },

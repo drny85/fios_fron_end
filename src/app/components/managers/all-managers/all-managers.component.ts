@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Manager } from 'src/app/models/manager.model';
+import { ManagerService } from 'src/app/services/manager/manager.service';
 
 @Component({
   selector: 'app-all-managers',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllManagersComponent implements OnInit {
 
-  constructor() { }
+  managers: Manager[] = [];
+
+  constructor(private managerServ: ManagerService) {}
 
   ngOnInit() {
+    this.getManagers();
   }
 
+  getManagers() {
+    this.managerServ.getManagers().subscribe(managers => {this.managers = managers
+    console.log(managers)});
+  }
 }

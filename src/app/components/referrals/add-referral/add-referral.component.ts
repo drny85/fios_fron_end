@@ -60,6 +60,7 @@ export class AddReferralComponent implements OnInit {
     this.getReferees();
     this.getAllUsers();
     this.getSignedInUser();
+    this.referral.status = 'new';
   }
 
   getManagers() {
