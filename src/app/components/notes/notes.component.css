@@ -18,9 +18,12 @@
   cursor: pointer;
 }
 
+textarea::placeholder {
+  padding-left: 1rem;
+}
 
-textarea.mat-input-element {
-  padding: 1rem;
+.btn-note:hover {
+  cursor: pointer;
 }
 
 .dates {

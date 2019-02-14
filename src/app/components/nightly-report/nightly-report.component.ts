@@ -47,8 +47,8 @@ export class NightlyReportComponent implements OnInit {
         );
 
         let units = new Units(this.referrals);
-        console.log(units.totalUnits);
-        console.log(units.packagesCount);
+        // console.log(units.totalUnits);
+        // console.log(units.packagesCount);
       },
       err => console.log(err)
     );
@@ -76,7 +76,5 @@ export class NightlyReportComponent implements OnInit {
     );
   }
 
-  checkIfValid(e: NgForm) {
-    return e.valid;
-  }
+
 }

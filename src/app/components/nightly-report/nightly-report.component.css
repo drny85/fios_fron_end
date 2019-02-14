@@ -33,5 +33,6 @@
   opacity: 0.7;
  background-color: beige;
  padding: 0.5rem;
- font-style: italic
+ font-style: italic;
+ transition: 1s;
 }

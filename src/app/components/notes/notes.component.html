@@ -7,7 +7,7 @@
           <input (change)="show = true" type="date" [(ngModel)]="dates.end" placeholder="To" name="end" id="end"><span></span>
       </div>
       <div>
-          <input [disabled]="!show" (click)="getNotesByDate(e)" class="btn black" type="button" value="Get Notes">
+          <input class="btn-note" [disabled]="!show" (click)="getNotesByDate(e)" class="btn black" type="button" value="Get Notes">
       </div>
   </div>
   <div class="card">
