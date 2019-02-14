@@ -28,4 +28,5 @@ export interface Referral {
   updatedBy?: string;
   updated?: string;
   email_sent?: boolean;
+  collateral_sent?: boolean;
 }

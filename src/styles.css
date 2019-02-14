@@ -9,7 +9,9 @@ body {
   min-height: 100vh;
   position: relative;
 }
-
+.mg-auto {
+  padding-left: 18px;
+}
 /* Custom Stylesheet */
 /**
  * Use this file to override Materialize files so you can update

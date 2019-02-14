@@ -11,7 +11,7 @@ export class ReportsService {
 
   constructor(private http: HttpClient) {}
 
-  sendNightlyReport(notes: Note[], referrals: Referral[]) {
-    return this.http.post(this.BASE_URL + "nightly", { notes, referrals });
+  sendNightlyReport(notes: Note[], referrals: Referral[], extra_email: String) {
+    return this.http.post(this.BASE_URL + "nightly", { notes, referrals, extra_email });
   }
 }

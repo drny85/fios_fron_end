@@ -7,6 +7,7 @@ import { Note } from "../../models/note";
 import * as moment from "moment";
 import { ReportsService } from "src/app/services/report/reports.service";
 import { Router } from "@angular/router";
+import { NgForm } from '@angular/forms';
 
 declare let M: any;
 
@@ -17,6 +18,7 @@ declare let M: any;
 })
 export class NightlyReportComponent implements OnInit {
   referrals: Referral[] = [];
+  extra_email: string = '';
   units: number = 0;
   notes: Note[] = [];
   today = moment()
@@ -63,7 +65,7 @@ export class NightlyReportComponent implements OnInit {
 
   sendMyReport() {
     if (!confirm("Do you want to send your report now?")) return;
-    this.reportServ.sendNightlyReport(this.notes, this.referrals).subscribe(
+    this.reportServ.sendNightlyReport(this.notes, this.referrals, this.extra_email).subscribe(
       (report: { message: string }) => {
         if (report.message === "success") {
           this.router.navigate(["/"]);
@@ -72,5 +74,9 @@ export class NightlyReportComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  checkIfValid(e: NgForm) {
+    return e.valid;
   }
 }

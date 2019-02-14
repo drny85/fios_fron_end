@@ -1,6 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Note } from "../../models/note";
+import { Dates } from 'src/app/models/dates.model';
+
+
 
 @Injectable({
   providedIn: "root"
@@ -21,7 +24,7 @@ export class NotesService {
     return this.http.delete(this.BASE_URL + `delete/${id}`);
   }
 
-  getNoteByDate(date: string) {
-    return this.http.get(this.BASE_URL + "date/" + date);
+  getNoteByDate(dates: Dates) {
+    return this.http.post<any>(this.BASE_URL + "dates/", dates);
   }
 }

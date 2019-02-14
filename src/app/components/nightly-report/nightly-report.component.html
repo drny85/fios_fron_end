@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="extra_email">
+    <input type="email" email (keyup)="checkIfValid(e)"  #e="ngModel" placeholder="Type an email you want to send this report to..." name="extra" [(ngModel)]="extra_email" id="extra">
+  </div>
   <div class="card">
     <div class="card-body">
       <h2 class="center card-title">Today Report</h2>

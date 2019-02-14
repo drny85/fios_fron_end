@@ -30,6 +30,7 @@ export class ManagerDetailsComponent implements OnInit {
     if (!confirm("Are you sure you want to delete it?")) return;
    
     this.managerServ.deleteManager(id).subscribe(man => {
+    
       this.router.navigate(["/manager/all-managers"]);
       M.toast({ html: "Manager Deleted!", classes: "orange" });
     }, err => {

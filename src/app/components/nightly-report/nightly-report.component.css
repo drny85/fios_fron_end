@@ -26,3 +26,12 @@
 .container {
   position: relative;
 }
+
+.extra_email ::-webkit-input-placeholder{
+  text-align: center;
+  color: black;
+  opacity: 0.7;
+ background-color: beige;
+ padding: 0.5rem;
+ font-style: italic
+}

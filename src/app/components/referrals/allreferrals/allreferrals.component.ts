@@ -81,7 +81,12 @@ export class AllreferralsComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (filterValue === 'all') {
+      this.getReferrals();
+    } else {
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+   
   }
 
 }

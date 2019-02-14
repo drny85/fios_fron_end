@@ -15,8 +15,22 @@
   <h4 style="margin: 10px; padding:10px;" class="center lighten-3">
     All Referrals
   </h4>
-  <a class="btn waves-effect black waves-light mb-5" routerLink="/add-referral">Add Referral</a>
   <br />
+  <div class="nav-content white center-align">
+      <ul class="tabs tabs-grey black-text ">
+        <li class="tab"><a (click)="applyFilter('all')" [class.active]="status === null">ALL</a></li>
+        <li class="tab"><a (click)="applyFilter('new')" [class.active]="status === 'new'">New</a></li>
+        <li class="tab"><a (click)="applyFilter('closed')"  [class.active]="status === 'closed'">Closed</a></li>
+        <li class="tab"><a (click)="applyFilter('pending')" [class.active]="status === 'pending'">Pending</a></li>
+        <li class="tab"><a (click)="applyFilter('in progress')" [class.active]="status === 'in progress'">In
+            Progress</a></li>
+        <li class="tab"><a (click)="applyFilter('not sold')" [class.active]="status === 'not sold'">Not
+            Sold</a></li>
+      </ul>
+    </div>
+    <br>
+  <a class="btn waves-effect black waves-light mb-5" routerLink="/add-referral">Add Referral</a>
+ 
 
   <div class="input-field col s12 animated fadeInLeft">
     <input class="place" (keyup)="applyFilter($event.target.value)" placeholder="Search by name, phone, order #, status, apt #, etc." />

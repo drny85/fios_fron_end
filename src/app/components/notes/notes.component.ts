@@ -12,6 +12,7 @@ import {
   transition,
   state
 } from "@angular/animations";
+import { Dates } from 'src/app/models/dates.model';
 
 declare let M: any;
 
@@ -27,12 +28,19 @@ declare let M: any;
   ]
 })
 export class NotesComponent implements OnInit {
+  show = false;
+  allNotes = "Today's Notes";
   note: Note = {
     note: ""
   };
   notes: Note[] = [];
   noteToDeleteId = "";
   @ViewChild("autosize") autosize: CdkTextareaAutosize;
+
+  dates: Dates = {
+    start: new Date(),
+    end: new Date()
+  }
 
   constructor(private ngZone: NgZone, private notesServ: NotesService) {}
 
@@ -93,12 +101,16 @@ export class NotesComponent implements OnInit {
   }
 
   getNotesByDate(e: Event) {
-    const date = (e.target as HTMLInputElement).value;
-    this.notesServ.getNoteByDate(date).subscribe(
-      notes => {
-        console.log("BY date", notes);
-      },
-      err => console.log(err)
-    );
-  }
+    if (this.dates.start && this.dates.end) {
+      this.allNotes = `Notes from ${this.dates.start} to ${this.dates.end}`
+      this.notesServ.getNoteByDate(this.dates).subscribe(
+        (notes )=> {
+          this.notes = notes
+          console.log(this.notes);
+        },
+        err => console.log(err)
+      );
+    }
+    }
+   
 }

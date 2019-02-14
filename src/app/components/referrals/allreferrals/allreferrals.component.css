@@ -44,3 +44,7 @@ mat-cell {
   margin: .5rem;
   }
 }
+
+.nav-content li a:hover {
+  cursor: pointer;
+}
