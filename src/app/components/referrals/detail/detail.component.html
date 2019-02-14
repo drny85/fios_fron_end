@@ -53,14 +53,10 @@
           <li class="collection-item"><b>Zip code:</b>
             {{ referral.zipcode }}
           </li>
-          <li class="collection-item"><i class="material-icons tiny">
-              phone
-            </i> <b>Phone:</b>
+          <li class="collection-item"><b>Phone:</b>
             {{ referral.phone}}
           </li>
-          <li class="collection-item"><i class="material-icons tiny">
-              email
-            </i> <b>Email:</b>
+          <li class="collection-item"><b>Email:</b>
             <span><a class="blue-text" href="mailto:{{referral.email}}">
                 {{ referral.email}} </a></span>
             <button [disabled]="referral.collateral_sent" (click)="sendCollateral(referral.email)" class="btn black btn-right">Send Collateral</button>
@@ -79,7 +75,7 @@
           </li>
           <li class="collection-item"><b>Collateral Sent:</b>
             <span class="capitalized">
-              {{ referral.collateral_sent }}</span>
+              {{ referral.collateral_sent }}</span><span style="padding-left:10px;" class="text-italic" *ngIf="referral.collateral_sent">{{referral.collateral_sent_on | date: 'medium'}}</span>
           </li>
           <li *ngIf="referral.updatedBy" class="collection-item"><b>Updated By:</b>
             <span class="capitalized">

@@ -57,8 +57,10 @@ export class DetailComponent implements OnInit {
     if (!confirm("You are sending an email to " + email + "?")) return;
     if (email.length > 5) {
       this.refServ.sendCollateral(email, this.referral).subscribe(
-        e => {
+        (e: {message: string, referral: Referral}) => {
           if (e.message === "Email Sent.") {
+            this.referral = e.referral;
+            console.log(this.referral);
             M.toast({
               html: `Email has been sent to ${this.referral.name.toUpperCase()}`,
               displayLength: 6000,
