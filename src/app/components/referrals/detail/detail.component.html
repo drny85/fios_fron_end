@@ -63,7 +63,7 @@
             </i> <b>Email:</b>
             <span><a class="blue-text" href="mailto:{{referral.email}}">
                 {{ referral.email}} </a></span>
-            <button (click)="sendCollateral(referral.email)" class="btn black btn-right">Send Collateral</button>
+            <button [disabled]="referral.collateral_sent" (click)="sendCollateral(referral.email)" class="btn black btn-right">Send Collateral</button>
           </li>
           <li class="collection-item"><b>Move In:</b>
             {{ referral.moveIn | date: 'mediumDate' }}
@@ -79,7 +79,7 @@
           </li>
           <li class="collection-item"><b>Collateral Sent:</b>
             <span class="capitalized">
-              {{ referral.email_sent }}</span>
+              {{ referral.collateral_sent }}</span>
           </li>
           <li *ngIf="referral.updatedBy" class="collection-item"><b>Updated By:</b>
             <span class="capitalized">
