@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     coach: ""
   };
 
-  errors = {};
+  errors: any;
   error = "";
 
   password1: string;
