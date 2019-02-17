@@ -1,5 +1,5 @@
-import { Injectable, OnInit } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable, OnInit, isDevMode } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 import { Referee } from "../../models/referee.model";
 import { map } from "rxjs/operators";
 
@@ -7,7 +7,7 @@ import { map } from "rxjs/operators";
   providedIn: "root"
 })
 export class RefereeServiceService implements OnInit {
-  baseUrl: string = "/";
+  baseUrl =  isDevMode() ? "http://localhost:3000/" : "/";
 
   private token: string;
 

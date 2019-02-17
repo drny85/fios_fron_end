@@ -25,20 +25,20 @@ export class ManagerService {
   }
 
   getManagers() {
-    return this.http.get<Manager[]>(this.baseUrl + "all-managers");
+    return this.http.get<Manager[]>(this.baseUrl + "manager/all-managers");
      
   }
 
   updateManager(manager: Manager) {
-    return this.http.post(this.baseUrl + `update/${manager._id}`, manager);
+    return this.http.post(this.baseUrl + `manager/update/${manager._id}`, manager);
   }
 
   deleteManager(id: string) {
     if (!id) return;
-    return this.http.delete(this.baseUrl + `delete/${id}`);
+    return this.http.delete(this.baseUrl + `manager/delete/${id}`);
   }
 
   getManager(id: string) {
-    return this.http.get<Manager>(this.baseUrl + `details/${id}`);
+    return this.http.get<Manager>(this.baseUrl + `manager/details/${id}`);
   }
 }
