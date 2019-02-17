@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "./services/auth/auth.service";
+import { isDevMode } from '@angular/core';
 declare let M: any;
 
 @Component({
@@ -14,7 +15,9 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+
     this.authServ.autoAuthUser();
+    console.log(isDevMode());
   }
 
   ngOnDestroy() {

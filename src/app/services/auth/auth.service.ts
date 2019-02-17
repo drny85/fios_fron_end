@@ -4,12 +4,13 @@ import { User } from "../../models/user.model";
 import { Subject, Observable } from "rxjs";
 import { Router, ActivatedRoute } from "@angular/router";
 import { map } from "rxjs/operators";
+import { isDevMode } from '@angular/core';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService implements OnInit {
-  baseUrl = "/";
+  baseUrl =  isDevMode() ? "http://localhost:3000/" : "/";
   user: User;
   private userId: string;
   private token: string;
@@ -26,7 +27,7 @@ export class AuthService implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log("Auth:", this.user);
+    console.log(isDevMode);
   }
 
   autoAuthUser() {
@@ -40,7 +41,7 @@ export class AuthService implements OnInit {
   }
 
   getAllUsers() {
-    return this.http.get<User[]>(this.baseUrl + "all");
+    return this.http.get<User[]>(this.baseUrl + "user/all");
   }
 
   getAuthStatus() {
@@ -52,7 +53,7 @@ export class AuthService implements OnInit {
   }
 
   getCoaches() {
-    return this.http.get<User[]>(this.baseUrl + "coaches");
+    return this.http.get<User[]>(this.baseUrl + "user/coaches");
   }
 
   getUserById(id: string) {
@@ -64,7 +65,7 @@ export class AuthService implements OnInit {
   }
 
   getUser() {
-    this.http.get<User>(this.baseUrl + "me").subscribe(user => {
+    this.http.get<User>(this.baseUrl + "user/me").subscribe(user => {
       this.currrent.next(user);
       this.user = user;
     });
@@ -74,7 +75,7 @@ export class AuthService implements OnInit {
     if (!user) return;
     this.user = user;
     this.currrent.next(user);
-    console.log("INIT:", user);
+   
     if (user.user.roles.active) {
       this.token = user.token;
       this.userId = user.user._id;
@@ -89,7 +90,7 @@ export class AuthService implements OnInit {
   login(email: string, password: string) {
     const userData = { email: email, password: password };
 
-    return this.http.post<any>(this.baseUrl + "login/", userData).pipe(
+    return this.http.post<any>(this.baseUrl + "user/login/", userData).pipe(
       map(user => {
         return user;
       })

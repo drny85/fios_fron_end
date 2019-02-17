@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <h3 class="center z-depth-3">Register/Sign up</h3>
 
   <div>
@@ -20,7 +20,7 @@
               class="validate">
             <label for="last_name">Last Name</label>
             <p class="red-text" *ngIf="last_name.errors?.required && last_name.touched">Last Name is required</p>
-            <p class="red-text" *ngIf="errors">Last Name is required</p>
+            <p class="red-text" *ngIf="errors?.name">Last Name is required</p>
           </div>
         </div>
         <div class="row">
