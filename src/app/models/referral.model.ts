@@ -20,9 +20,9 @@ export interface Referral {
   status: string;
   package?: string;
   date_entered?: string;
-  referralBy: string;
+  referralBy: any;
   comment: string;
-  manager?: string;
+  manager?: any;
   userId?: string;
   coach?: Object;
   updatedBy?: string;

@@ -19,6 +19,7 @@ declare let M: any;
 })
 export class NightlyReportComponent implements OnInit {
   referrals: Referral[] = [];
+  show = false;
   dates: Dates = {
     start: new Date(),
     end: new Date()

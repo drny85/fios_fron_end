@@ -51,6 +51,7 @@ import { UserEditComponent } from "./components/users/user-edit/user-edit.compon
 import { NotesComponent } from "./components/notes/notes.component";
 import { EditNoteComponent } from "./components/edit-note/edit-note.component";
 import { NightlyReportComponent } from "./components/nightly-report/nightly-report.component";
+import { Capitalize } from './pipes/capitalize.pipe';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { NightlyReportComponent } from "./components/nightly-report/nightly-repo
     ManagerDetailsComponent,
     ManagerEditComponent,
     AllManagersComponent,
+    Capitalize,
     AllusersComponent,
     UserDetailComponent,
     UserEditComponent,

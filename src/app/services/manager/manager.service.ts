@@ -10,7 +10,7 @@ export class ManagerService {
   manager: Manager;
   managers: Manager[] = [];
 
-  baseUrl = "http://localhost:3000/manager/";
+  baseUrl = "/manager/";
 
   constructor(private http: HttpClient) {}
 

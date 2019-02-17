@@ -7,7 +7,7 @@ import { map } from "rxjs/operators";
   providedIn: "root"
 })
 export class RefereeServiceService implements OnInit {
-  baseUrl: string = "http://localhost:3000/";
+  baseUrl: string = "/";
 
   private token: string;
 

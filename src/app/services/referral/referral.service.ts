@@ -9,7 +9,7 @@ import { Dates } from 'src/app/models/dates.model';
   providedIn: "root"
 })
 export class ReferralService {
-  baseUrl: string = "http://localhost:3000/";
+  baseUrl: string = "/";
 
   constructor(private http: HttpClient) {}
 

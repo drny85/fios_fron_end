@@ -9,7 +9,7 @@ import { map } from "rxjs/operators";
   providedIn: "root"
 })
 export class AuthService implements OnInit {
-  baseUrl = "http://localhost:3000/user/";
+  baseUrl = "/";
   user: User;
   private userId: string;
   private token: string;

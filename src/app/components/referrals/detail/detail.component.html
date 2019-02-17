@@ -1,7 +1,7 @@
 <div class="container">
 
   <h3 class="center z-depth-3">Referral Details</h3>
-  <h4 *ngIf="error.msg" class="center red z-depth-3">{{ error.msg }}</h4>
+  <h4 *ngIf="error" class="center red z-depth-3">{{ error.msg }}</h4>
   <div [ngClass]="{'red accent-2': referral.status === 'not sold'}" *ngIf="referral" class="card animated fadeInDown">
     <div class="card-title">
       <div class="row">

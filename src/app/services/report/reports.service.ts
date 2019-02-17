@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class ReportsService {
-  BASE_URL = "http://localhost:3000/report/";
+  BASE_URL = "/report/";
 
   constructor(private http: HttpClient) {}
 

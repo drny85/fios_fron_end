@@ -9,7 +9,7 @@ import { Dates } from 'src/app/models/dates.model';
   providedIn: "root"
 })
 export class NotesService {
-  BASE_URL = "http://localhost:3000/notes/";
+  BASE_URL = "/notes/";
   constructor(private http: HttpClient) {}
 
   addNote(note: Note) {

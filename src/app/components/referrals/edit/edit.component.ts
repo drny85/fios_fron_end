@@ -148,4 +148,8 @@ export class EditComponent implements OnInit {
       }
     }
   }
+
+  statusChanged(ref_status) {
+    let x =0;
+  }
 }
