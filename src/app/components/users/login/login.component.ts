@@ -40,9 +40,10 @@ export class LoginComponent implements OnInit, OnDestroy {
           }
         }
       },
-      err => {
-        this.errors.message = err.error[0].msg;
-        console.log(this.errors);
+      (err: Response) => {
+       if(err.status === 400) {
+         this.errors['message'] = 'Invalid email or password';
+       }
       }
     );
   }

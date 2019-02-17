@@ -48,3 +48,8 @@ mat-cell {
 .nav-content li a:hover {
   cursor: pointer;
 }
+
+.email_sent {
+  background-color: #d5dbe0;
+  color: white;
+}

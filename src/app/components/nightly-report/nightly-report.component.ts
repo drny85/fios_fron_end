@@ -8,6 +8,7 @@ import * as moment from "moment";
 import { ReportsService } from "src/app/services/report/reports.service";
 import { Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
+import { Dates } from 'src/app/models/dates.model';
 
 declare let M: any;
 
@@ -18,6 +19,11 @@ declare let M: any;
 })
 export class NightlyReportComponent implements OnInit {
   referrals: Referral[] = [];
+  dates: Dates = {
+    start: new Date(),
+    end: new Date()
+  }
+  allNotes: string = '';
   extra_email: string = '';
   units: number = 0;
   notes: Note[] = [];
@@ -38,14 +44,9 @@ export class NightlyReportComponent implements OnInit {
   }
 
   getReferrals() {
-    this.refServ.getReferrals().subscribe(
+    this.refServ.getReferralsByDates(this.dates).subscribe(
       referrals => {
-        this.referrals = referrals.filter(
-          ref =>
-            ref.status === "closed" &&
-            ref.order_date.split("T")[0] === this.today
-        );
-
+        this.referrals = referrals;
         let units = new Units(this.referrals);
         // console.log(units.totalUnits);
         // console.log(units.packagesCount);
@@ -74,6 +75,44 @@ export class NightlyReportComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  getNotesByDate() {
+    if (this.dates.start && this.dates.end) {
+      if(this.dates.start === this.dates.end) {
+        this.allNotes = `Notes from ${this.dates.start}`;
+      } else {
+        this.allNotes = `Notes from ${this.dates.start} to ${this.dates.end}`;
+      }
+      
+      this.notesServ.getNoteByDate(this.dates).subscribe(
+        (notes )=> {
+          this.notes = notes
+          console.log(this.notes);
+        },
+        err => console.log(err)
+      );
+    }
+    }
+
+  getReferralsByDate() {
+    if (this.dates.start && this.dates.end) {
+
+      this.refServ.getReferralsByDates(this.dates).subscribe((ref: Referral[]) => {
+        this.referrals = ref;
+        console.log(ref);
+      }, (err: Response) => {
+        if (err.status === 400) {
+          console.log('Bad request');
+        }
+      })
+
+    }
+  }
+
+  getReportByDates() {
+    this.getNotesByDate();
+    this.getReferralsByDate();
   }
 
 

@@ -65,8 +65,9 @@ export class TodayComponent implements OnInit {
     let year = this.dateObject.getFullYear();
     let today = year + "-" + month + "-" + day;
 
-    let todaySales = [...this.referrals];
-    todaySales.filter(ref => ref.order_date === this.todayDate);
+    // let todaySales = [...this.referrals];
+    // todaySales.filter(ref => ref.order_date === this.todayDate);
+    this.referralServ.getReferralsByDates({start: new Date(), end: new Date()}).subscribe(referrals => this.referrals = referrals);
   }
 
   goToNotes() {

@@ -2,9 +2,21 @@
   <div class="extra_email">
     <input type="email" email placeholder="Type an email you want to send this report to..." name="extra" [(ngModel)]="extra_email" id="extra">
   </div>
+  <div class="dates">
+    <div>
+        <input type="date" [(ngModel)]="dates.start" placeholder="From" name="start" id="start">
+    </div>
+    <div>
+        <input (change)="show = true" type="date" [(ngModel)]="dates.end" placeholder="To" name="end" id="end"><span></span>
+    </div>
+    <div>
+        <input class="btn-note" [disabled]="!show" (click)="getReportByDates()" class="btn black" type="button" value="Get Notes">
+    </div>
+</div>
   <div class="card">
     <div class="card-body">
       <h2 class="center card-title">Today Report</h2>
+      
       <button class="btn black send_report" (click)="sendMyReport()">Send Report</button>
       <div class="main">
         <div *ngIf="referrals.length > 0" class="table_div">
@@ -35,7 +47,8 @@
           </table>
         </div>
         <div *ngIf="notes.length > 0; else noNotes" class="all_notes">
-          <h4 class="center">Here are all my notes from today</h4>
+          <h4 *ngIf="!allNotes" class="center">Here are all my notes from today</h4>
+          <h4 *ngIf="allNotes" class="center">{{ allNotes }}</h4>
           <ul class="collection">
             <li *ngFor="let n of notes" class="collection-item">
               <p>{{n.note}}</p>

@@ -36,7 +36,7 @@ export class EditComponent implements OnInit {
     mon: "",
     due_date: "",
     package: "",
-    order_date: "",
+    order_date: new Date(),
     email: "",
     status: "",
     manager: "",
@@ -96,13 +96,14 @@ export class EditComponent implements OnInit {
 
   onSubmit(e: NgForm) {
     this.referral.updated = moment().format("MMMM Do YYYY, h:mm:ss a");
+   
     // this.referral.coach = this.user.coach._id;
     this.refServ.updateReferral(this.referral).subscribe(ref => {
       if (ref) {
         e.reset();
         this.router.navigate([`detail/${this.referral._id}`]);
         M.toast({ html: "Referral Updated!", displayLength: 2000 });
-        if (ref.status === "closed" && ref.referralBy !== "me") {
+        if (ref.status === "closed" && ref.referralBy !== "me" && !ref.email_sent) {
           M.toast({
             html: "Great job on closing that sale!",
             classes: "teal",

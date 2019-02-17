@@ -16,7 +16,7 @@ export interface Referral {
   email?: string;
   moveIn?: string;
   due_date?: string;
-  order_date?: string;
+  order_date?: Date;
   status: string;
   package?: string;
   date_entered?: string;

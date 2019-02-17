@@ -100,7 +100,7 @@ export class NotesComponent implements OnInit {
     M.Modal.init(elems);
   }
 
-  getNotesByDate(e: Event) {
+  getNotesByDate() {
     if (this.dates.start && this.dates.end) {
       this.allNotes = `Notes from ${this.dates.start} to ${this.dates.end}`
       this.notesServ.getNoteByDate(this.dates).subscribe(

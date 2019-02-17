@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Referral } from "../../models/referral.model";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { Dates } from 'src/app/models/dates.model';
 
 @Injectable({
   providedIn: "root"
@@ -58,5 +59,10 @@ export class ReferralService {
       this.baseUrl + "email/collateral",
       { email: email, referral: referral }
     );
+  }
+
+  getReferralsByDates(dates: Dates) {
+   
+    return this.http.post<any>(this.baseUrl + 'bydates', dates);
   }
 }

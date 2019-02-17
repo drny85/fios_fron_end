@@ -43,7 +43,7 @@ export class AllreferralsComponent implements OnInit {
         this.dataSource = new MatTableDataSource(referrals);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-        console.log(this.dataSource);
+       
         // this.dataSource.filterPredicate = (data, filter) => {
         //   return this.displayedColumns.some(ele => {
         //     return (
