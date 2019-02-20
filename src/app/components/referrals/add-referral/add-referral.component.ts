@@ -72,7 +72,6 @@ export class AddReferralComponent implements OnInit {
 
   getReferees() {
     this.refereeServ.getReferees().subscribe(referees => {
-      console.log("REFEREREES:", referees);
       this.referees = referees;
       this.referresCopy = referees;
     });
@@ -81,7 +80,7 @@ export class AddReferralComponent implements OnInit {
   getAllUsers() {
     this.authServ.getAllUsers().subscribe(users => {
       this.users = users;
-      console.log("All Users:", this.users);
+      
     });
   }
 
@@ -90,7 +89,7 @@ export class AddReferralComponent implements OnInit {
     if (userId) {
       this.authServ.getUserById(userId).subscribe(user => {
         this.user = user;
-        console.log("Signed:", this.user);
+       
       });
     }
   }
@@ -100,7 +99,6 @@ export class AddReferralComponent implements OnInit {
       this.referral.userId = this.user._id;
     }
 
-    console.log("This referral", this.referral);
     this.referralServ.addReferral(this.referral).subscribe(
       ref => {
         console.log("Submitted", ref);

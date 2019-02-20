@@ -17,6 +17,7 @@ export class AuthService implements OnInit {
   private authStatusListener = new Subject<boolean>();
   currrent = new Subject<User>();
   private isAuth = false;
+  private isAdmin = false;
 
   headers: HttpHeaders = new HttpHeaders();
 
@@ -57,11 +58,15 @@ export class AuthService implements OnInit {
   }
 
   getUserById(id: string) {
-    return this.http.get<User>(this.baseUrl + id);
+    return this.http.get<User>(this.baseUrl + "user/" + id);
   }
 
   getIsAuth() {
     return this.isAuth;
+  }
+
+  getIsAdmin() {
+    return this.isAdmin;
   }
 
   getUser() {
@@ -75,11 +80,15 @@ export class AuthService implements OnInit {
     if (!user) return;
     this.user = user;
     this.currrent.next(user);
+    if(user.user.roles.isAdmin) {
+      this.isAdmin = true;
+    }
    
     if (user.user.roles.active) {
       this.token = user.token;
       this.userId = user.user._id;
       this.isAuth = true;
+      
       localStorage.setItem("userId", this.userId);
       this.authStatusListener.next(true);
       this.currrent.next(user);
@@ -90,11 +99,8 @@ export class AuthService implements OnInit {
   login(email: string, password: string) {
     const userData = { email: email, password: password };
 
-    return this.http.post<any>(this.baseUrl + "user/login/", userData).pipe(
-      map(user => {
-        return user;
-      })
-    );
+    return this.http.post<any>(this.baseUrl + "user/login/", userData);
+    
     // .subscribe(
     //   user => {
     //     if (!user) return;
@@ -130,11 +136,11 @@ export class AuthService implements OnInit {
   }
 
   register(user: User) {
-    return this.http.post(this.baseUrl + "newuser", user);
+    return this.http.post(this.baseUrl + "user/newuser", user);
   }
 
   updateUser(user: User) {
-    return this.http.put<User>(this.baseUrl + "update", user);
+    return this.http.put<User>(this.baseUrl + "user/update", user);
   }
 
   getToken() {

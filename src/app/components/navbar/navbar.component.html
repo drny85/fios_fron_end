@@ -6,7 +6,7 @@
     <a *ngIf="loggedIn" id="logo-container" routerLink="/" class="brand-logo white-text capitalized">{{ user?.name }}</a>
     <ul class="right hide-on-med-and-down">
       <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/today">Home</a></li>
-      <li *ngIf="loggedIn && user?.roles.isAdmin"><a routerLinkActive="actived_page current" routerLink="/user/all">Manage
+      <li *ngIf="loggedIn && isAdmin"><a routerLinkActive="actived_page current" routerLink="/user/all">Manage
           Users</a></li>
       <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" routerLink="/referrals">All Referrals</a></li>
 
@@ -41,7 +41,7 @@
       </div>
     </li>
     <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" class="sidenav-close" routerLink="/today">Home</a></li>
-    <li *ngIf="loggedIn && user?.roles.isAdmin"><a class="sidenav-close" routerLinkActive="actived_page current"
+    <li *ngIf="loggedIn && isAdmin"><a class="sidenav-close" routerLinkActive="actived_page current"
         routerLink="/user/all">Manage
         Users</a></li>
     <li *ngIf="loggedIn"><a routerLinkActive="actived_page current" class="sidenav-close" routerLink="/referrals">All

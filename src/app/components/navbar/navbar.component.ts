@@ -16,11 +16,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
   loggedIn: boolean = false;
   subscription: Subscription;
   userSubs: Subscription;
+  isAdmin: boolean = false;
   constructor(private router: Router, private authServ: AuthService) {}
 
   ngOnInit() {
     this.getCurrentUser();
     this.loggedIn = this.authServ.getIsAuth();
+    this.isAdmin = this.authServ.getIsAdmin();
     this.subscription = this.authServ.getAuthStatus().subscribe(isAuth => {
       this.loggedIn = isAuth;
     });
@@ -34,14 +36,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   getCurrentUser() {
     this.authServ
       .getCurrent()
-      .pipe(
-        map(u => {
-          if (u) {
-            return u.user;
-          }
-        })
-      )
       .subscribe(user => {
+        console.log(user);
         this.user = user;
       });
   }
